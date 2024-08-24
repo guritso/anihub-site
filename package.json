@@ -1,0 +1,7 @@
+{
+  "name": "anihub-site",
+  "packageManager": "yarn@4.4.1",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

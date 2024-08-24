@@ -34,14 +34,14 @@ body {
 .head-layouts#profile-layout {
     flex-direction: row;
     background-color: #344538;
-    height: 197px;
+    height: 20%;
     margin-bottom: var(--layout-padding);
 }
 
 #profile-picture {
     border-radius: var(--border-radius);
-    width: 168px;
-    height: auto;
+    aspect-ratio: 1 / 1;
+    width: auto;
 }
 
 #profile-info {
@@ -63,19 +63,30 @@ h3 {
 
 /* Social layout */
 #social-layout {
-    height: 67px;
+    height: 7%;
     background-color: #596a5e;
+}
+
+.button {
+    background-color: #0f0f1a;
+    color: white;
+    border-radius: var(--border-radius);
+    border: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    height: 100%;
+    margin-right: var(--layout-padding);
 }
 
 /* Animes Layout*/
 #animes-layout {
     background-color: #626262;
-    height: 277px;
+    height: 30%;
 }
 
 /* Github repos */
 #repos-layout {
-    height: 67px;
+    height: 7%;
     background-color: #374544;
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
@@ -104,7 +115,7 @@ h3 {
 
 #repo-viewer {
     background-color: #384040;
-    height: 260px;
+    height: 30%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
