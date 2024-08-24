@@ -1,0 +1,110 @@
+:root {
+    --border-radius: 5px;
+    --layout-padding: 15px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: #010102;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: rgb(224, 224, 224);
+}
+
+.main-page {
+    background-color: #282828;
+    width: 1060px;
+    height: 100%;
+    padding: var(--layout-padding);
+    box-sizing: border-box;
+}
+
+.head-layouts {
+    display: flex;
+    border-radius: var(--border-radius);
+    width: 100%;
+    padding: var(--layout-padding);
+    box-sizing: border-box;
+}
+/* profile layout */
+.head-layouts#profile-layout {
+    flex-direction: row;
+    background-color: #344538;
+    height: 197px;
+    margin-bottom: var(--layout-padding);
+}
+
+#profile-picture {
+    border-radius: var(--border-radius);
+    width: 168px;
+    height: auto;
+}
+
+#profile-info {
+    height: 100%;
+    margin-left: var(--layout-padding);
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+h1, h2, h3{
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    margin-left: var(--layout-padding);
+}
+
+/* Social layout */
+#social-layout {
+    height: 67px;
+    background-color: #596a5e;
+}
+
+/* Animes Layout*/
+#animes-layout {
+    background-color: #626262;
+    height: 277px;
+}
+
+/* Github repos */
+#repos-layout {
+    height: 67px;
+    background-color: #374544;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#repos-layout a {
+    border-radius: var(--border-radius);
+    display: flex;
+    padding: 0;
+    align-items: center;
+    font-size: 1.4em;
+    text-decoration: none;
+    color: beige;
+    padding: var(--layout-padding);
+
+}
+
+#repos-layout a:active, #repos-layout a:hover {
+    border-radius: var(--border-radius);
+    background-color: #384040;
+    margin-top: var(--layout-padding);
+}
+
+#repo-viewer {
+    background-color: #384040;
+    height: 260px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
