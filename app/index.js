@@ -1,10 +1,20 @@
 const express = require('express');
+const config = require('./config');
+const path = require('path');
+const cors = require('cors');
 const app = express();
 
+app.use(cors());
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
+
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.get('/api/user', (req, res) => {
+    res.json(config.user);
+});
+
+app.listen(config.port, () => {
+    console.log(`Server is running http://localhost:${config.port}`);
 });
