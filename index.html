@@ -2,48 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="assets/js/script.js"></script>
-    <title>GuriZenit</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>GuriZenit</title>
 </head>
 
 <body>
-    <div class="main-page">
-        <div class="head-layouts" id="profile-layout">
-            <img id="profile-picture" src="assets/img/alt.jpg" alt="img notfound">
-            <div id="profile-info">
-                <h1 id="username">username</h1>
-                <h2 id="user-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel nostrum non molestias necessitatibus
-                    distinctio iste accusantium alias quia.</h2>
-            </div>
-        </div>
-        <div class="head-layouts" id="social-layout">
-            <button class="button" id="github-button">Github</button>
-            <button class="button" id="anime-button">MyAnimeList</button>
-        </div>
-        <h3>Last completed animes</h3>
-        <div class="head-layouts" id="animes-layout">
-            <div id="anime-container"></div>
-        </div>
-        <h3>Github repositories</h3>
-        <div id="repos-container">
-            <div class="head-layouts" id="repos-layout">
-                <a href="github.com">slash-bot-template</a>
-                <a href="github.com">animehub</a>
-                <a href="github.com">yume-site</a>
-                <a href="github.com">gurizenit-site</a>
-                <a href="github.com">debianime-bot</a>
-                <a href="github.com">slash-bot-template</a>
-                <a href="github.com">animehub</a>
-                <a href="github.com">yume-site</a>
-                <a href="github.com">gurizenit-site</a>
-                <a href="github.com">debianime-bot</a>
-            </div>
-        </div>
-        <div class="head-layouts" id="repo-viewer"></div>
+  <div class="main-page">
+    <div class="head-layouts" id="profile-layout">
+      <img id="profile-picture"
+        src="https://www.gravatar.com/avatar/a2087d7427bd15a4986b8a02f12d2590c87e7f6fcf22de02489c305f98217b43?s=480&d=identicon"
+        alt="profile picture">
+      <div id="profile-info">
+        <h1 id="username"></h1>
+        <h2 id="user-description"></h2>
+      </div>
     </div>
+    <div class="head-layouts" id="social-layout">
+      <a class="button" id="github-button" href="https://github.com/gurizenit">Github</a>
+      <a class="button" id="anime-button" href="https://myanimelist.net/profile/GuriZenit">MyAnimeList</a>
+    </div>
+    <h3>Last completed animes</h3>
+    <div class="head-layouts" id="animes-layout">
+      <div id="anime-container"></div>
+    </div>
+    <h3>Github repositories</h3>
+    <div class="head-layouts" id="repos-layout">
+      <div id="repos-container"></div>
+    </div>
+    <div class="head-layouts" id="repo-viewer"></div>
+  </div>
+  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
