@@ -144,7 +144,6 @@ h3 {
 
 .anime-card {
   background-color: #344538;
-  background-image: url(../img/rotating.gif);
   display: flex;
   flex-direction: column;
   background-size: cover;
