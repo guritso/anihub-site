@@ -1,5 +1,6 @@
+const HOST = "http://localhost:3000"
+
 document.addEventListener('DOMContentLoaded', async () => {
-  const HOST = "http://localhost:3000"
   const userInfo = await getUserInfo();
   const animeList = await getAnimeHistory(userInfo.accounts.myanimelist);
   const animeListData = await animeList.json();
@@ -27,10 +28,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function getUserInfo() {
-  return await fetch('http://localhost:3000/api/user').then(res => res.json());
+  return await fetch(`${HOST}/api/user`).then(res => res.json());
 }
 
 async function getAnimeHistory(username) {
-  const animeList = await fetch(`http://localhost:3000/api/userupdates?username=${username}&completed=true`).catch(e => { });
+  const animeList = await fetch(`${HOST}/api/userupdates?username=${username}&completed=true`).catch(e => { });
   return animeList || { data: [] };
 }

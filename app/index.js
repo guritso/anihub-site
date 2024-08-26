@@ -19,7 +19,7 @@ app.get('/api/userupdates', async (req, res) => {
   const { username, airing, completed, watching } = req.query;
   let animeUpdates = await getAnimesCache(username || config.user.accounts.myanimelist);
 
-  if (!animeUpdates?.data?.length) {
+  if (!animeUpdates?.length) {
     return res.send({ status: res.statusCode, data: [] });
   }
 
