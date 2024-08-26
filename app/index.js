@@ -45,5 +45,5 @@ app.get('/api/user', (req, res) => {
 
 app.listen(config.port, () => {
   console.log(`Server is running http://localhost:${config.port}`);
-  startSyncing(config.user.myanimelist_username)
+  startSyncing(config.user.accounts.myanimelist)
 });
