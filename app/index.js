@@ -16,6 +16,17 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
+app.use((req, res, next) => {
+  const allowedOrigin = `http://localhost:${config.port}`;
+  const origin = req.get('origin') || req.get('referer');
+
+  if (!origin || !origin.startsWith(allowedOrigin)) {
+    return res.status(403).send({ status: res.statusCode, message: 'Method not allowed' });
+  }
+
+  next();
+});
+
 app.get('/api/userupdates', async (req, res) => {
   const { username, airing, completed, watching } = req.query;
   let animeUpdates = await getAnimesCache(username || animeAccount.username);
