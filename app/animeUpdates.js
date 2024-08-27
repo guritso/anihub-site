@@ -71,7 +71,7 @@ async function updateList(username) {
 
       process.stdout.write('|');
 
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
     }
 
     const episodes = Array.from(episodesCache.values())
