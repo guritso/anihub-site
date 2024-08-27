@@ -17,7 +17,14 @@ const config = {
       }
     ]
   },
+  hosts: [],
   port: process.env.PORT || 3000
+}
+
+config.hosts.push(`http://localhost:${config.port}`)
+
+if (process.env.CUSTOM_HOST) {
+  config.hosts.push(process.env.CUSTOM_HOST)
 }
 
 for (const account of config.user.accounts) {

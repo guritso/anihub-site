@@ -17,12 +17,17 @@ app.get('/', (req, res) => {
 });
 
 app.use((req, res, next) => {
-  const allowedOrigin = `http://localhost:${config.port}`;
+  const allowedOrigin = config.hosts;
   const origin = req.get('origin') || req.get('referer');
 
-  if (!origin || !origin.startsWith(allowedOrigin)) {
-    return res.status(403).send({ status: res.statusCode, message: 'Method not allowed' });
+  for (const host of allowedOrigin) {
+    if (origin?.startsWith(host)) {
+      next();
+      return;
+    }
   }
+
+  return res.status(403).send({ status: res.statusCode, message: 'Method not allowed' });
 
   next();
 });
@@ -56,6 +61,6 @@ app.get('/api/user', (req, res) => {
 });
 
 app.listen(config.port, () => {
-  console.log(`Server is running http://localhost:${config.port}`);
+  console.log(`Server is running on:`, config.hosts);
   startSyncing(animeAccount.username)
 });
