@@ -1,5 +1,3 @@
-const HOST = "https://api.gurizenit.site"
-
 document.addEventListener('DOMContentLoaded', async () => {
   const userInfo = await getUserInfo();
   const animeList = await getAnimeHistory(userInfo.accounts.find(a => a.type === "myanimelist").username);
@@ -39,10 +37,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function getUserInfo() {
-  return await fetch(`${HOST}/api/user`).then(res => res.json());
+  return await fetch(`/api/user`).then(res => res.json());
 }
 
 async function getAnimeHistory(username) {
-  const animeList = await fetch(`${HOST}/api/userupdates?username=${username}&completed=true`).catch(e => { });
+  const animeList = await fetch(`/api/userupdates?username=${username}&completed=true`).catch(e => { });
   return animeList || { data: [] };
 }

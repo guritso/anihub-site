@@ -39,7 +39,7 @@ async function createAnimeObject(anime) {
   return {
     id: anime.entry.mal_id,
     title: animeObject.data.title,
-    image: `http://localhost:3000/assets/img/animes/${anime.entry.mal_id}.webp`,
+    image: `/assets/img/animes/${anime.entry.mal_id}.webp`,
     episodes: animeObject.data.episodes,
     airing: animeObject.data.airing,
     link: anime.entry.url,

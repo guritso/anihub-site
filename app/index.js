@@ -12,7 +12,6 @@ app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 const animeAccount = config.user.accounts.find(a => a.type === "myanimelist");
 
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
