@@ -1,4 +1,4 @@
-const HOST = "http://localhost:3000"
+const HOST = "https://api.gurizenit.site"
 
 document.addEventListener('DOMContentLoaded', async () => {
   const userInfo = await getUserInfo();
