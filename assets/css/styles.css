@@ -34,7 +34,7 @@
 }
 
 .preload {
-  background-image: url(../img/bounce/madotsuki.gif), url(../img/rotating/madotsuki.gif);
+  background-image: url(../img/madotsuki/bounce.gif), url(../img/madotsuki/rotating.gif);
   overflow: hidden;
   width: 0;
   height: 0;
