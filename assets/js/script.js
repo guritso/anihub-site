@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       animeContainer.innerHTML += `
         <a class="anime-card" href="${anime.link}" target="_blank" style="background-image: url(${anime.image})">
           <p class="anime-status" id="${status.toLowerCase()}">${status}</p>
-          <p id="anime-title">${index + 1} - ${anime.title}</p>
+          <p id="anime-title">${anime.title}</p>
           <p id="anime-date">${new Date(anime.user.date)}</p>
         </a>
       `;
