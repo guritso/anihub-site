@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const routeMapper = async (directory) => {
+const routeMapper = (directory) => {
   const routeMap = [];
   const dirVersions = fs.readdirSync(directory);
 
