@@ -4,33 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <title>GuriZenit</title>
+  <script src="/assets/js/script.js"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
 <body>
+  <div class="preload"></div>
   <div class="main-page">
-    <div class="head-layouts" id="profile-layout">
+    <div class="head-layouts" id="profile-layout" style="display: none;">
       <img id="profile-picture"
-        src="https://www.gravatar.com/avatar/a2087d7427bd15a4986b8a02f12d2590c87e7f6fcf22de02489c305f98217b43?s=480&d=identicon"
-        alt="profile picture">
+      src="">
       <div id="profile-info">
         <h1 id="username"></h1>
         <h2 id="user-description"></h2>
       </div>
     </div>
-    <div class="head-layouts" id="social-layout"></div>
-    <h3>Last completed animes</h3>
-    <div class="head-layouts" id="animes-layout">
+    <div class="head-layouts" id="social-layout" style="display: none;">
+      <div id="social-container"></div>
+    </div>
+    <div class="head-layouts" id="animes-layout" style="display: none;">
       <div id="anime-container"></div>
     </div>
-    <h3>Github repositories</h3>
-    <div class="head-layouts" id="repos-layout">
+    <div class="head-layouts" id="repos-layout" style="display: none;">
       <div id="repos-container"></div>
+      <div class="head-layouts" id="repo-viewer" style="display: none;"></div>
     </div>
-    <div class="head-layouts" id="repo-viewer"></div>
   </div>
-  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
