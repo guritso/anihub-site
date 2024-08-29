@@ -1,0 +1,38 @@
+{
+  "user": {
+    "name": "GuriZenit",
+    "description": "I just like code and animes",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/77638636?v=4",
+    "accounts": {
+      "github": {
+        "username": "gurizenit",
+        "url": "https://github.com/gurizenit",
+        "color": " #2a313b"
+      },
+      "myanimelist": {
+        "username": "gurizenit",
+        "url": "https://myanimelist.net/profile/GuriZenit",
+        "color": "#272b4e"
+      }
+    }
+  },
+  "anime": {
+    "limit": 100,
+    "rowSpeed": 1,
+    "madotsuki": {
+      "enabled": false
+    }
+  },
+  "animeSync": {
+    "enabled": true,
+    "syncInterval": 60000,
+    "animeInterval": 1000,
+    "verbose": false
+  },
+  "security": {
+    "publicAccess": ["user", "anime"],
+    "newKeyOnStart": false,
+    "showKeyOnStart": true
+  },
+  "port": 3000
+}
