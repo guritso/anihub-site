@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 });
 
 (async () => {
-  const routes = await routeMapper(path.join(__dirname, "/api/routes"));
+  const routes = routeMapper(path.join(__dirname, "/api/routes"));
   console.log(`↺ loading routes...`);
 
   routes.forEach((route) => {
