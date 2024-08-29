@@ -8,6 +8,8 @@ const path = require("path");
 const fs = require("fs");
 const app = express();
 
+require("dotenv").config();
+
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use(express.json());
 app.use(cors());
@@ -21,7 +23,7 @@ app.get("/", (req, res) => {
 (async () => {
   const routes = await routeMapper(path.join(__dirname, "/api/routes"));
   console.log(`↺ loading routes...`);
-
+  
   routes.forEach((route) => {
     app[route.data.method](route.data.path, route.handler);
     console.log(`  • ${route.data.method} ${route.data.path}`);
@@ -34,12 +36,13 @@ app.get("/", (req, res) => {
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, "/assets/pages/404.html"));
   });
+  
 
   gerateKey.write({
     override: config().security.newKeyOnStart,
     show: config().security.showKeyOnStart
   });
-
+  
   console.log("↺ loading server...");
   app.listen(config().port, () => {
     console.log("  • online on port ", config().port);
