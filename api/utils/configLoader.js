@@ -7,7 +7,7 @@ const cache = new Set();
 
 function configLoader() {
   try {
-    const configPath = path.join(__dirname, '../config/config.json');
+    const configPath = path.join(__dirname, '../../config/config.json');
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     cache.add(JSON.stringify(config));
     return config;

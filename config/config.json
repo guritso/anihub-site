@@ -18,7 +18,7 @@
   },
   "anime": {
     "limit": 100,
-    "rowSpeed": 1,
+    "rowSpeed": 0.6,
     "madotsuki": {
       "enabled": false
     }
@@ -32,7 +32,7 @@
   "security": {
     "publicAccess": ["user", "anime"],
     "newKeyOnStart": false,
-    "showKeyOnStart": true
+    "showKeyOnStart": false
   },
   "port": 3000
 }
