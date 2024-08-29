@@ -34,7 +34,7 @@
 }
 
 .preload {
-  background-image: url(../img/bounce.gif), url(../img/rotating.gif);
+  background-image: url(../img/bounce/madotsuki.gif), url(../img/rotating/madotsuki.gif);
   overflow: hidden;
   width: 0;
   height: 0;
@@ -238,7 +238,7 @@ h3 {
 }
 
 .anime-card#madotsuki{
-  background-image: url(../img/walking.gif);
+  background-image: url(../img/madotsuki/walking.gif);
   background-repeat: no-repeat;
   background-color: transparent;
   background-position: center;
@@ -247,12 +247,12 @@ h3 {
 }
 
 #anime-container:hover .anime-card#madotsuki {
-  background-image: url(../img/bounce.gif);
+  background-image: url(../img/madotsuki/bounce.gif);
   transform: scale(1);
 }
 
 .anime-card#madotsuki:active {
-  background-image: url(../img/rotating.gif) !important;
+  background-image: url(../img/madotsuki/rotating.gif) !important;
   transform: scale(1);
 }
 
