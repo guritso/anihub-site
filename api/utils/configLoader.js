@@ -15,7 +15,7 @@ function configLoader() {
     console.error("Error:", error.message, "- using cached config.json!");
     const arr = Array.from(cache);
     if (arr.length > 0) {
-      return JSON.parse(arr[0]);
+      return JSON.parse(arr.pop());
     } else {
       throw new Error('No cached config.json available.');
     }
