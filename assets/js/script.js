@@ -47,14 +47,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const length = animeContainer.querySelectorAll(".anime-card").length;
   if (length > 5) {
-    
     if (animeConfig.madotsuki.enabled) {
-      const madotsuki = document.createElement("div");
-      madotsuki.className = "anime-card";
-      madotsuki.id = "madotsuki";
+      const madotsuki = createElement({ tag: "div", className: "anime-card", id: "madotsuki" });
       animeContainer.appendChild(madotsuki);
+      const preload = createElement({ tag: "div", className: "preload", id: "preload" });
+      animeContainer.before(preload);
     }
-    
+
     animeContainer.innerHTML += animeContainer.innerHTML;
     animeContainer.style.animation = `scroll ${length / animeConfig.rowSpeed}s infinite linear`;
   }
@@ -64,8 +63,41 @@ document.addEventListener('DOMContentLoaded', async () => {
   h3clone.innerText = "Github repositories";
   headLayouts[2].after(h3clone);
 
+  const repos = await getRepos(userInfo.accounts.github.username);
+  const reposContainer = document.getElementById('repos-container');
+  const reposConfig = await getConfigs("repos").then(res => res.data);
+
+  if (repos?.length) {
+    const filteredRepos = repos
+      .filter(repo => {
+        if (!reposConfig.fork && repo.fork) return false;
+        if (!reposConfig.archived && repo.archived) return false;
+        if (reposConfig.blacklist.includes(repo.name)) return false;
+        return true;
+      })
+      .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+      .slice(0, reposConfig.limit);
+
+    filteredRepos.forEach(repo => {
+      const repoElement = document.createElement('a');
+      repoElement.className = 'repo-button';
+      repoElement.href = repo.html_url;
+      repoElement.target = '_blank';
+
+      repoElement.innerHTML = `
+        <h4>${repo.name}</h4>
+        <p>${repo.description || "No description"}</p>
+        <div class="repo-info">
+          <span class="repo-language">${repo.language || "N/A"}</span>
+          <span class="repo-stars">${repo.stargazers_count}</span>
+        </div>
+      `;
+
+      reposContainer.appendChild(repoElement);
+    });
+  }
+
   headLayouts[3].style.display = "flex";
-  headLayouts[4].style.display = "flex";
 });
 
 // functions
@@ -77,4 +109,17 @@ async function getConfigs(params) {
 
 async function getAnimeHistory(username) {
   return await fetch(`${apiUrl}/user/${username}`).then(res => res.json());
+}
+
+async function getRepos(username) {
+  return await fetch(`https://api.github.com/users/${username}/repos`).then(res => res.json());
+}
+
+function createElement(obj) {
+  const element = document.createElement(obj.tag);
+  for (const key in obj) {
+    element[key] = obj[key];
+  }
+
+  return element;
 }

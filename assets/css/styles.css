@@ -7,7 +7,7 @@
 :root {
   --primary-font-color: #e0e0e0;
   --secondary-font-color: #dddddd;
-  
+
   /* Cores de fundo */
   --background-dark: #0a0508;
   --background-light: #1f1d22;
@@ -15,7 +15,7 @@
   --background-social: #44574c;
   --background-anime: #3f5b64;
   --background-repos: #273447;
-  
+
   /* Cores de texto */
   --text-color-light: #e0e0e0;
   --text-color-secondary: #a0a0a0;
@@ -40,7 +40,6 @@
   height: 0;
 }
 
-
 body {
   padding: 0;
   margin: 0;
@@ -48,7 +47,7 @@ body {
   background-color: var(--background-dark);
   height: 100vh;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   color: var(--primary-font-color);
   font-family: var(--font-courier);
@@ -57,16 +56,16 @@ body {
 .main-page {
   background-color: var(--background-light);
   width: 1060px;
-  height: 100%;
+  height:100%;
   padding: var(--layout-padding);
   box-sizing: border-box;
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius);
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1060px) {
   .main-page {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -209,7 +208,6 @@ h3 {
   animation-play-state: paused !important;
 }
 
-
 .anime-card {
   background-color: #344538;
   display: flex;
@@ -227,7 +225,6 @@ h3 {
   user-select: none;
   background-color: transparent;
 }
-
 
 .anime-card:hover {
   transform: scale(1.05);
@@ -316,44 +313,92 @@ h3 {
 #repos-layout {
   background-color: var(--background-repos);
   overflow: hidden;
-  height: var(--buttons-height);
-  padding: 0;
-  border-radius: var(--border-radius);
+  padding: var(--layout-padding);
+  width: 100%;
   height: calc(var(--repos-height) + var(--buttons-height));
 }
 
 #repos-container {
-  background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
-  animation: scroll 30s infinite linear;
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--layout-padding);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--background-light) var(--background-dark);
+  scrollbar-width: 0;
 }
 
 
 .repo-button {
+  display: flex;
+  flex-direction: column;
   color: var(--primary-font-color);
   font-family: var(--font-courier);
   border: none;
   border-radius: var(--border-radius);
-  background-color: transparent;
-  font-size: 1.3em;
+  background-color: rgba(42, 49, 59, 0.7);
   padding: var(--layout-padding);
-  width: max-content;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repo-button h4 {
+  margin: 0;
+  font-size: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.repo-button p {
+  font-size: 0.8em;
+  margin-top: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
 .repo-button:hover {
-  background-color: #2a313b;
+  background-color: rgba(55, 69, 68, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .repo-button:active {
-  background-color: #374544;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  transform: translateY(0);
+  box-shadow: none;
 }
 
-#repo-viewer {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0;
+.repo-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+
+.repo-info span {
+  display: flex;
+  align-items: center;
+}
+
+.repo-info span:before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.repo-language:before {
+  background-color: #f1e05a;
+}
+
+.repo-stars:before {
+  background-color: #ffac33;
 }

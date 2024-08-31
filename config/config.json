@@ -20,8 +20,14 @@
     "limit": 100,
     "rowSpeed": 0.6,
     "madotsuki": {
-      "enabled": false
+      "enabled": true
     }
+  },
+  "repos": {
+    "limit": 20,
+    "fork": true,
+    "archived": true,
+    "blacklist": ["GuriZenit"]
   },
   "animeSync": {
     "enabled": true,
@@ -30,7 +36,7 @@
     "verbose": false
   },
   "security": {
-    "publicAccess": ["user", "anime"],
+    "publicAccess": ["user", "anime", "repos", "test"],
     "newKeyOnStart": false,
     "showKeyOnStart": false
   },
