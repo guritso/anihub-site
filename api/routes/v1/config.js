@@ -1,8 +1,4 @@
-const fs = require("fs");
-const path = require("path");
-
 const config = require("../../utils/configLoader");
-
 
 const auth = (key) => {
   if (key === process.env.API_KEY) {
