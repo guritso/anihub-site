@@ -35,11 +35,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     for (const [index, anime] of animeList.data.entries()) {
       const status = anime.user.completed ? "Completed" : "Watching";
       if (index >= animeConfig.limit) break;
+      const date = new Date(anime.user.date);
       animeContainer.innerHTML += `
         <a class="anime-card" href="${anime.link}" target="_blank" style="background-image: url(${anime.image})">
           <p class="anime-status" id="${status.toLowerCase()}">${status}</p>
           <p id="anime-title">${anime.title}</p>
-          <p id="anime-date">${new Date(anime.user.date)}</p>
+          <p id="anime-date">${date.toLocaleDateString()} ${date.toLocaleTimeString().slice(0, 5)}</p>
         </a>
       `;
     }
