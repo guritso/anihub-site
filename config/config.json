@@ -7,7 +7,7 @@
       "github": {
         "username": "gurizenit",
         "url": "https://github.com/gurizenit",
-        "color": " #2a313b"
+        "color": "#2a313b"
       },
       "myanimelist": {
         "username": "gurizenit",
@@ -20,13 +20,13 @@
     "limit": 100,
     "rowSpeed": 0.6,
     "madotsuki": {
-      "enabled": true
+      "enabled": false
     }
   },
   "repos": {
-    "limit": 20,
-    "fork": true,
-    "archived": true,
+    "limit": 100,
+    "fork": false,
+    "archived": false,
     "blacklist": ["GuriZenit"]
   },
   "animeSync": {
@@ -36,9 +36,9 @@
     "verbose": false
   },
   "security": {
-    "publicAccess": ["user", "anime", "repos", "test"],
+    "publicAccess": ["user", "anime", "repos"],
     "newKeyOnStart": false,
     "showKeyOnStart": false
   },
-  "port": 3000
+  "port": 3001
 }
