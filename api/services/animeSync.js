@@ -9,7 +9,7 @@ const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const processAnime = async (anime) => {
   const animeInfo = await jikan.getAnime(anime.entry.mal_id).then(res => res.data);
   if (!animeInfo) return null;
-
+  
   const date = new Date(anime.date);
   const imageUrl = animeInfo.images.webp.image_url;
   const imagePath = await imaget.save(imageUrl, anime.entry.mal_id);
@@ -25,7 +25,6 @@ const processAnime = async (anime) => {
       completed: animeInfo.episodes === anime.increment,
       increment: anime.increment,
       date: date,
-      formattedDate: date.toLocaleDateString()
     }
   };
 };
