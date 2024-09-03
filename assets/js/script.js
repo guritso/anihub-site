@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const userInfo = await getConfigs("user").then(res => res.data);
   const animeList = await getAnimeHistory(userInfo.accounts.myanimelist.username);
   const profilePicture = document.getElementById("profile-picture");
-  const headLayouts = document.querySelectorAll(".head-layouts");
 
   document.title = userInfo.name;
   profilePicture.src = userInfo.avatarUrl;
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     <h1>${userInfo.name}</h1>
     <h2>${userInfo.description}</h2>
   `;
-  headLayouts[0].style.display = "flex";
 
   // Social layout
   const socialContainer = document.getElementById('social-container');
@@ -23,12 +21,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="${acc.url}">${key}</a>
     `;
   }
-  headLayouts[1].style.display = "flex";
-  // Animes layout
-  const h3 = document.createElement("h3");
-  h3.innerText = "Last watched animes";
-  headLayouts[2].before(h3);
 
+  // Animes layout
   const animeConfig = await getConfigs("anime").then(res => res.data);
   const animeContainer = document.getElementById('anime-container');
   if (animeList?.data) {
@@ -58,12 +52,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     animeContainer.innerHTML += animeContainer.innerHTML;
     animeContainer.style.animation = `scroll ${length / animeConfig.rowSpeed}s infinite linear`;
   }
-  headLayouts[2].style.display = "flex";
 
-  const h3clone = h3.cloneNode(true);
-  h3clone.innerText = "Github repositories";
-  headLayouts[2].after(h3clone);
-
+  // Repos layout
   const repos = await getRepos(userInfo.accounts.github.username);
   const reposContainer = document.getElementById('repos-container');
   const reposConfig = await getConfigs("repos").then(res => res.data);
@@ -97,8 +87,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       reposContainer.appendChild(repoElement);
     });
   }
-
-  headLayouts[3].style.display = "flex";
 });
 
 // functions
@@ -113,7 +101,7 @@ async function getAnimeHistory(username) {
 }
 
 async function getRepos(username) {
-  return await fetch(`https://api.github.com/users/${username}/repos`).then(res => res.json());
+  return await fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(res => res.json());
 }
 
 function createElement(obj) {
@@ -124,3 +112,4 @@ function createElement(obj) {
 
   return element;
 }
+
