@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
   }
 
+  socialContainer.addEventListener('wheel', function(event) {
+    event.preventDefault();
+    this.scrollLeft += event.deltaY;
+  });
+
   // Animes layout
   const animeConfig = await getConfigs("anime").then(res => res.data);
   const animeContainer = document.getElementById('anime-container');
