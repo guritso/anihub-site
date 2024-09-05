@@ -1,466 +1,471 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 
 :root {
-	--primary-font-color: #e0e0e0;
-	--secondary-font-color: #dddddd;
-	--primary-color: rgba(106, 100, 131, 0.733);
-	--background-dark: #0f0f0f;
-	--semi-transparent: rgba(0, 0, 0, 0.2);
-	--half-transparent: rgba(0, 0, 0, 0.5);
-	--one-background: #1f1f1f;
-	--background-profile: var(--one-background);
-	--background-social: var(--one-background);
-	--background-anime: var(--one-background);
-	--background-repos: var(--one-background);
-	--background-footer: var(--one-background);
-	--text-color-secondary: #a0a0a0;
+    --primary-font-color: #e0e0e0;
+    --secondary-font-color: #dddddd;
+    --primary-color: rgba(106, 100, 131, 0.733);
+    --background-dark: #000000;
+    --semi-transparent: rgba(0, 0, 0, 0.2);
+    --half-transparent: rgba(0, 0, 0, 0.5);
+    --one-background: #222122;
+    --background-profile: var(--one-background);
+    --background-social: var(--one-background);
+    --background-anime: var(--one-background);
+    --background-repos: var(--one-background);
+    --background-footer: var(--one-background);
+    --text-color-secondary: #a0a0a0;
 
-	--font-courier: 'Courier New', Courier, monospace;
-	--border-radius: 5px;
-	--layout-padding: 15px;
+    --font-courier: 'Courier New', Courier, monospace;
+    --border-radius: 5px;
+    --layout-padding: 15px;
 
-	--text-color-completed: #77a5ff;
-	--text-color-watching: #a3f19c;
+    --text-color-completed: #77a5ff;
+    --text-color-watching: #a3f19c;
 }
 
 ::-webkit-scrollbar {
-	width: 5px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: var(--primary-color);
+    background-color: var(--primary-color);
 }
 
 /* scrollbar firefox */
 html {
-	scrollbar-width: thin;
-	scrollbar-color: var(--primary-color) transparent;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
 }
 
 .preload {
-	background-image: url(../img/madotsuki/bounce.gif), url(../img/madotsuki/rotating.gif);
-	overflow: hidden;
-	width: 0;
-	height: 0;
+    background-image: url(../img/madotsuki/bounce.gif), url(../img/madotsuki/rotating.gif);
+    overflow: hidden;
+    width: 0;
+    height: 0;
 }
 
 body {
-	padding: 0;
-	margin: 0;
-	display: flex;
-	background-color: var(--background-dark);
-	height: 100vh;
-	width: 100%;
-	color: var(--primary-font-color);
-	font-family: var(--font-courier);
-	flex-direction: column;
-	align-items: center;
-	min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: var(--background-dark);
+    height: 100vh;
+    width: 100%;
+    color: var(--primary-font-color);
+    font-family: var(--font-courier);
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .main-page {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	background-color: transparent;
-	width: 995px;
-	box-sizing: border-box;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    width: 995px;
+    box-sizing: border-box;
 }
 
 @media (max-width: 995px) {
-	.main-page {
-		width: 100%;
-	}
+    .main-page {
+        width: 100%;
+    }
 }
 
 .head-layouts {
-	display: flex;
-	border-radius: var(--border-radius);
-	width: 100%;
-	padding: var(--layout-padding);
-	box-sizing: border-box;
+    display: flex;
+    border-radius: var(--border-radius);
+    width: 100%;
+    padding: var(--layout-padding);
+    box-sizing: border-box;
 }
 
 /* profile layout */
 .head-layouts#profile-layout {
-	flex-direction: row;
-	background-color: var(--background-profile);
-	height: auto;
-	margin-bottom: var(--layout-padding);
-	height: 180px;
+    flex-direction: row;
+    background-color: var(--background-profile);
+    height: auto;
+    margin-bottom: var(--layout-padding);
+    height: 180px;
 }
 
 #profile-picture {
-	background-color: var(--semi-transparent);
-	height: 150px;
-	border-radius: var(--border-radius);
-	aspect-ratio: 1 / 1;
-	width: auto;
-	user-select: none;
+    background-color: var(--semi-transparent);
+    border-radius: var(--border-radius);
+    aspect-ratio: 1 / 1;
+    width: auto;
+    user-select: none;
 }
 
 #profile-info {
-	height: auto;
-	width: 100%;
-	margin-left: var(--layout-padding);
-	align-items: flex-start;
-	justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    margin-left: var(--layout-padding);
+    align-items: flex-start;
+    justify-content: flex-start;
 }
-
 
 h1,
 h2,
 h3 {
-	font-family: var(--font-courier);
-	padding: 0;
-	margin: 0;
+    font-family: var(--font-courier);
+    padding: 0;
+    margin: 0;
 }
 
 h3 {
-	margin-left: var(--layout-padding);
+    margin-left: var(--layout-padding);
 }
 
 #profile-info h1 {
-	height: 25%;
-	font-size: 1.8em;
-	font-weight: 700;
+    height: 25px;
+    margin-bottom: 5px;
+    font-size: 1.8em;
+    font-weight: 700;
 }
 
 #profile-info h2 {
-	color: var(--secondary-font-color);
-	font-family: 'VT323', monospace;
-	font-weight: 400;
-	width: 100%;
-	height: 75%;
-	font-size: 1.2em;
-	background-color: var(--semi-transparent);
-	border-radius: var(--border-radius);
-	padding: 2px;
+    color: var(--secondary-font-color);
+    font-family: 'VT323', monospace;
+    font-weight: 400;
+    width: 100%;
+    height: 120px;
+    font-size: 1.2em;
+    background-color: var(--semi-transparent);
+    border-radius: var(--border-radius);
+    padding: 2px;
 }
 
 /* Social layout */
 #social-layout {
-	height: 60px;
-	background-color: var(--background-social);
-	overflow: hidden;
+    height: auto;
+    min-height: calc(30px + var(--layout-padding) * 2);
+    background-color: var(--background-social);
+    overflow: hidden;
 }
 
 #social-container {
-	margin-left: calc(var(--layout-padding) * -1);
-	margin-right: calc(var(--layout-padding) * -1);
-	padding-left: var(--layout-padding);
-	padding-right: var(--layout-padding);
-	display: flex;
-	flex-direction: row;
-	gap: var(--layout-padding);
-	overflow-x: auto;
-	overflow-y: hidden;
-	scrollbar-width: none;
+    margin-left: calc(var(--layout-padding) * -1);
+    margin-right: calc(var(--layout-padding) * -1);
+    padding-left: var(--layout-padding);
+    padding-right: var(--layout-padding);
+    display: flex;
+    flex-direction: row;
+    gap: var(--layout-padding);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
 }
 
 #social-container::-webkit-scrollbar {
-	display: none;
+    display: none;
 }
 
 .button {
-	height: 30px;
-	padding: var(--layout-padding);
-	display: flex;
-	font-family: var(--font-courier);
-	border: none;
-	border-radius: var(--border-radius);
-	color: var(--primary-font-color);
-	text-align: center;
-	text-decoration: none;
-	font-size: 16px;
-	align-items: center;
-	justify-content: center;
-	transition: all 0.1s ease-in-out;
-	user-select: none;
+    height: 30px;
+    padding: var(--layout-padding);
+    display: flex;
+    font-family: var(--font-courier);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--primary-font-color);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease-in-out;
+    user-select: none;
 }
 
 .button:hover {
-	transform: scale(1.05);
-	background-color: var(--primary-color);
+    transform: scale(1.05);
+    background-color: var(--primary-color);
 }
 
 .button:active {
-	transform: scale(1);
+    transform: scale(1);
 }
 
 /* scroll animation */
 @keyframes scroll {
-	0% {
-		transform: translateX(0);
-	}
+    0% {
+        transform: translateX(0);
+    }
 
-	100% {
-		transform: translateX(-50%);
-	}
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Animes Layout*/
 #animes-layout {
-	background-color: var(--background-anime);
-	overflow: hidden;
-	height: 268px;
+    background-color: var(--background-anime);
+    overflow: hidden;
+    height: auto;
+    min-height: calc(238px + var(--layout-padding) * 2);
 }
 
 #anime-container {
-	display: flex;
-	flex-direction: row;
-	gap: var(--layout-padding);
+    display: flex;
+    flex-direction: row;
+    gap: var(--layout-padding);
 }
 
 #anime-container:hover {
-	animation-play-state: paused !important;
+    animation-play-state: paused !important;
 }
 
 .anime-card {
-	background-color: var(--semi-transparent) !important;
-	display: flex;
-	flex-direction: column;
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 170px;
-	height: 238px;
-	cursor: pointer;
-	border-radius: var(--border-radius);
-	align-items: center;
-	justify-content: space-between;
-	transition: all 0.1s ease-in-out;
-	text-decoration: none;
-	user-select: none;
-	background-color: transparent;
+    background-color: var(--semi-transparent) !important;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 170px;
+    height: 238px;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.1s ease-in-out;
+    text-decoration: none;
+    user-select: none;
+    background-color: transparent;
 }
 
 .anime-card:hover {
-	transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .anime-card:active {
-	transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 .anime-card#madotsuki {
-	background-image: url(../img/madotsuki/walking.gif);
-	background-repeat: no-repeat;
-	background-color: transparent !important;
-	background-position: center;
-	background-size: 50%;
-	justify-content: space-between;
+    background-image: url(../img/madotsuki/walking.gif);
+    background-repeat: no-repeat;
+    background-color: transparent !important;
+    background-position: center;
+    background-size: 50%;
+    justify-content: space-between;
 }
 
 #anime-container:hover .anime-card#madotsuki {
-	background-image: url(../img/madotsuki/bounce.gif);
-	transform: scale(1);
+    background-image: url(../img/madotsuki/bounce.gif);
+    transform: scale(1);
 }
 
 .anime-card#madotsuki:active {
-	background-image: url(../img/madotsuki/rotating.gif) !important;
-	transform: scale(1);
+    background-image: url(../img/madotsuki/rotating.gif) !important;
+    transform: scale(1);
 }
 
 .anime-card p {
-	color: var(--primary-font-color);
-	font-size: 100%;
-	font-family: var(--font-courier);
-	padding: 2px;
-	margin: 0;
-	width: 100%;
-	background-color: var(--half-transparent);
-	word-wrap: break-word;
-	word-break: break-word;
-	border-radius: var(--border-radius);
+    color: var(--primary-font-color);
+    font-size: 100%;
+    font-family: var(--font-courier);
+    padding: 2px;
+    margin: 0;
+    width: 100%;
+    background-color: var(--half-transparent);
+    word-wrap: break-word;
+    word-break: break-word;
+    border-radius: var(--border-radius);
 }
 
 .anime-card:hover p#anime-title {
-	border-radius: 0px;
+    border-radius: 0px;
 }
 
 .anime-card p#anime-date {
-	display: none;
+    display: none;
 }
 
 .anime-card:hover p#anime-date {
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	display: flex;
-	align-items: flex-end;
-	justify-content: flex-end;
-	height: 100%;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    height: 100%;
 }
 
 .anime-card .anime-status {
-	font-weight: bold;
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-around;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
 }
 
 .anime-card p#completed {
-	color: var(--text-color-completed);
+    color: var(--text-color-completed);
 }
 
 .anime-card p#watching {
-	color: var(--text-color-watching);
+    color: var(--text-color-watching);
 }
 
 .anime-card:hover .anime-status {
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-	height: auto;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height: auto;
 }
 
 /* Github repos */
 #repos-layout {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	background-color: var(--background-repos);
-	overflow: hidden;
-	padding: var(--layout-padding);
-	width: 100%;
-	height: auto;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-repos);
+    overflow: hidden;
+    padding: var(--layout-padding);
+    width: 100%;
+    height: auto;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 #repos-container {
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: var(--layout-padding);
-	scrollbar-width: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--layout-padding);
+    scrollbar-width: 0;
 }
 
 
 .repo-button {
-	display: flex;
-	flex-direction: column;
-	color: var(--primary-font-color);
-	font-family: var(--font-courier);
-	border: none;
-	border-radius: var(--border-radius);
-	background-color: var(--semi-transparent);
-	padding: var(--layout-padding);
-	text-decoration: none;
-	transition: all 0.2s ease-in-out;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	height: 100px;
-	justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    color: var(--primary-font-color);
+    font-family: var(--font-courier);
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--semi-transparent);
+    padding: var(--layout-padding);
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 100px;
+    justify-content: space-between;
 }
 
 .repo-button h4 {
-	margin: 0;
-	font-size: 1em;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    margin: 0;
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .repo-button p {
-	font-size: 0.8em;
-	margin-top: 5px;
-	overflow: hidden;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
+    font-size: 0.8em;
+    margin-top: 5px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .repo-button:hover {
-	background-color: var(--primary-color);
-	transform: scale(1.01);
-	box-shadow: 0 5px 15px var(--semi-transparent);
+    background-color: var(--primary-color);
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px var(--semi-transparent);
 }
 
 .repo-button:active {
-	transform: translateY(0);
-	box-shadow: none;
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 .repo-info {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 10px;
-	font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.8em;
 }
 
 .repo-info span {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .repo-info span:before {
-	content: '';
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	margin-right: 5px;
-	border-radius: 50%;
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 50%;
 }
 
 .repo-language:before {
-	background-color: #f1e05a;
+    background-color: #f1e05a;
 }
 
 .repo-stars:before {
-	background-color: #ffac33;
+    background-color: #ffac33;
 }
 
 /* footer layout */
 #footer-layout {
-	background-color: var(--background-footer);
-	overflow: hidden;
-	width: 100%;
-	padding: calc(var(--layout-padding) - 10px);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 0;
+    background-color: var(--background-footer);
+    overflow: hidden;
+    width: 100%;
+    padding: calc(var(--layout-padding) - 10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
 }
 
 #footer-layout p {
-	color: var(--text-color-secondary);
+    color: var(--text-color-secondary);
 }
 
 #footer-layout p a {
-	text-decoration: none;
-	color: var(--primary-color);
+    text-decoration: none;
+    color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
-	.main-page {
-		font-size: 90%;
-	}
+    .main-page {
+        font-size: 80%;
+    }
 
-	.head-layouts#profile-layout {
-		height: 130px;
-	}
+    .head-layouts#profile-layout {
+        height: 130px;
+    }
 
-	#profile-picture {
-		height: 100px;
-	}
+    #profile-info h2 {
+        height: 70px;
+    }
 
-	#animes-layout {
-		height: 210px;
-	}
+    #social-layout {
+        min-height: 20px;
+    }
 
-	.anime-card {
-		width: 130px;
-		height: 180px;
-	}
+    #animes-layout {
+        min-height: calc(180px + var(--layout-padding) * 2);
+    }
 
-	#footer-layout {
-		height: auto;
-	}
+    .anime-card {
+        width: 130px;
+        height: 180px;
+    }
+
+    #footer-layout {
+        height: auto;
+    }
 }
