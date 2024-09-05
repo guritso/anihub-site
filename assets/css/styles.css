@@ -465,6 +465,10 @@ h3 {
         height: 180px;
     }
 
+    #repos-layout {
+        font-size: 120%;
+    }
+
     #footer-layout {
         height: auto;
     }
