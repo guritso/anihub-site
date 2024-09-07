@@ -95,14 +95,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // functions
-const apiUrl = "/api/v1";
-
 async function getConfigs(params) {
-  return await fetch(`${apiUrl}/config/${params}`).then(res => res.json());
+  return await fetch(`api/config/${params}`).then(res => res.json());
 }
 
 async function getAnimeHistory(username) {
-  return await fetch(`${apiUrl}/user/${username}`).then(res => res.json());
+  return await fetch(`api/users/${username}`).then(res => res.json());
 }
 
 async function getRepos(username) {

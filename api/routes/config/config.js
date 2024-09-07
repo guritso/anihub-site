@@ -1,11 +1,7 @@
 const config = require("../../utils/configLoader");
 
 const auth = (key) => {
-  if (key === process.env.API_KEY) {
-    return true;
-  } else {
-    return false;
-  }
+  return (key === process.env.API_KEY);
 };
 
 module.exports = {

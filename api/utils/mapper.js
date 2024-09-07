@@ -16,7 +16,6 @@ const routeMapper = (directory) => {
 
       const basePath = path.join(
         "/api/",
-        dir,
         route.substring(0, route.length - 3)
       );
 
