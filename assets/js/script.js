@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Repos layout
-  const repos = await getRepos(userInfo.accounts.github.username);
+  const repos = await getRepos(userInfo.accounts.github.username).then(res => res.data);
   const reposContainer = document.getElementById('repos-container');
   const reposConfig = await getConfigs("repos").then(res => res.data);
 
@@ -103,7 +103,7 @@ async function getAnimeList(username) {
 }
 
 async function getRepos(username) {
-  return await fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(res => res.json());
+  return await fetch(`api/users/${username}/repos`).then(res => res.json());
 }
 
 function createElement(obj) {
