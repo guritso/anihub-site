@@ -1,18 +1,21 @@
+const userActions = {
+  animelist: (username, req, res) => {
+    return res.send({ status: res.statusCode, data: req.app.locals.cache.get(username) || [] });
+  }
+}
+
 module.exports = {
   data: {
-    isWildcard: true,
     method: "get",
+    params: ":username/:action"
   },
   handler: async (req, res) => {
-    const params = req.params[0]?.split('/') || []
-    const username = params[0]
+    const { username, action } = req.params
 
-    if (!req.app.locals.cache.has(username)) {
-      return res.status(404).send({ status: res.statusCode, message: "User not found in cache" });
+    if (userActions[action.toLowerCase()]) {
+      userActions[action.toLowerCase()](username, req, res)
+    } else {
+      return res.status(404).send({ status: res.statusCode, message: "Not found" });
     }
-
-    const animes = await req.app.locals.cache.get(username)
-
-    res.send({ status: res.statusCode, data: animes || [] });
-  },
+  }
 };

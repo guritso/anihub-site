@@ -1,43 +1,48 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const userInfo = await getConfigs("user").then(res => res.data);
-  const animeList = await getAnimeHistory(userInfo.accounts.myanimelist.username);
   const profilePicture = document.getElementById("profile-picture");
-
+  
   document.title = userInfo.name;
   profilePicture.src = userInfo.avatarUrl;
-
+  
   // Profile layout
   const profileInfo = document.getElementById('profile-info');
   profileInfo.innerHTML = `
-    <h1>${userInfo.name}</h1>
-    <h2>${userInfo.description}</h2>
+  <h1>${userInfo.name}</h1>
+  <h2>${userInfo.description}</h2>
   `;
-
+  
   // Social layout
   const socialContainer = document.getElementById('social-container');
   for (const key in userInfo.accounts) {
     const acc = userInfo.accounts[key];
     socialContainer.innerHTML += `
-      <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="${acc.url}">${key}</a>
+    <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="${acc.url}">${key}</a>
     `;
   }
-
+  
   socialContainer.addEventListener('wheel', function(event) {
     event.preventDefault();
     this.scrollLeft += event.deltaY;
   });
-
+  
   // Animes layout
+  const animeList = await getAnimeList(userInfo.accounts.myanimelist.username);
   const animeConfig = await getConfigs("anime").then(res => res.data);
   const animeContainer = document.getElementById('anime-container');
+  const animeLayout = document.getElementById('animes-layout');
   if (animeList?.data) {
     for (const [index, anime] of animeList.data.entries()) {
       const status = anime.user.completed ? "Completed" : "Watching";
-      if (index >= animeConfig.limit) break;
+      if (index >= animeConfig.limit) {
+        animeLayout.style.overflowX = "auto";
+        animeLayout.style.scrollbarWidth = "thin";
+        break;
+      }
       const date = new Date(anime.user.date);
       animeContainer.innerHTML += `
         <a class="anime-card" href="${anime.link}" target="_blank" style="background-image: url(${anime.image})">
-          <p class="anime-status" id="${status.toLowerCase()}">${status}</p>
+          <p class="anime-status" id="${anime?.user?.status?.toLowerCase() || status.toLowerCase()}">${anime?.user?.status || status}</p>
           <p id="anime-title">${anime.title}</p>
           <p id="anime-date">${date.toLocaleDateString()} ${date.toLocaleTimeString().slice(0, 5)}</p>
         </a>
@@ -99,8 +104,8 @@ async function getConfigs(params) {
   return await fetch(`api/config/${params}`).then(res => res.json());
 }
 
-async function getAnimeHistory(username) {
-  return await fetch(`api/users/${username}`).then(res => res.json());
+async function getAnimeList(username) {
+  return await fetch(`api/users/${username}/animelist`).then(res => res.json());
 }
 
 async function getRepos(username) {
