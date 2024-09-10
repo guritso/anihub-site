@@ -1,23 +1,23 @@
 {
   "user": {
-    "name": "GuriZenit",
+    "name": "Guri",
     "description": "I just like code and animes",
     "avatarUrl": "https://avatars.githubusercontent.com/u/77638636?v=4",
     "accounts": {
       "github": {
-        "username": "gurizenit",
-        "url": "https://github.com/gurizenit",
+        "username": "GuriTsuki",
+        "url": "https://github.com/GuriTsuki",
         "color": "#2a313b"
       },
       "myanimelist": {
-        "username": "gurizenit",
-        "url": "https://myanimelist.net/profile/GuriZenit",
+        "username": "GuriTsuki",
+        "url": "https://myanimelist.net/profile/GuriTsuki",
         "color": "#272b4e"
       }
     }
   },
   "anime": {
-    "limit": 100,
+    "limit": 30,
     "rowSpeed": 0.6,
     "madotsuki": {
       "enabled": false
@@ -27,13 +27,16 @@
     "limit": 100,
     "fork": false,
     "archived": false,
-    "blacklist": ["GuriZenit"]
+    "blacklist": ["GuriTsuki"]
   },
   "animeSync": {
     "enabled": true,
     "syncInterval": 60000,
     "animeInterval": 1000,
-    "verbose": false
+    "verbose": false,
+    "filters": {
+      "status": ["Watching", "Completed"]
+    }
   },
   "security": {
     "publicAccess": ["user", "anime", "repos"],

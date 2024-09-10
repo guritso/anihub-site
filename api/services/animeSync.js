@@ -1,90 +1,71 @@
-const configLoader = require('../utils/configLoader');
-const jikan = require('../utils/jikanApi');
-const imaget = require('../utils/imaget');
-const path = require('path');
-const fs = require('fs');
+const configLoader = require("../utils/configLoader");
+const imaget = require("../utils/imaget");
 
-const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-const processAnime = async (anime) => {
-  const animeInfo = await jikan.getAnime(anime.entry.mal_id).then(res => res.data);
-  if (!animeInfo) return null;
-  
-  const date = new Date(anime.date);
-  const imageUrl = animeInfo.images.webp.image_url;
-  const imagePath = await imaget.save(imageUrl, anime.entry.mal_id);
-
-  return {
-    id: anime.entry.mal_id,
-    title: animeInfo.title,
-    image: imagePath,
-    episodes: animeInfo.episodes,
-    airing: animeInfo.airing,
-    link: anime.entry.url,
-    user: {
-      completed: animeInfo.episodes === anime.increment,
-      increment: anime.increment,
-      date: date,
-    }
-  };
+const status = {
+  1: "Watching",
+  2: "Completed",
+  3: "On-Hold",
+  4: "Dropped",
+  6: "Plan to Watch"
 };
+
+const sort = {
+  "name": 1,
+  "completed_at": 2,
+  "score": 4,
+  "last_updated": 5,
+  "status": 7,
+  "progress": 12
+};
+
+async function getAnimeList(username, order = 5) {
+  const PAGE_SIZE = 299;
+  const animes = [];
+
+  for (let page = 1; page > -1; page++) {
+    const data = await fetch(`https://myanimelist.net/animelist/${username}/load.json?order=${order}&offset=${animes.length}&status=7`).then(res => res.json());
+    for (const [index, anime] of data.entries()) {
+      const image = await imaget.save(changeUrl(anime.anime_image_path), anime.anime_id, "assets/img/covers");
+      animes.push({
+        id: anime.anime_id,
+        title: anime.anime_title,
+        image: image || changeUrl(anime.anime_image_path),
+        episodes: anime.anime_num_episodes,
+        airing: anime.anime_airing_status === 1,
+        link: `https://myanimelist.net/${anime.anime_url}`,
+        user: {
+          status: status[anime.status],
+          increment: anime.num_watched_episodes,
+          date: new Date(anime.updated_at * 1000),
+        }
+      });
+      const progress = ((index + 1) / data.length) * 100;
+      process.stdout.write(`fetching ${username} page ${page}: ${progress.toFixed(2)}%\r`);
+    }
+    if (data.length < PAGE_SIZE) {
+      break;
+    }
+  }
+  return animes;
+}
+
+function changeUrl(url) {
+  const newUrl = url.replace('/r/192x272', '').split('?')[0];
+  return newUrl.replace('.jpg', '.webp');
+}
 
 module.exports = {
   start: async (cache) => {
     while (true) {
       const { user, animeSync } = configLoader();
       const { username } = user.accounts.myanimelist;
-
-      if (!animeSync.enabled) {
-        process.stdout.write("anime sync is disabled!\r");
-        await wait(animeSync.syncInterval);
-        continue;
-      }
-
       try {
-        const history = await jikan.getHistory(username).then(res => {
-          const uniqueItems = [];
-          for (const anime of res.data) {
-            if (!uniqueItems.some(a => a.entry.mal_id === anime.entry.mal_id)) {
-              uniqueItems.push(anime);
-            }
-          }
-          return uniqueItems;
-        });
-
-        const totalAnimes = history?.length || 0;
-        if (totalAnimes === 0) {
-          process.stdout.write(`${username} has no recent history!\r`);
-          await wait(animeSync.syncInterval);
-          continue;
-        }
-
-        const animes = [];
-        for (const anime of history) {
-          const processedAnime = await processAnime(anime);
-          if (processedAnime) {
-            animes.push(processedAnime);
-          }
-          await wait(animeSync.animeInterval);
-
-          const progress = ((animes.length) / totalAnimes) * 100;
-          process.stdout.write(`fetching ${username}: ${progress.toFixed(2)}%\r`);
-        }
-        await cache.set(username, animes);
-
-        if (animeSync.verbose) {
-          console.table([{
-            user: username,
-            fetched: animes.length,
-            errors: totalAnimes - animes.length,
-          }]);
-        }
-
-        await wait(animeSync.syncInterval);
+        const animes = (await getAnimeList(username, sort.last_updated)).filter(anime => animeSync.filters.status.includes(anime.user.status));
+        cache.set(username.toLowerCase(), animes);
       } catch (error) {
-        console.error(`Error: ${error.message} `);
-        await wait(animeSync.syncInterval);
+        console.error(error.message);
       }
+      await new Promise(resolve => setTimeout(resolve, animeSync.syncInterval));
     }
-  },
+  }
 }

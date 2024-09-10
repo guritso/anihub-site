@@ -4,19 +4,27 @@ const fs = require('fs')
 const path = require('path')
 
 module.exports = {
+  /**
+   * Save an image to the specified location
+   * @param {string} url - The URL of the image to save
+   * @param {string} id - The name of the image
+   * @param {string} location - The location to save the image
+   * @returns {string} The path to the saved image
+   */
   save: async (url, id, location) => {
-    const response = await fetch(url);
-    const buffer = await response.arrayBuffer();
+    const imagePath = path.join(location, `${id}.webp`);
 
-    const coversPath = path.join("assets/img/covers");
-    const imagePath = location ? path.join(location, `${id}.webp`) : path.join(coversPath, `${id}.webp`);
-
-    if (!fs.existsSync(coversPath)) {
-      fs.mkdirSync(coversPath, { recursive: true });
+    if (!fs.existsSync(location)) {
+      fs.mkdirSync(location, { recursive: true });
     }
+
     if (fs.existsSync(imagePath)) {
       return imagePath;
     }
+    process.stdout.write(`saving ${id}.webp\r`);
+    const response = await fetch(url);
+    const buffer = await response.arrayBuffer();
+
     fs.writeFileSync(imagePath, Buffer.from(buffer));
     return imagePath;
   },

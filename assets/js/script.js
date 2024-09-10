@@ -33,16 +33,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const animeLayout = document.getElementById('animes-layout');
   if (animeList?.data) {
     for (const [index, anime] of animeList.data.entries()) {
-      const status = anime.user.completed ? "Completed" : "Watching";
-      if (index >= animeConfig.limit) {
-        animeLayout.style.overflowX = "auto";
-        animeLayout.style.scrollbarWidth = "thin";
-        break;
-      }
+      if (index >= animeConfig.limit) break;
       const date = new Date(anime.user.date);
       animeContainer.innerHTML += `
         <a class="anime-card" href="${anime.link}" target="_blank" style="background-image: url(${anime.image})">
-          <p class="anime-status" id="${anime?.user?.status?.toLowerCase() || status.toLowerCase()}">${anime?.user?.status || status}</p>
+          <p class="anime-status" id="${anime?.user?.status?.toLowerCase()}">${anime?.user?.status}</p>
           <p id="anime-title">${anime.title}</p>
           <p id="anime-date">${date.toLocaleDateString()} ${date.toLocaleTimeString().slice(0, 5)}</p>
         </a>
@@ -57,8 +52,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       animeContainer.appendChild(madotsuki);
       const preload = createElement({ tag: "div", className: "preload", id: "preload" });
       animeContainer.before(preload);
+    } else {
+      animeLayout.style.overflowX = "auto";
+      animeLayout.style.scrollbarWidth = "thin";
     }
-
     animeContainer.innerHTML += animeContainer.innerHTML;
     animeContainer.style.animation = `scroll ${length / animeConfig.rowSpeed}s infinite linear`;
   }
@@ -120,4 +117,3 @@ function createElement(obj) {
 
   return element;
 }
-

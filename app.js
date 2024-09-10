@@ -51,5 +51,5 @@ console.log("↺ loading server...");
 app.listen(config().port, () => {
     console.log("  • online on port ", config().port);
     console.log("↺ loading anime sync...");
-    animeSync.start(app.locals.cache)
+    animeSync.start(app.locals.cache);
 });

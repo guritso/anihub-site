@@ -13,7 +13,7 @@ module.exports = {
     const { username, action } = req.params
 
     if (userActions[action.toLowerCase()]) {
-      userActions[action.toLowerCase()](username, req, res)
+      userActions[action.toLowerCase()](username.toLowerCase(), req, res)
     } else {
       return res.status(404).send({ status: res.statusCode, message: "Not found" });
     }
