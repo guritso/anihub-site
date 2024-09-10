@@ -1,0 +1,49 @@
+.head-layouts#social-layout {
+    height: auto;
+    min-height: calc(30px + var(--layout-padding) * 2);
+    background-color: var(--background-social);
+    overflow: hidden;
+}
+
+#social-container {
+    margin-left: calc(var(--layout-padding) * -1);
+    margin-right: calc(var(--layout-padding) * -1);
+    padding-left: var(--layout-padding);
+    padding-right: var(--layout-padding);
+    display: flex;
+    flex-direction: row;
+    gap: var(--layout-padding);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+#social-container::-webkit-scrollbar {
+    display: none;
+}
+
+.button {
+    height: 30px;
+    padding: var(--layout-padding);
+    display: flex;
+    font-family: var(--font-courier);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--primary-font-color);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease-in-out;
+    user-select: none;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    background-color: var(--primary-color);
+}
+
+.button:active {
+    transform: scale(1);
+}
