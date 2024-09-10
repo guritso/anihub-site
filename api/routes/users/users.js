@@ -11,11 +11,26 @@ const userActions = {
     fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
       .then(response => response.json())
       .then(data => {
-        req.app.locals.cache.set(`git:${username}`, data);
+        const formattedData = data.map(repo => ({
+          id: repo.id,
+          name: repo.name,
+          description: repo.description,
+          url: repo.html_url,
+          language: repo.language,
+          stars: repo.stargazers_count,
+          fork: repo.fork,
+          archived: repo.archived,
+          updated_at: repo.updated_at
+        }));
+
+        req.app.locals.cache.set(`git:${username}`, formattedData);
         if (res.headersSent) return;
-        return res.send({ status: res.statusCode, data: data });
+        res.send({ status: res.statusCode, data: formattedData });
       })
-      .catch(error => {});
+      .catch(error => {
+        if (res.headersSent) return;
+        res.status(500).send({ status: res.statusCode, message: "Internal server error" });
+      });
   }
 }
 

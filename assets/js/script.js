@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <p>${repo.description || "No description"}</p>
         <div class="repo-info">
           <span class="repo-language">${repo.language || "N/A"}</span>
-          <span class="repo-stars">${repo.stargazers_count}</span>
+          <span class="repo-stars">${repo.stars}</span>
         </div>
       `;
 
