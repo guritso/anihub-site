@@ -14,9 +14,14 @@ const routeMapper = (directory) => {
     for (const route of files) {
       const routeFile = require(path.join(dirPath, route));
 
+      if (routeFile.data.params) {
+        var params = routeFile.data.params
+      }
+
       const basePath = path.join(
         "/api/",
-        route.substring(0, route.length - 3)
+        route.replace(".js", ""),
+        params || "",
       );
 
       routeMap.push({
