@@ -52,9 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       animeContainer.appendChild(madotsuki);
       const preload = createElement({ tag: "div", className: "preload", id: "preload" });
       animeContainer.before(preload);
-    } else {
-      animeLayout.style.overflowX = "auto";
-      animeLayout.style.scrollbarWidth = "thin";
     }
     animeContainer.innerHTML += animeContainer.innerHTML;
     animeContainer.style.animation = `scroll ${length / animeConfig.rowSpeed}s infinite linear`;
