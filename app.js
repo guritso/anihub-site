@@ -42,6 +42,10 @@ routes.forEach((route) => {
   console.log(`  • ${route.data.method} ${route.data.path}`);
 });
 
+app.get("/redirect", (req, res) => {
+  res.redirect(req.query.url);
+});
+
 app.get("/api", (req, res) => {
   res.send({ status: res.statusCode, message: `API is running` });
 });

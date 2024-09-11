@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   for (const key in userInfo.accounts) {
     const acc = userInfo.accounts[key];
     socialContainer.innerHTML += `
-    <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="${acc.url}">${key}</a>
+    <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="redirect?url=${encodeURIComponent(acc.url)}">${key}</a>
     `;
   }
   
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (index >= animeConfig.limit) break;
       const date = new Date(anime.user.date);
       animeContainer.innerHTML += `
-        <a class="anime-card" href="${anime.link}" target="_blank" style="background-image: url(${anime.image})">
+        <a class="anime-card" href="redirect?url=${encodeURIComponent(anime.link)}" target="_blank" style="background-image: url(${anime.image})">
           <p class="anime-status" id="${anime?.user?.status?.toLowerCase()}">${anime?.user?.status}</p>
           <p id="anime-title">${anime.title}</p>
           <p id="anime-date">${date.toLocaleDateString()} ${date.toLocaleTimeString().slice(0, 5)}</p>
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     filteredRepos.forEach(repo => {
       const repoElement = document.createElement('a');
       repoElement.className = 'repo-button';
-      repoElement.href = repo.url;
+      repoElement.href = `redirect?url=${encodeURIComponent(repo.url)}`;
       repoElement.target = '_blank';
 
       repoElement.innerHTML = `
