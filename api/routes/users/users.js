@@ -29,23 +29,24 @@ const userActions = {
       })
       .catch(error => {
         if (res.headersSent) return;
-        res.status(500).send({ status: res.statusCode, message: "Internal server error" });
+        res.status(500).send({ status: res.statusCode, message: 'Internal server error' });
       });
   }
-}
+};
 
-module.exports = {
-  data: {
-    method: "get",
-    params: ":username/:action"
-  },
-  handler: async (req, res) => {
-    const { username, action } = req.params
+export default class Users {
+  static data = {
+    method: 'get',
+    params: ':username/:action'
+  };
+
+  static handler = async (req, res) => {
+    const { username, action } = req.params;
 
     if (userActions[action.toLowerCase()]) {
-      userActions[action.toLowerCase()](username.toLowerCase(), req, res)
+      userActions[action.toLowerCase()](username.toLowerCase(), req, res);
     } else {
-      return res.status(404).send({ status: res.statusCode, message: "Not found" });
+      return res.status(404).send({ status: res.statusCode, message: 'Not found' });
     }
   }
-};
+}
