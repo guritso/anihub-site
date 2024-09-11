@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const animeList = await getAnimeList(userInfo.accounts.myanimelist.username);
   const animeConfig = await getConfigs("anime").then(res => res.data);
   const animeContainer = document.getElementById('anime-container');
-  const animeLayout = document.getElementById('animes-layout');
   if (animeList?.data) {
     for (const [index, anime] of animeList.data.entries()) {
       if (index >= animeConfig.limit) break;
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     filteredRepos.forEach(repo => {
       const repoElement = document.createElement('a');
       repoElement.className = 'repo-button';
-      repoElement.href = repo.html_url;
+      repoElement.href = repo.url;
       repoElement.target = '_blank';
 
       repoElement.innerHTML = `
