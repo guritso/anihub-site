@@ -1,34 +1,34 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  const userInfo = await getConfigs("user").then(res => res.data);
-  const profilePicture = document.getElementById("profile-picture");
-  
+  const userInfo = await getConfigs('user').then(res => res.data);
+  const profilePicture = document.getElementById('profile-picture');
+
   document.title = userInfo.name;
   profilePicture.src = userInfo.avatarUrl;
-  
+
   // Profile layout
   const profileInfo = document.getElementById('profile-info');
   profileInfo.innerHTML = `
-  <h1>${userInfo.name}</h1>
-  <h2>${userInfo.description}</h2>
+    <h1>${userInfo.name}</h1>
+    <h2>${userInfo.description}</h2>
   `;
-  
+
   // Social layout
   const socialContainer = document.getElementById('social-container');
   for (const key in userInfo.accounts) {
     const acc = userInfo.accounts[key];
     socialContainer.innerHTML += `
-    <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="redirect?url=${encodeURIComponent(acc.url)}">${key}</a>
+      <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="redirect?url=${encodeURIComponent(acc.url)}">${key}</a>
     `;
   }
-  
+
   socialContainer.addEventListener('wheel', function(event) {
     event.preventDefault();
     this.scrollLeft += event.deltaY;
   });
-  
+
   // Animes layout
   const animeList = await getAnimeList(userInfo.accounts.myanimelist.username);
-  const animeConfig = await getConfigs("anime").then(res => res.data);
+  const animeConfig = await getConfigs('anime').then(res => res.data);
   const animeContainer = document.getElementById('anime-container');
   if (animeList?.data) {
     for (const [index, anime] of animeList.data.entries()) {
@@ -43,13 +43,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
     }
   }
-
-  const length = animeContainer.querySelectorAll(".anime-card").length;
+  const length = animeContainer.querySelectorAll('.anime-card').length;
   if (length > 5) {
     if (animeConfig.madotsuki.enabled) {
-      const madotsuki = createElement({ tag: "div", className: "anime-card", id: "madotsuki" });
+      const madotsuki = createElement({ tag: 'div', className: 'anime-card', id: 'madotsuki' });
       animeContainer.appendChild(madotsuki);
-      const preload = createElement({ tag: "div", className: "preload", id: "preload" });
+      const preload = createElement({ tag: 'div', className: 'preload', id: 'preload' });
       animeContainer.before(preload);
     }
     animeContainer.innerHTML += animeContainer.innerHTML;
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Repos layout
   const repos = await getRepos(userInfo.accounts.github.username).then(res => res.data);
   const reposContainer = document.getElementById('repos-container');
-  const reposConfig = await getConfigs("repos").then(res => res.data);
+  const reposConfig = await getConfigs('repos').then(res => res.data);
 
   if (repos?.length) {
     const filteredRepos = repos
@@ -80,9 +79,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       repoElement.innerHTML = `
         <h4>${repo.name}</h4>
-        <p>${repo.description || "No description"}</p>
+        <p>${repo.description || 'No description'}</p>
         <div class="repo-info">
-          <span class="repo-language">${repo.language || "N/A"}</span>
+          <span class="repo-language">${repo.language || 'N/A'}</span>
           <span class="repo-stars">${repo.stars}</span>
         </div>
       `;

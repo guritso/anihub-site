@@ -1,9 +1,7 @@
-'use strict';
+import fs from 'fs';
+import path from 'path';
 
-const fs = require('fs')
-const path = require('path')
-
-module.exports = {
+const imaget = {
   /**
    * Save an image to the specified location
    * @param {string} url - The URL of the image to save
@@ -29,3 +27,5 @@ module.exports = {
     return imagePath;
   },
 };
+
+export default imaget;
