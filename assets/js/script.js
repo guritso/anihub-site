@@ -1,14 +1,15 @@
+
 document.addEventListener('DOMContentLoaded', async () => {
   const userInfo = await getConfigs('user').then(res => res.data);
   const profilePicture = document.getElementById('profile-picture');
-
+  
   document.title = userInfo.name;
-
+  
   // Profile layout
   const profileInfo = document.getElementById('profile-info');
   profileInfo.innerHTML = `
-    <h1>${userInfo.name}</h1>
-    <h2>${userInfo.description}</h2>
+  <h1>${userInfo.name}</h1>
+  <h2>${userInfo.description}</h2>
   `;
 
   // Social layout
@@ -16,15 +17,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   for (const key in userInfo.accounts) {
     const acc = userInfo.accounts[key];
     socialContainer.innerHTML += `
-      <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="redirect?url=${encodeURIComponent(acc.url)}">${key}</a>
+    <a class="button" id="${key}-button" target="_blank" style="background-color: ${acc.color};" href="redirect?url=${encodeURIComponent(acc.url)}">${key}</a>
     `;
   }
-
-  socialContainer.addEventListener('wheel', function(event) {
+  
+  socialContainer.addEventListener('wheel', function (event) {
     event.preventDefault();
     this.scrollLeft += event.deltaY;
   });
-
+  
+  const mainPage = document.querySelector('.main-page');
+  mainPage.animate([
+    { opacity: 0 },
+    { opacity: 1 }
+  ], {
+    duration: 300,
+    easing: 'ease-in-out',
+    fill: 'forwards'
+  }).finished.then(() => {
+    mainPage.style.opacity = 1;
+  });
+  
   // Animes layout
   const animeList = await getAnimeList(userInfo.accounts.myanimelist.username);
   const animeConfig = await getConfigs('anime').then(res => res.data);
@@ -53,6 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     animeContainer.innerHTML += animeContainer.innerHTML;
     animeContainer.style.animation = `scroll ${length / animeConfig.rowSpeed}s infinite linear`;
   }
+
 
   // Repos layout
   const repos = await getRepos(userInfo.accounts.github.username).then(res => res.data);

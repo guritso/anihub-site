@@ -20,7 +20,7 @@
     --background-footer: var(--one-background);
     --text-color-secondary: #a0a0a0;
 
-    --font-courier: 'Sometype Mono', monospace;
+    --font-mono: 'Sometype Mono', monospace;
     --border-radius: 5px;
     --layout-padding: 15px;
 
@@ -57,13 +57,14 @@ body {
     height: 100vh;
     width: 100%;
     color: var(--primary-font-color);
-    font-family: var(--font-courier);
+    font-family: var(--font-mono);
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
 }
 
 .main-page {
+    opacity: 0;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -114,7 +115,7 @@ body {
 h1,
 h2,
 h3 {
-    font-family: var(--font-courier);
+    font-family: var(--font-mono);
     padding: 0;
     margin: 0;
 }
@@ -171,7 +172,7 @@ h3 {
     height: 30px;
     padding: var(--layout-padding);
     display: flex;
-    font-family: var(--font-courier);
+    font-family: var(--font-mono);
     border: none;
     border-radius: var(--border-radius);
     color: var(--primary-font-color);
@@ -270,7 +271,7 @@ h3 {
 .anime-card p {
     color: var(--primary-font-color);
     font-size: 100%;
-    font-family: var(--font-courier);
+    font-family: var(--font-mono);
     padding: 2px;
     margin: 0;
     width: 100%;
@@ -348,7 +349,7 @@ h3 {
     display: flex;
     flex-direction: column;
     color: var(--primary-font-color);
-    font-family: var(--font-courier);
+    font-family: var(--font-mono);
     border: none;
     border-radius: var(--border-radius);
     background-color: var(--semi-transparent);
