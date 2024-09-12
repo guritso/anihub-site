@@ -3,7 +3,7 @@ export default class Redirect {
     method: 'get',
     base: true
   };
-  
+
   static handler = (req, res) => {
     res.redirect(req.query.url);
   }

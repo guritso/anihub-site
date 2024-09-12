@@ -7,7 +7,7 @@ export default class ProfileWebp {
     method: 'get',
     base: true
   };
-  
+
   static handler = (req, res) => {
     const cache = req.app.locals.cache;
     const cacheKey = 'profile.webp';
