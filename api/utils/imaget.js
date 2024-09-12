@@ -9,19 +9,22 @@ const imaget = {
    * @param {string} location - The location to save the image
    * @returns {string} The path to the saved image
    */
-  save: async (url, id, location) => {
+  save: async (url, id, location, overwrite = false) => {
     const imagePath = path.join(location, `${id}.webp`);
 
     if (!fs.existsSync(location)) {
       fs.mkdirSync(location, { recursive: true });
     }
 
-    if (fs.existsSync(imagePath)) {
+    if (fs.existsSync(imagePath) && !overwrite) {
       return imagePath;
     }
-    process.stdout.write(`saving ${id}.webp\r`);
-    const response = await fetch(url);
-    const buffer = await response.arrayBuffer();
+
+    const buffer = await fetch(url).then((res) => res.ok ? res.arrayBuffer() : null);
+
+    if (buffer === null) {
+      throw new Error(`Failed to download image: ${url}, is the url valid?`);
+    }
 
     fs.writeFileSync(imagePath, Buffer.from(buffer));
     return imagePath;
