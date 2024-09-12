@@ -22,7 +22,7 @@ const routeMapper = async (directory, basePath) => {
       const params = routeFile.data.params || '';
 
       const routePath = path.join(
-        basePath || dir,
+        routeFile.data.base ? "/" : basePath || dir,
         route.replace('.js', ''),
         params,
       );

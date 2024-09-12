@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const profilePicture = document.getElementById('profile-picture');
 
   document.title = userInfo.name;
-  profilePicture.src = userInfo.avatarUrl;
 
   // Profile layout
   const profileInfo = document.getElementById('profile-info');
