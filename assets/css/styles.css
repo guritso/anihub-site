@@ -423,7 +423,7 @@ h3 {
     background-color: var(--background-footer);
     overflow: hidden;
     width: 100%;
-    padding: calc(var(--layout-padding) - 10px);
+    padding: calc(var(--layout-padding) - 5px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -432,6 +432,7 @@ h3 {
 
 #footer-layout p {
     color: var(--text-color-secondary);
+    font-size: 0.9em;
 }
 
 #footer-layout p a {
