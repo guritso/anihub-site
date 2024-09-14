@@ -43,7 +43,7 @@
     "verbose": false
   },
   "security": {
-    "publicAccess": ["anime"],
+    "publicAccess": ["anime", "user"],
     "newKeyOnStart": false,
     "showKeyOnStart": false
   },

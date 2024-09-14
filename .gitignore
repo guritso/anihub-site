@@ -11,6 +11,8 @@ vendor/
 .env.local
 .env.*.local
 
+src/config/*
+
 # Build files
 dist/
 build/

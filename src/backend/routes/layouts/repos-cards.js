@@ -21,6 +21,6 @@ export default class ReposCards {
           `<span class="repo-language">${repo.language || "N/A"}</span>` +
           `<span class="repo-stars">${repo.stars}</span>` +
           `</div>` +
-          `</a>`).join("").concat(`<script>fetch('api/users/${username}/repos')</script>`);
+          `</a>`).join("");
   };
 }
