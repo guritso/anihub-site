@@ -27,7 +27,7 @@ export default class mal {
     order = "last_updated",
     status = 7,
   }) => {
-    const URL = `https://myanimelist.net/`;
+    const URL = "https://myanimelist.net/";
     const QUERY = `animelist/${username}/load.json?order=${SORT[order]}&status=${status}`;
     const PAGE_SIZE = 299;
     const ANIMES = [];
