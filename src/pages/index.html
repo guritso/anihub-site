@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{document-head}}
+</head>
+<body>
+  <div class="main-page">
+    <div class="head-layouts" id="profile-layout">
+      <img id="profile-picture" src="profile.webp">
+      <div id="profile-info">{{profile-info}}</div>
+    </div>
+    <div class="head-layouts" id="social-layout">
+      <div id="social-container">{{social-buttons}}</div>
+    </div>
+    <h3>Last watched animes</h3>
+    <div class="head-layouts" id="animes-layout">
+      <div id="anime-container">{{animes-cards}}</div>
+    </div>
+    <h3>Github repositories</h3>
+    <div class="head-layouts" id="repos-layout">
+      <div id="repos-container">{{repos-cards}}</div>
+    </div>
+    <div class="head-layouts" id="footer-layout">
+      <div id="footer-container"></div>
+      <p>you can see the <a href="https://github.com/GuriTsuki/anihub-site" target="_blank">source code</a></p>
+    </div>
+  </div>
+</body>
+
+</html>

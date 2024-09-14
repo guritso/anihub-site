@@ -52,7 +52,8 @@ yarn-error.log*
 # Media files (if you don't want to version them)
 *.mp4
 *.webm
-assets/img/covers/*
+src/assets/img/profile/*
+src/assets/img/covers/*
 
 # Other files you might want to ignore
 *.pdf

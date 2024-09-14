@@ -1,0 +1,31 @@
+/* forest theme */
+:root {
+    --primary-font-color: #2e7d32;
+    --secondary-font-color: #388e3c;
+    --primary-color: rgba(56, 142, 60, 0.733);
+    --background-color: #e8f5e9;
+    --semi-transparent: rgba(46, 125, 50, 0.2);
+    --half-transparent: rgba(0, 77, 64, 0.5);
+    --one-background: #c8e6c9;
+    --background-profile: var(--one-background);
+    --background-social: var(--one-background);
+    --background-anime: var(--one-background);
+    --background-repos: var(--one-background);
+    --background-footer: var(--one-background);
+    --text-color-secondary: #66bb6a;
+    
+    --text-color-completed: #124215;
+    --text-color-watching: #29a12d;
+    --text-color-dropped: #d32f2f;
+    --text-color-on-hold: #fbc02d;
+    --text-color-plan-to-watch: #4caf50;
+    
+    --repo-language-color: #8bc34a;
+    --repo-stars-color: #cddc39;
+    
+    --button-filter: brightness(1.2);
+    --button-font-color: #a5d6a7;
+
+    --border-radius: 3px;
+    --layout-padding: 12px;
+}

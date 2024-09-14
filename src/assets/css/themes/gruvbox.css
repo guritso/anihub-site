@@ -1,0 +1,30 @@
+/* gruvbox theme */
+:root {
+    --primary-font-color: #ebdbb2;
+    --secondary-font-color: #d5c4a1;
+    --primary-color: rgba(214, 93, 14, 0.733);
+    --background-color: #282828;
+    --semi-transparent: rgba(235, 219, 178, 0.2);
+    --half-transparent: rgba(75, 56, 39, 0.5);
+    --one-background: #3c3836;
+    --background-profile: var(--one-background);
+    --background-social: var(--one-background);
+    --background-anime: var(--one-background);
+    --background-repos: var(--one-background);
+    --background-footer: var(--one-background);
+    --text-color-secondary: #a89984;
+
+    --text-color-completed: #b8bb26;
+    --text-color-watching: #fabd2f;
+    --text-color-dropped: #fb4934;
+    --text-color-on-hold: #fe8019;
+    --text-color-plan-to-watch: #83a598;
+
+    --repo-language-color: #d3869b;
+    --repo-stars-color: #d79921;
+
+    --button-filter: brightness(1.1);
+
+    --border-radius: 6px;
+    --layout-padding: 14px;
+}

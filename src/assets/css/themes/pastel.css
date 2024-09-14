@@ -1,0 +1,31 @@
+/* pastel theme */
+:root {
+    --primary-font-color: #4a4a4a;
+    --secondary-font-color: #6b6b6b;
+    --primary-color: rgba(255, 182, 193, 0.733);
+    --background-color: #fdfdfe;
+    --semi-transparent: rgba(74, 74, 74, 0.2);
+    --half-transparent: rgba(99, 77, 91, 0.5);
+    --one-background: #f0f0f0;
+    --background-profile: var(--one-background);
+    --background-social: var(--one-background);
+    --background-anime: var(--one-background);
+    --background-repos: var(--one-background);
+    --background-footer: var(--one-background);
+    --text-color-secondary: #9b9b9b;
+
+    --text-color-completed: #ffb6c1;
+    --text-color-watching: #ffcccb;
+    --text-color-dropped: #ff6961;
+    --text-color-on-hold: #ffdab9;
+    --text-color-plan-to-watch: #aec6cf;
+
+    --repo-language-color: #b39ddb;
+    --repo-stars-color: #ffcc80;
+
+    --button-filter: brightness(0.9);
+    --button-font-color: #e6e6e6;
+
+    --border-radius: 10px;
+    --layout-padding: 15px;
+}

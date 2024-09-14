@@ -1,0 +1,51 @@
+{
+  "user": {
+    "name": "Guri",
+    "description": "I just like code and animes... actually, I don't know what to write here.",
+    "avatarUrl": "https://avatars.githubusercontent.com/u/77638636?v=4",
+    "accounts": {
+      "github": {
+        "username": "GuriTsuki",
+        "url": "https://github.com/GuriTsuki",
+        "color": "#2a313b"
+      },
+      "myanimelist": {
+        "username": "GuriTsuki",
+        "url": "https://myanimelist.net/profile/GuriTsuki",
+        "color": "#272b4e"
+      },
+      "𝕏": {
+        "username": "guritsuki",
+        "url": "https://x.com/guritsuki",
+        "color": "#000000"
+      }
+    }
+  },
+  "theme": {
+    "default": "dark"
+  },
+  "anime": {
+    "limit": 30,
+    "rowSpeed": 0.6,
+    "filters": {
+      "status": ["watching", "completed"]
+    }
+  },
+  "repos": {
+    "limit": 100,
+    "fork": false,
+    "archived": false,
+    "blacklist": ["GuriTsuki"]
+  },
+  "animeSync": {
+    "enabled": true,
+    "syncInterval": 60000,
+    "verbose": false
+  },
+  "security": {
+    "publicAccess": ["anime"],
+    "newKeyOnStart": false,
+    "showKeyOnStart": false
+  },
+  "port": 3000
+}
