@@ -8,7 +8,7 @@ export default class AnimesCards {
       + `<p class="anime-status" id="${anime.user.status.replace(' ', '-')}">${anime.user.status}</p>`
       + `<p id="anime-title">${anime.title}</p>`
       + `<p id="anime-date">${anime.user.date.toTimeString().slice(0, 5)}  ${anime.user.date.toDateString()}</p>`
-      + `</a>`
+      + "</a>"
     ).join('');
   }
 }

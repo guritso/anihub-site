@@ -17,10 +17,10 @@ export default class ReposCards {
       }).map((repo) => `<a class="repo-button" href="redirect?url=${encodeURIComponent(repo.url)}" target="_blank">`+
           `<h4>${repo.name}</h4>` +
           `<p>${repo.description || "No description"}</p>` +
-          `<div class="repo-info">` +
+          '<div class="repo-info">' +
           `<span class="repo-language">${repo.language || "N/A"}</span>` +
           `<span class="repo-stars">${repo.stars}</span>` +
-          `</div>` +
-          `</a>`).join("");
+          "</div>" +
+          "</a>").join("");
   };
 }
