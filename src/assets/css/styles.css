@@ -16,6 +16,10 @@
     scrollbar-color: var(--primary-color) transparent;
 }
 
+html {
+    background-color: var(--background-color);
+}
+
 .preload {
     background-image: url(../img/yume/bounce.gif), url(../img/yume/rotating.gif);
     overflow: hidden;

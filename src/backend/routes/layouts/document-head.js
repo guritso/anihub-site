@@ -9,9 +9,9 @@ export default class DocumentHead {
     const jsFiles = readdirSync('./src/assets/js').filter(file => file.endsWith('.js'));
 
     return `<title>${config.user.name}</title>`
-    + fontFiles.map(font => `<link rel="preload" href="/assets/fonts/${font}" as="font" type="font/${font.split('.').pop()}" crossorigin="anonymous">`).join('')
     + cssFiles.map(css => `<link rel="stylesheet" href="/assets/css/${css}">`).join('')
     + `<link rel="stylesheet" href="/assets/css/themes/${theme}.css">`
+    + fontFiles.map(font => `<link rel="preload" href="/assets/fonts/${font}" as="font" type="font/${font.split('.').pop()}" crossorigin="anonymous">`).join('')
     + jsFiles.map(js => `<script type="module" src="/assets/js/${js}"></script>`).join('')
   }
 }
