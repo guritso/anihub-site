@@ -19,8 +19,7 @@ const STATUS = {
 
 export default class mal {
   static formatUrl(url) {
-    const newUrl = url.replace("/r/192x272", "").split("?")[0];
-    return newUrl.replace(".jpg", ".webp");
+    return url.replace("/r/192x272", "").split("?")[0].replace(".jpg", ".webp");
   }
 
   static getAnimeList = async ({
@@ -33,11 +32,11 @@ export default class mal {
     const PAGE_SIZE = 299;
     const ANIMES = [];
 
-    for (let page = 1; page > -1; page++) {
+    while (true) {
       const data = await fetch(URL + QUERY + `&offset=${ANIMES.length}`).then(
         (res) => res.json()
       );
-      for (const [index, anime] of data.entries()) {
+      for (const anime of data) {
         ANIMES.push({
           id: anime.anime_id,
           title: anime.anime_title,
@@ -52,7 +51,7 @@ export default class mal {
           },
         });
 
-        process.stdout.write(`\x1b[2Kfetching ${username} page: ${page}\r`);
+        process.stdout.write(`\x1b[2Kfetching ${username} page: ${Math.floor(ANIMES.length / PAGE_SIZE)}\r`);
       }
 
       if (data.length < PAGE_SIZE) {
