@@ -32,14 +32,14 @@
     }
   },
   "repos": {
-    "limit": 100,
+    "limit": 50,
     "fork": false,
     "archived": false,
     "blacklist": ["GuriTsuki"]
   },
   "animeSync": {
     "enabled": true,
-    "syncInterval": 60000,
+    "syncInterval": 120000,
     "verbose": false
   },
   "security": {
