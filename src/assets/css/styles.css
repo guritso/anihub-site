@@ -20,12 +20,6 @@ html {
     background-color: var(--background-color);
 }
 
-.preload {
-    background-image: url(../img/yume/bounce.gif), url(../img/yume/rotating.gif);
-    overflow: hidden;
-    width: 0;
-    height: 0;
-}
 
 body {
     padding: 0;
@@ -230,25 +224,6 @@ h3 {
 
 .anime-card:active {
     transform: scale(0.95);
-}
-
-.anime-card#madotsuki {
-    background-image: url(../img/yume/walking.gif);
-    background-repeat: no-repeat;
-    background-color: transparent !important;
-    background-position: center;
-    background-size: 50%;
-    justify-content: space-between;
-}
-
-#anime-container:hover .anime-card#madotsuki {
-    background-image: url(../img/yume/bounce.gif);
-    transform: scale(1);
-}
-
-.anime-card#madotsuki:active {
-    background-image: url(../img/yume/rotating.gif) !important;
-    transform: scale(1);
 }
 
 .anime-card p {
