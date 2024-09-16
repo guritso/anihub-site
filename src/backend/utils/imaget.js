@@ -23,7 +23,7 @@ const imaget = {
     }
 
     if (fs.existsSync(imagePath) && !overwrite) {
-      return { path: imagePath, file: fs.readFileSync(imagePath), type: type };
+      return { path: imagePath, file: fs.readFileSync(imagePath), type: type, new: false };
     }
 
     const buffer = await fetch(url).then((res) => res.ok ? res.arrayBuffer() : null);
@@ -33,7 +33,7 @@ const imaget = {
     }
 
     fs.writeFileSync(imagePath, Buffer.from(buffer));
-    return { path: imagePath, file: buffer, type: type };
+    return { path: imagePath, file: buffer, type: type, new: true };
   },
 };
 
