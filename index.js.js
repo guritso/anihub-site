@@ -1,17 +1,18 @@
-import configLoader from './src/backend/utils/configLoader.js';
-import animeSync from './src/backend/services/animeSync.js';
-import generateKey from './src/backend/utils/generateKey.js';
-import routeMapper from './src/backend/utils/mapper.js';
-import rateLimit from 'express-rate-limit';
-import express from 'express';
-import cors from 'cors';
-import fs from 'fs';
-import path from 'path';
-import 'dotenv/config';
+import { print, setVerbose } from "./src/backend/utils/logger.js";
+import configLoader from "./src/backend/utils/configLoader.js";
+import animeSync from "./src/backend/services/animeSync.js";
+import generateKey from "./src/backend/utils/generateKey.js";
+import routeMapper from "./src/backend/utils/mapper.js";
+import rateLimit from "express-rate-limit";
+import express from "express";
+import cors from "cors";
+import fs from "fs";
+import path from "path";
+import "dotenv/config";
 
 const app = express();
 
-app.use('/assets', express.static(path.join(process.cwd(), '/src/assets')));
+app.use("/assets", express.static(path.join(process.cwd(), "/src/assets")));
 app.use(express.json());
 app.use(cors());
 
@@ -21,23 +22,28 @@ const limiter = rateLimit({
   handler: (req, res) => {
     res.status(429).json({
       status: 429,
-      message: 'Too many requests'
+      message: "Too many requests",
     });
-  }
+  },
 });
 
-app.use('/api', limiter);
+app.use("/api", limiter);
 
 app.locals.cache = new Map();
 
-const routes = await routeMapper(path.join(process.cwd(), '/src/backend/routes'));
+const routes = await routeMapper(
+  path.join(process.cwd(), "/src/backend/routes")
+);
 
-app.get('/', (req, res) => {
-  let indexHtml = fs.readFileSync(path.join(process.cwd(), '/src/pages/index.html'), 'utf8');
+app.get("/", (req, res) => {
+  let indexHtml = fs.readFileSync(
+    path.join(process.cwd(), "/src/pages/index.html"),
+    "utf8"
+  );
 
   for (const route of routes) {
     if (!route.data.method) {
-      const name = route.data.path.split('/').pop();
+      const name = route.data.path.split("/").pop();
       try {
         const render = route.render(configLoader(), app.locals.cache);
         indexHtml = indexHtml.replace(`{{${name}}}`, render);
@@ -50,36 +56,41 @@ app.get('/', (req, res) => {
   res.send(indexHtml);
 });
 
-console.log('↺ loading routes...');
+print(`%Y↺% loading routes...`);
 
-for (const route of routes) { 
-  if (!route.data.method) continue;
-  app[route.data.method](route.data.path, route.handler);
-  console.log(`  • ${route.data.method} ${route.data.path}`);
+for (const route of routes) {
+  try {
+    app[route.data.method](route.data.path, route.handler);
+    print(`  %G✓% ${route.data.method} ${route.data.path}`);
+  } catch (error) {
+    if (route.render) continue;
+    print(`  %R✗% ${route.data.path}`);
+    print(error);
+  }
 }
 
-app.get('/api', (req, res) => {
-  res.send({ status: res.statusCode, message: 'API is running' });
+app.get("/api", (req, res) => {
+  res.send({ status: res.statusCode, message: "API is running" });
 });
 
 app.use((req, res, next) => {
-  if (req.path.startsWith('/api/')) return next();
-  res.sendFile(path.join(process.cwd(), '/src/pages/404.html'));
+  if (req.path.startsWith("/api/")) return next();
+  res.sendFile(path.join(process.cwd(), "/src/pages/404.html"));
 });
 
 app.use((req, res, next) => {
-  res.status(404).send({ status: res.statusCode, message: 'Not found' });
+  res.status(404).send({ status: res.statusCode, message: "Not found" });
   next();
 });
 
 generateKey.write({
   override: configLoader().security.newKeyOnStart,
-  show: configLoader().security.showKeyOnStart
+  show: configLoader().security.showKeyOnStart,
 });
 
-console.log('↺ loading server...');
+print(`%Y↺% loading server...`);
 app.listen(configLoader().port, () => {
-  console.log('  • online on port ', configLoader().port);
-  console.log('↺ loading anime sync...');
+  print(`  %G✓% online on %Chttp://localhost:${configLoader().port}%`);
+  setVerbose(configLoader().animeSync.verbose);
   animeSync.start(app.locals.cache);
 });

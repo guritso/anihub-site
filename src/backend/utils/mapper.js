@@ -19,28 +19,29 @@ const routeMapper = async (directory, basePath) => {
     for (const route of files) {
       const routeFile = await import(path.join(dirPath, route)).then(module => module.default);
 
-      const params = routeFile.data?.params || '';
+      const params = routeFile?.data?.params || '';
 
       const routePath = path.join(
-        routeFile.data?.base ? "/" : basePath || `/${dir}`,
+        routeFile?.data?.base ? "/" : basePath || `/${dir}`,
         route.replace('.js', ''),
         params,
       );
 
       routeMap.push({
         ...routeFile,
-        data: { ...routeFile.data, path: routePath }
+        data: { ...routeFile?.data, path: routePath }
       });
 
-      if (routeFile.data?.isWildcard) {
+      
+      if (routeFile?.data?.isWildcard) {
         routeMap.push({
           ...routeFile,
-          data: { ...routeFile.data, path: path.join(routePath, '/*') }
+          data: { ...routeFile?.data, path: path.join(routePath, '/*') }
         });
       }
     }
   }
-
+  
   return routeMap;
 };
 

@@ -40,7 +40,7 @@
   "animeSync": {
     "enabled": true,
     "syncInterval": 120000,
-    "verbose": false
+    "verbose": 1
   },
   "security": {
     "publicAccess": ["anime", "user"],

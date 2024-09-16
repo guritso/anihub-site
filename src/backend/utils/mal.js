@@ -1,5 +1,7 @@
 "use strict";
 
+import { print } from "./logger.js";
+
 const SORT = {
   name: 1,
   completed_at: 2,
@@ -26,13 +28,16 @@ export default class mal {
     username,
     order = "last_updated",
     status = 7,
+    verbose = 1,
   }) => {
     const URL = "https://myanimelist.net/";
     const QUERY = `animelist/${username}/load.json?order=${SORT[order]}&status=${status}`;
     const PAGE_SIZE = 299;
     const ANIMES = [];
+    let PAGE = 0;
 
     while (true) {
+      PAGE++;
       const data = await fetch(URL + QUERY + `&offset=${ANIMES.length}`).then(
         (res) => res.json()
       );
@@ -50,9 +55,8 @@ export default class mal {
             date: new Date(anime.updated_at * 1000),
           },
         });
-
-        process.stdout.write(`\x1b[2Kfetching ${username} page: ${Math.floor(ANIMES.length / PAGE_SIZE)}\r`);
       }
+      print(`%SA  %Y•% fetching ${username} page: ${PAGE}`);
 
       if (data.length < PAGE_SIZE) {
         break;

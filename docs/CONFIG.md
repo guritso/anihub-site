@@ -53,7 +53,7 @@ This is where you put your personal data and social media links.
 
 - **enabled**: Turn sync on/off. default: `true`
 - **syncInterval**: How often to sync (in milliseconds). default: `120000` 2 minutes recommended
-- **verbose**: Want detailed logs? default: `false`
+- **verbose**: Want detailed logs? default: `1` options: 0: off, 1: on, 2: detailed
 
 ### Security
 > Not recommended to change, actually this is not so important.
