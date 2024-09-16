@@ -72,6 +72,8 @@ body {
     border-radius: var(--border-radius);
     aspect-ratio: 1 / 1;
     width: auto;
+    max-width: 160px;
+    max-height: 160px;
     user-select: none;
     object-fit: cover;
 }
@@ -324,7 +326,7 @@ h3 {
     background-color: var(--semi-transparent);
     padding: var(--layout-padding);
     text-decoration: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -351,7 +353,7 @@ h3 {
 
 .repo-button:hover {
     background-color: var(--primary-color);
-    transform: scale(1.01);
+    transform: scale(1.02);
     box-shadow: 0 5px 15px var(--semi-transparent);
 }
 
