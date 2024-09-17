@@ -15,5 +15,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   const main = document.querySelector('.main-page');
-  main.animate({ opacity: 1 }, 200).finished.then(function () { main.style.opacity = 1 });
+  main.animate({ opacity: 1 }, 200).finished.then(() => { main.style.opacity = 1 });
 });

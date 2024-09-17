@@ -51,7 +51,7 @@ export default class Users {
     if (userActions[action.toLowerCase()]) {
       userActions[action.toLowerCase()](username.toLowerCase(), req, res);
     } else {
-      return res.status(404).send({ status: res.statusCode, message: 'Not found' });
+      res.status(404).send({ status: res.statusCode, message: 'Not found' });
     }
   }
 }

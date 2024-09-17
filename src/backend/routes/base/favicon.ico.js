@@ -1,5 +1,6 @@
 import path from "path";
 
+// skipcq: JS-D1001
 export default class FaviconIco {
   static data = {
     method: 'get',

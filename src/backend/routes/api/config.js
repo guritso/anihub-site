@@ -9,6 +9,7 @@ const auth = (key) => {
   return (key === process.env.API_KEY);
 };
 
+// skipcq: JS-D1001
 export default class Config {
   static data = {
     isWildcard: true,
@@ -33,9 +34,9 @@ export default class Config {
     }
 
     if (configData) {
-      res.send({ status: res.statusCode, data: configData });
-    } else {
-      res.status(404).send({ status: res.statusCode, message: 'Not found' });
+      return res.send({ status: res.statusCode, data: configData });
     }
+
+    return res.status(404).send({ status: res.statusCode, message: 'Not found' });
   }
 };

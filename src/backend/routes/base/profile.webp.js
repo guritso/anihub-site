@@ -2,6 +2,7 @@ import configLoader from "../../utils/configLoader.js";
 import imaget from "../../utils/imaget.js";
 import path from "path";
 
+// skipcq: JS-D1001
 export default class ProfileWebp {
   static data = {
     method: 'get',
@@ -25,7 +26,7 @@ export default class ProfileWebp {
       id: user.avatarUrl.split("/").pop(),
       location: path.join(process.cwd(), "src/assets/img/profile"),
       type: user.avatarUrl.split("?")[0].split(".").pop()
-    }).then(function (image) {
+    }).then((image) => {
       cache.set(cacheKey, image);
 
       if (!res.headersSent) {
@@ -33,7 +34,7 @@ export default class ProfileWebp {
         res.set('Content-Type', `image/${imageType}`);
         return res.end(Buffer.from(cache.get(cacheKey).file));
       }
-    }).catch(function(err){
+    }).catch((err) => {
       process.stdout.write(`\x1b[31m${err}\x1b[0m\n`);
       if (!res.headersSent) {
         return res.sendFile(path.join(process.cwd(), "src/assets/img/favicon.ico"));

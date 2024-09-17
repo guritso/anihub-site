@@ -58,6 +58,7 @@ async function processQueue(queue, animes, total) {
   }
 }
 
+// skipcq: JS-D1001
 export default class animeSync {
   static start = async (cache) => {
     print("%Y↺% loading anime sync...");
