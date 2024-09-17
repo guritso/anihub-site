@@ -32,12 +32,12 @@ export default class ProfileWebp {
       if (!res.headersSent) {
         const imageType = cache.get(cacheKey).type;
         res.set('Content-Type', `image/${imageType}`);
-        return res.end(Buffer.from(cache.get(cacheKey).file));
+        res.end(Buffer.from(cache.get(cacheKey).file));
       }
     }).catch((err) => {
       process.stdout.write(`\x1b[31m${err}\x1b[0m\n`);
       if (!res.headersSent) {
-        return res.sendFile(path.join(process.cwd(), "src/assets/img/favicon.ico"));
+        res.sendFile(path.join(process.cwd(), "src/assets/img/favicon.ico"));
       }
     });
   }

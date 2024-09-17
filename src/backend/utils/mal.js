@@ -41,7 +41,8 @@ export default class mal {
     const ANIMES = [];
     let PAGE = 0;
 
-    while (true) {
+    let sholdFetch = true;
+    while (sholdFetch) {
       PAGE++;
       const data = await fetch(`${URL}${QUERY}&offset=${ANIMES.length}`).then(
         (res) => res.json()

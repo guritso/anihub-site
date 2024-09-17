@@ -62,15 +62,17 @@ async function processQueue(queue, animes, total) {
 export default class animeSync {
   static start = async (cache) => {
     print("%Y↺% loading anime sync...");
-    while (true) {
-      const { user, animeSync } = configLoader();
-      const { username } = user.accounts.myanimelist;
+    let sholdSync = true;
+    while (sholdSync) {
+      const config = configLoader();
+      const { username } = config.user.accounts.myanimelist;
+      const sync = config.animeSync;
 
-      setVerbose(animeSync.verbose);
-      if (!animeSync.enabled) {
+      setVerbose(sync.verbose);
+      if (!sync.enabled) {
         print("%SA  %R✗% animeSync %Rdisabled%");
         await new Promise((resolve) =>
-          setTimeout(resolve, animeSync.syncInterval)
+          setTimeout(resolve, sync.syncInterval)
         );
         continue;
       }
@@ -83,7 +85,7 @@ export default class animeSync {
         print(error);
       }
       await new Promise((resolve) =>
-        setTimeout(resolve, animeSync.syncInterval)
+        setTimeout(resolve, sync.syncInterval)
       );
     }
   };
