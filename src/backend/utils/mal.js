@@ -40,9 +40,9 @@ export default class mal {
     const PAGE_SIZE = 299;
     const ANIMES = [];
     let PAGE = 0;
+    let hasMoreData = true;
 
-    let sholdFetch = true;
-    while (sholdFetch) {
+    while (hasMoreData) {
       PAGE++;
       const data = await fetch(`${URL}${QUERY}&offset=${ANIMES.length}`).then(
         (res) => res.json()
@@ -65,7 +65,7 @@ export default class mal {
       print(`%SA  %Y•% fetching ${username} page: ${PAGE}`);
 
       if (data.length < PAGE_SIZE) {
-        break;
+        hasMoreData = false;
       }
     }
     return ANIMES;

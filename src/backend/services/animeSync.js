@@ -62,8 +62,8 @@ async function processQueue(queue, animes, total) {
 export default class animeSync {
   static start = async (cache) => {
     print("%Y↺% loading anime sync...");
-    let sholdSync = true;
-    while (sholdSync) {
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
       const config = configLoader();
       const { username } = config.user.accounts.myanimelist;
       const sync = config.animeSync;
