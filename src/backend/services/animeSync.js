@@ -5,6 +5,13 @@ import mal from "../utils/mal.js";
 
 const CONCURRENCY_LIMIT = 20;
 
+/**
+ * Fetches anime list from MyAnimeList.net
+ * @param {string} username The MyAnimeList username
+ * @param {string} order The order to sort the list by, e.g. "last_updated"
+ * @param {number} status The status of the anime to fetch, e.g. 7 for all
+ * @returns {Promise<Anime[]>} A list of anime objects
+ */
 async function fetchAnimeList(username, order, status) {
   const animes = [];
   const animelist = await mal.getAnimeList({ username, order, status });
@@ -19,6 +26,13 @@ async function fetchAnimeList(username, order, status) {
   return animes;
 }
 
+  /**
+   * Processes a queue of anime objects and saves their cover images to the
+   * disk. It also updates the anime object with the new image path.
+   * @param {Anime[]} queue The queue of anime objects to process
+   * @param {Anime[]} animes The array to store the processed anime objects in
+   * @param {number} total The total number of anime objects to process
+   */
 async function processQueue(queue, animes, total) {
   while (queue.length > 0) {
     const anime = queue.shift();

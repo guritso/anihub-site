@@ -1,3 +1,4 @@
+// skipcq: JS-D1001
 export default class Redirect {
   static data = {
     method: 'get',

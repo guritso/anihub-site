@@ -1,5 +1,10 @@
 import configLoader from '../../utils/configLoader.js';
 
+/**
+ * Checks if the given key matches the API key set in the environment.
+ * @param {string} key The key to check.
+ * @returns {boolean} Whether the key matches the API key.
+ */
 const auth = (key) => {
   return (key === process.env.API_KEY);
 };
@@ -10,7 +15,7 @@ export default class Config {
     method: 'get',
   };
 
-  static handler = (req, res) => {
+  static handler = function (req, res) {
     const params = req.params[0]?.split('/') || [];
     const key = req.headers.authorization?.replace('Bearer ', '');
     const publicAccess = configLoader().security.publicAccess;

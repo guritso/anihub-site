@@ -38,13 +38,14 @@ const userActions = {
   }
 };
 
+// skipcq: JS-D1001
 export default class Users {
   static data = {
     method: 'get',
     params: ':username/:action'
   };
 
-  static handler = async (req, res) => {
+  static handler = function (req, res) {
     const { username, action } = req.params;
 
     if (userActions[action.toLowerCase()]) {

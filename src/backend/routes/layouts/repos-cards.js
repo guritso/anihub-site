@@ -1,3 +1,4 @@
+// skipcq: JS-D1001
 export default class ReposCards {
   static render = (config, cache) => {
     const { username } = config.user.accounts.github;

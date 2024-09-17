@@ -1,3 +1,4 @@
+// skipcq: JS-D1001
 export default class AnimesCards {
   static render = (config, cache) => {
     const { username } = config.user.accounts.myanimelist;

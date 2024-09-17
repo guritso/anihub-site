@@ -1,3 +1,4 @@
+// skipcq: JS-D1001
 export default class Profile {
   static render = (config) =>  {
     return `<h1>${config.user.name}</h1>`

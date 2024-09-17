@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     this.scrollLeft += event.deltaY;
   });
 
-  
-  var ac = document.getElementById('anime-container');
-  var l = ac.querySelectorAll('.anime-card').length;
-  var c = await fetch('api/config/anime').then(r => r.json()).then(d => d.data);
-  
-  if (l > 5) {
+
+  const ac = document.getElementById('anime-container');
+  const length = ac.querySelectorAll('.anime-card').length;
+  const co = await fetch('api/config/anime').then(r => r.json()).then(d => d.data);
+
+  if (length > 5) {
     ac.innerHTML += ac.innerHTML;
-    ac.style.animation = `scroll ${l / c.rowSpeed}s infinite linear`;
+    ac.style.animation = `scroll ${length / co.rowSpeed}s infinite linear`;
   }
 
-  var m = document.querySelector('.main-page');
-  m.animate({ opacity: 1 }, 200).onfinish = () => m.style.opacity = 1;
+  const main = document.querySelector('.main-page');
+  main.animate({ opacity: 1 }, 200).finished.then(function () { main.style.opacity = 1 });
 });

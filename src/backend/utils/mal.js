@@ -20,6 +20,12 @@ const STATUS = {
 };
 
 export default class mal {
+  /**
+   * Formats a MyAnimeList image URL to the correct size and format.
+   *
+   * @param {string} url The URL to format.
+   * @returns {string} The formatted URL.
+   */
   static formatUrl(url) {
     return url.replace("/r/192x272", "").split("?")[0].replace(".jpg", ".webp");
   }
@@ -28,7 +34,6 @@ export default class mal {
     username,
     order = "last_updated",
     status = 7,
-    verbose = 1,
   }) => {
     const URL = "https://myanimelist.net/";
     const QUERY = `animelist/${username}/load.json?order=${SORT[order]}&status=${status}`;
@@ -38,7 +43,7 @@ export default class mal {
 
     while (true) {
       PAGE++;
-      const data = await fetch(URL + QUERY + `&offset=${ANIMES.length}`).then(
+      const data = await fetch(`${URL}${QUERY}&offset=${ANIMES.length}`).then(
         (res) => res.json()
       );
       for (const anime of data) {

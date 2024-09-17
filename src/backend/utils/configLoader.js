@@ -3,6 +3,14 @@ import path from 'path';
 
 const cache = new Set();
 
+/**
+ * Loads the config from `src/config/config.json` and caches it.
+ *
+ * If the file does not exist or is not valid JSON, it will use the cached config if available.
+ *
+ * @throws {Error} If no config is available.
+ * @returns {object} The config object.
+ */
 function configLoader() {
   try {
     const configPath = path.join('src/config/config.json');
