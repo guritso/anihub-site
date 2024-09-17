@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import { print, setVerbose } from "./src/backend/utils/logger.js";
 import configLoader from "./src/backend/utils/configLoader.js";
 import animeSync from "./src/backend/services/animeSync.js";
@@ -8,7 +10,6 @@ import express from "express";
 import cors from "cors";
 import fs from "fs";
 import path from "path";
-import "dotenv/config";
 
 const app = express();
 

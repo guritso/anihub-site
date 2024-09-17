@@ -11,7 +11,7 @@ vendor/
 .env.local
 .env.*.local
 
-src/config/*
+src/config/config.json
 
 # Build files
 dist/
