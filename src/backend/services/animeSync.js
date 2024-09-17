@@ -46,7 +46,7 @@ async function processQueue(queue, animes, total) {
 
 export default class animeSync {
   static start = async (cache) => {
-    print(`%Y↺% loading anime sync...`);
+    print("%Y↺% loading anime sync...");
     while (true) {
       const { user, animeSync } = configLoader();
       const { username } = user.accounts.myanimelist;
