@@ -50,6 +50,7 @@ export default class animeSync {
     while (true) {
       const { user, animeSync } = configLoader();
       const { username } = user.accounts.myanimelist;
+
       setVerbose(animeSync.verbose);
       if (!animeSync.enabled) {
         print("%SA  %R✗% animeSync %Rdisabled%");
