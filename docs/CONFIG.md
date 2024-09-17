@@ -14,55 +14,62 @@ This doc will help you understand the `config.json` file located in `src/config/
 
 ### Your Info
 
-This is where you put your personal data and social media links.
+This is where you put your personal data e links de redes sociais.
 
-- **name**: Your name
-- **description**: A short blurb about you
-- **avatarUrl**: Link to your profile pic
-- **accounts**: Your `GitHub` and `MyAnimeList` are required. You can add more if you want using the format:
+| Key | Description | default | options | type |
+|-----|-------------|---------|---------|------|
+| **name** | Your username | | | string |
+| **description** | A brief description about you | | | string |
+| **avatarUrl** | Link to your profile picture | | | string |
+| **accounts** | Social media links that will be displayed as buttons | github, myanimelist | any | object |
 
-```json
-...
-  "social-media": {
-    "username": "your-social-media-username",
-    "url": "https://social-media.com/link-to-your-profile",
-    "color": "#2a313b" // button color
-  }
-...
-
-```
+> Github and MyAnimeList are required. You can add more if you want using [this format](https://guritsuki.site/api/config/user).
 
 ### Theme
 
-- **default**: themes on `src/assets/css/themes` folder. `light` `dark` `dracula` `forest` `gruvbox` `pastel` `solarized`, etc.
+| Key | Description | default | options | type |
+|-----|-------------|---------|---------|------|
+| **default** | Themes in 'src/assets/css/themes' | dark | light, material, dracula, forest, gruvbox, pastel, solarized, nord, solarized-dark | string |
 
 ### Anime Settings
 
-- **limit**: How many anime to show. default: `30`
-- **rowSpeed**: How fast the rows animate. default: `0.6`
-- **filters.status**: Which anime statuses to include, as default: `["watching", "completed"]` others `on hold`, `dropped`, `plan to watch`.
+| Key | Description| default | options | type |
+|-----|------------|---------|---------|------|
+| **limit** | Number of animes to display | 30 | 0 - 26417 | number |
+| **rowSpeed** | Animation speed of the row | 0.6 | 0 - 100 | number |
+| **filters.status** | Anime statuses to include | "watching", "completed" | on hold, dropped, plan to watch | array of strings |
 
 ### Repo Settings
 
-- **limit**: Max number of repos to show. default: `50`
-- **fork**: Include forked repos? default: `false`
-- **archived**: Show archived repos? default: `false`
-- **blacklist**: Repos you want to hide, as `["repo-name-1", "repo-name-2"]`
+| Key | Description | default | options | type |
+|-----|-------------|---------|---------|------|
+| **limit** | Maximum number of repositories to display. | 50 | 0 - unlimited | number |
+| **fork** | Include forked repositories? | false | true, false | boolean |
+| **archived** | Show archived repositories? | false | true, false | boolean |
+| **blacklist** | Repositories you wish to hide | [] | "repo-name-1", "repo-name-2" | array of strings |
 
 ### Anime Sync
 
-- **enabled**: Turn sync on/off. default: `true`
-- **syncInterval**: How often to sync (in milliseconds). default: `120000` 2 minutes recommended
-- **verbose**: Want detailed logs? default: `1` options: 0: off, 1: on, 2: detailed
+| Key | Description | default | options | type |
+|-----|-------------|---------|---------|------|
+| **enabled** | Enable/disable synchronization. | true | true, false | boolean |
+| **syncInterval**| Interval for synchronization in milliseconds. | 120000 | 60000 - unlimited | number |
+| **verbose** | Do you want detailed logs? | 1 | 0, 1, 2 | number |
 
 ### Security
-> Not recommended to change, actually this is not so important.
-- **publicAccess**: Which parts of config.json anyone can see through the api: `["anime", "user"]`
-- **newKeyOnStart**: Generate a new key when starting up? default: `false`
-- **showKeyOnStart**: Show the security key on startup? default: `false`
+
+> It is not recommended to change. Actually, it's not that important.
+
+| Key | Description | default | options | type |
+|-----|-------------|---------|---------|------|
+| **publicAccess** | Which parts of 'config.json' anyone can see through the API | "anime", "user" | any part of the config.json | array of strings |
+| **newKeyOnStart** | Generate a new key on start? | false | true, false | boolean |
+| **showKeyOnStart**| Show the security key on startup? | false | true, false | boolean |
 
 ### Server Port
 
-- **port**: Which port to run on. default: `3000`
+| Key | Description | default | options | type |
+|-----|-------------|---------|---------|------|
+| **port** | Port to run the server on. | 3000 | 1024 - 65535 | number |
 
----
+> You can delete the port key. and add to a `.env` file as `PORT=.
