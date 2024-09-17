@@ -56,7 +56,7 @@ app.get("/", (req, res) => {
   res.send(indexHtml);
 });
 
-print(`%Y↺% loading routes...`);
+print("%Y↺% loading routes...");
 
 for (const route of routes) {
   try {
@@ -88,7 +88,7 @@ generateKey.write({
   show: configLoader().security.showKeyOnStart,
 });
 
-print(`%Y↺% loading server...`);
+print("%Y↺% loading server...");
 app.listen(configLoader().port, () => {
   print(`  %G✓% online on %Chttp://localhost:${configLoader().port}%`);
   setVerbose(configLoader().animeSync.verbose);
