@@ -2,7 +2,9 @@
 
 :root {
     --border-radius: 5px;
-    --layout-padding: 15px;
+    --layout-padding: 10px;
+    --border-size: 0px;
+    --border-color: var(--primary-color);
 }
 
 * {
@@ -50,6 +52,7 @@ body {
 }
 
 .head-layouts {
+    border: var(--border-size) solid var(--border-color);
     display: flex;
     border-radius: var(--border-radius);
     width: 100%;
@@ -400,6 +403,7 @@ h3 {
     align-items: center;
     justify-content: center;
     border-radius: 0;
+    border-top-width: 0px;;
 }
 
 #footer-layout p {
