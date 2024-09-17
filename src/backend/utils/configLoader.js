@@ -1,8 +1,34 @@
-import fs from 'fs';
-import path from 'path';
+import defaultConfig from "../../config/default.js";
+import path from "path";
+import fs from "fs";
+
+/**
+ * Function to deeply merge two objects.
+ * @param {object} target - The target object.
+ * @param {object} source - The source object.
+ * @returns {object} - Object merged.
+ */
+function deepMerge(target, source) {
+  const output = { ...target };
+
+  for (const key in source) {
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      if (
+        typeof source[key] === "object" &&
+        source[key] !== null &&
+        !Array.isArray(source[key])
+      ) {
+        output[key] = deepMerge(target[key] || {}, source[key]);
+      } else {
+        output[key] = source[key];
+      }
+    }
+  }
+
+  return output;
+}
 
 const cache = new Set();
-
 /**
  * Loads the config from `src/config/config.json` and caches it.
  *
@@ -13,17 +39,25 @@ const cache = new Set();
  */
 function configLoader() {
   try {
-    const configPath = path.join('src/config/config.json');
-    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    cache.add(JSON.stringify(config));
-    return config;
+    const configPath = path.join("src/config/config.json");
+    const fileConfig = JSON.parse(fs.readFileSync(configPath, "utf8"));
+
+    const mergedConfig = deepMerge(defaultConfig, fileConfig);
+
+    cache.add(JSON.stringify(mergedConfig));
+
+    return mergedConfig;
   } catch (error) {
-    console.error('Error:', error.message, '- using cached config.json!');
+    console.error("Error:", error.message, "- using cached config.json!");
     const arr = Array.from(cache);
+
     if (arr.length > 0) {
       return JSON.parse(arr.pop());
     } else {
-      throw new Error('No cached config.json available.');
+      console.error(
+        "No cached config found, using default config. Please create a config.json file."
+      );
+      return defaultConfig;
     }
   }
 }
