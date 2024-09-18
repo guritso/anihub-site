@@ -1,6 +1,9 @@
 import configLoader from "../../utils/configLoader.js";
 import imaget from "../../utils/imaget.js";
+import { print } from "../../utils/logger.js";
+import crypto from 'crypto';
 import path from "path";
+
 
 // skipcq: JS-D1001
 export default class ProfileWebp {
@@ -21,11 +24,14 @@ export default class ProfileWebp {
 
     const { user } = configLoader();
 
+    const hash = crypto.createHash('sha256').update(user.avatarUrl).digest('hex');
+    const fileExtension = user.avatarUrl.split("?")[0].split(".").pop();
+
     imaget.save({
       url: user.avatarUrl,
-      id: user.avatarUrl.split("/").pop(),
+      id: hash,
       location: path.join(process.cwd(), "src/assets/img/profile"),
-      type: user.avatarUrl.split("?")[0].split(".").pop()
+      type: fileExtension
     }).then((image) => {
       cache.set(cacheKey, image);
 
@@ -35,7 +41,7 @@ export default class ProfileWebp {
         res.end(Buffer.from(cache.get(cacheKey).file));
       }
     }).catch((err) => {
-      process.stdout.write(`\x1b[31m${err}\x1b[0m\n`);
+      print(err);
       if (!res.headersSent) {
         res.sendFile(path.join(process.cwd(), "src/assets/img/favicon.ico"));
       }
