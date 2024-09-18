@@ -36,6 +36,7 @@ body {
 }
 
 .main-page {
+    position: relative;
     opacity: 1;
     flex: 1;
     display: flex;
@@ -400,10 +401,16 @@ h3 {
     width: 100%;
     padding: calc(var(--layout-padding) - 5px);
     display: flex;
+    border-radius: 0;
+    border-top-width: 0px;
+}
+
+#footer-container {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 0;
-    border-top-width: 0px;;
+    width: 100%;
 }
 
 #footer-layout p {
