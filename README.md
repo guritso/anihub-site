@@ -26,8 +26,8 @@ Use `src/config/config.json` to personalize it with your informations. see [conf
 
 ```bash
 # Clone the repository
-git clone https://github.com/gurizenit/animehub.git
-cd animehub
+git clone https://github.com/GuriTsuki/anihub-site.git
+cd anihub-site
 
 # Install dependencies
 npm install
