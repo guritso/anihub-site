@@ -36,7 +36,7 @@ const cache = new Set();
  *
  * @returns {object} The config object.
  */
-function configLoader() {
+function configLoader({ warn = true } = {}) {
   try {
     const configPath = path.join("src/config/config.json");
     const fileConfig = JSON.parse(fs.readFileSync(configPath, "utf8"));
@@ -47,15 +47,19 @@ function configLoader() {
 
     return mergedConfig;
   } catch (error) {
-    console.error("Error:", error.message, "- using cached config.json!");
+    if (warn) {
+      console.error("Error:", error.message, "- using cached config.json!");
+    }
     const arr = Array.from(cache);
 
     if (arr.length > 0) {
       return JSON.parse(arr.pop());
     } else {
-      console.error(
+      if (warn) {
+        console.error(
         "No cached config found, using default config. Please create a config.json file."
-      );
+        );
+      }
       return defaultConfig;
     }
   }
