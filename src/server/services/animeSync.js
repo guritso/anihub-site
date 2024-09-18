@@ -26,13 +26,13 @@ async function fetchAnimeList(username, order, status) {
   return animes;
 }
 
-  /**
-   * Processes a queue of anime objects and saves their cover images to the
-   * disk. It also updates the anime object with the new image path.
-   * @param {Anime[]} queue The queue of anime objects to process
-   * @param {Anime[]} animes The array to store the processed anime objects in
-   * @param {number} total The total number of anime objects to process
-   */
+/**
+ * Processes a queue of anime objects and saves their cover images to the
+ * disk. It also updates the anime object with the new image path.
+ * @param {Anime[]} queue The queue of anime objects to process
+ * @param {Anime[]} animes The array to store the processed anime objects in
+ * @param {number} total The total number of anime objects to process
+ */
 async function processQueue(queue, animes, total) {
   while (queue.length > 0) {
     const anime = queue.shift();
@@ -60,6 +60,10 @@ async function processQueue(queue, animes, total) {
 
 // skipcq: JS-D1001
 export default class animeSync {
+  static wait = async (interval) => {
+    await new Promise((resolve) => setTimeout(resolve, interval));
+  };
+
   static start = async (cache) => {
     print("%Y↺% loading anime sync...");
     // eslint-disable-next-line no-constant-condition
@@ -71,9 +75,15 @@ export default class animeSync {
       setVerbose(sync.verbose);
       if (!sync.enabled) {
         print("%SA  %R✗% animeSync %Rdisabled%");
-        await new Promise((resolve) =>
-          setTimeout(resolve, sync.syncInterval)
+        await animeSync.wait(60000);
+        continue;
+      }
+
+      if (sync.syncInterval < 60000) {
+        print(
+          `%SA  %R✗% animeSync %Yinterval%: %G60000ms ✓% < %R${sync.syncInterval}ms ✗%`
         );
+        await animeSync.wait(60000);
         continue;
       }
 
@@ -84,9 +94,7 @@ export default class animeSync {
       } catch (error) {
         print(error);
       }
-      await new Promise((resolve) =>
-        setTimeout(resolve, sync.syncInterval)
-      );
+      await animeSync.wait(sync.syncInterval);
     }
   };
 }
