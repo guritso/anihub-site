@@ -1,6 +1,6 @@
 # Quick Config Guide
 
-This doc will help you understand the `config.json` file located in `src/config/config.json`.
+This doc will help you understand the `config.json`, you need to create `src/config/config.json`. You can check [this file](/src/config/config.example.json) as an example template.
 
 ## What's in here?
 
