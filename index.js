@@ -1,10 +1,10 @@
 import "dotenv/config";
 
-import { print, setVerbose } from "./src/backend/utils/logger.js";
-import configLoader from "./src/backend/utils/configLoader.js";
-import animeSync from "./src/backend/services/animeSync.js";
-import generateKey from "./src/backend/utils/generateKey.js";
-import routeMapper from "./src/backend/utils/mapper.js";
+import { print, setVerbose } from "./src/server/utils/logger.js";
+import configLoader from "./src/server/utils/configLoader.js";
+import animeSync from "./src/server/services/animeSync.js";
+import generateKey from "./src/server/utils/generateKey.js";
+import routeMapper from "./src/server/utils/mapper.js";
 import rateLimit from "express-rate-limit";
 import express from "express";
 import cors from "cors";
@@ -33,7 +33,7 @@ app.use("/api", limiter);
 app.locals.cache = new Map();
 
 const routes = await routeMapper(
-  path.join(process.cwd(), "/src/backend/routes")
+  path.join(process.cwd(), "/src/server/routes")
 );
 
 app.get("/", (req, res) => {
