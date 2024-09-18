@@ -1,4 +1,4 @@
-import defaultConfig from "../../config/default.js";
+import defaultConfig from "../../misc/default.js";
 import path from "path";
 import fs from "fs";
 
@@ -34,7 +34,6 @@ const cache = new Set();
  *
  * If the file does not exist or is not valid JSON, it will use the cached config if available.
  *
- * @throws {Error} If no config is available.
  * @returns {object} The config object.
  */
 function configLoader() {
