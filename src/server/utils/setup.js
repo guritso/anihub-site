@@ -1,17 +1,15 @@
 import childProcess from "child_process";
 import config from "../misc/default.js";
 import configChanger from "./configChanger.js";
-import { texter as h } from "./texter.js"
+import { texter as h } from "./texter.js";
 
-const { stdin,  exit } = process;
+const { stdin, exit } = process;
 const { myanimelist, github } = config.user.accounts;
 
 function prompt(question = "") {
-  const [s, f, ...l] = question.split(" ");
+  const ic = question.split(" ")[0];
 
-  question = question.replace(l.join(" "), h(`%H2 ${l.join(" ")}%H`))
-    .replace(s, h(`%H34 ${s}%H`))
-    .replace(f, h(`%H1 ${f}%H`))
+  question = question.replace(ic, h(`%H34 ${ic}%H`));
 
   stdin.write(question);
 
@@ -34,14 +32,17 @@ async function fetchUser(url, username = "github") {
   }
 
   if (!res.ok || res.status === 404) {
-    const err = res.status === 404 ? "%H31 user not found%H" : "%H31 connection error%H";
+    const err =
+      res.status === 404 ? "%H31 user not found%H" : "%H31 connection error%H";
 
-    await prompt(`\r${h("%H31 ✗%H")} ${h(err)}, continue? y/n (y): `).then((res) => {
-      if (res.toLowerCase() === "n") {
-        console.log("» exiting...");
-        exit();
+    await prompt(`\r${h("%H31 ✗%H")} ${h(err)}, continue? y/n (y): `).then(
+      (res) => {
+        if (res.toLowerCase() === "n") {
+          console.log("» exiting...");
+          exit();
+        }
       }
-    });
+    );
   }
 
   stdin.write("\r\x1b[2K");
@@ -55,10 +56,12 @@ function install(manager) {
   try {
     childProcess.execSync(`${manager} install`, { stdio: "inherit" });
   } catch (err) {
-    const retry = prompt(`${h("%H31 ✗%H")} erro on installation, try again y/n (y): `)
+    const retry = prompt(
+      `${h("%H31 ✗ erro on installation%H")}, try again y/n (y): `
+    );
 
     if (retry === "y") {
-      install(manager)
+      install(manager);
     }
   }
 }
@@ -66,48 +69,52 @@ function install(manager) {
 const MAL_URL = "https://myanimelist.net/profile/";
 const GIT_URL = "https://github.com/";
 const MANAGERS = ["yarn", "npm"];
+const TITLE = h("%H1 » aniHub setup script «%H");
 
-const title = "aniHub setup script";
-const bar = "*".repeat(title.length + 4);
+stdin.write(h(`\n%H46 ${TITLE}%H\n\n`));
 
-stdin.write(`\n${bar}\n* ${title} *\n${bar}\n\n`);
-
-const malUser = await prompt("➤ myanimelist username: ").then((user) =>
-  fetchUser(MAL_URL, user)
+const malUser = await prompt(h("➤ %H2 myanimelist%H %H36 username%H: ")).then(
+  (user) => fetchUser(MAL_URL, user)
 );
 
 myanimelist.username = malUser;
 myanimelist.url = MAL_URL + malUser;
 
-const gitUser = await prompt("➤ github username: ").then((user) =>
-  fetchUser(GIT_URL, user)
+const gitUser = await prompt(h("➤ %H2 github%H %H36 username%H: ")).then(
+  (user) => fetchUser(GIT_URL, user)
 );
 
 github.username = gitUser;
 github.url = GIT_URL + gitUser;
 
-config.user.name = await prompt(`➤ profile name (${gitUser}): `).then(
-  (name) => name || gitUser
+config.user.name = await prompt(
+  h(`➤ %H2 profile%H %H36 name%H (${gitUser}): `)
+).then((name) => name || gitUser);
+config.user.description = await prompt(
+  h(`➤ %H2 profile%H %H36 description%H: `)
 );
-config.user.description = await prompt(`➤ profile description: `);
-config.user.avatarUrl = await prompt(`➤ profile picture url: `);
+config.user.avatarUrl = await prompt(h(`➤ %H2 profile%H %H36 picture url%H: `));
 
 configChanger.change(["user"], config.user);
 
-console.log(`${h("%H92 ✓ saved on src/config/config.json%H")}`);
+console.log(h("%H92 ✓ saved on src/config/config.json%H"));
 
 const pManager = await prompt(
-  `➤ package manager, ${MANAGERS.join("/")} (npm): `
+  h(`➤ %H2 package%H %H36 manager%H, ${MANAGERS.join("/")} (npm): `)
 ).then((res) => MANAGERS.find((i) => res.toLowerCase() === i) || "npm");
 
-const proced = await prompt("➤ proced with installation? y/n (y): ");
+const proced = await prompt(
+  h("➤ %H2 proced with%H %H36 installation%H? y/n (y): ")
+);
 
 if (proced !== "n") {
   install(pManager);
 }
 
 stdin.write(
-  `${h("%H32 ✓%H")} setup complete, use ${pManager === "npm" ? "npm run" : pManager} start\n`
+  `${h("%H32 ✓ setup complete%H")}, use ${h(
+    `%H32 ${pManager === "npm" ? "npm run" : pManager} start%H`
+  )}\n`
 );
 
 exit();
