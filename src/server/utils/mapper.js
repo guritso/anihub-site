@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { pathToFileURL } from 'url';
 
 /**
  * @param {string} directory - The directory to map the routes from.
@@ -17,15 +18,14 @@ const routeMapper = async (directory, basePath) => {
       .filter((file) => file.endsWith('.js'));
 
     for (const route of files) {
-      const routeFile = await import(path.join(dirPath, route)).then(module => module.default);
+      const routeURL = pathToFileURL(path.join(dirPath, route));
+      const routeFile = await import(routeURL.href).then(module => module.default);
 
       const params = routeFile?.data?.params || '';
 
-      const routePath = path.join(
-        routeFile?.data?.base ? "/" : basePath || `/${dir}`,
-        route.replace('.js', ''),
-        params,
-      );
+      const routePath = `${
+       routeFile?.data?.base ? "" : basePath || `/${dir}`
+      }/${route.replace('.js', '')}/${params}`;
 
       routeMap.push({
         ...routeFile,
@@ -36,7 +36,7 @@ const routeMapper = async (directory, basePath) => {
       if (routeFile?.data?.isWildcard) {
         routeMap.push({
           ...routeFile,
-          data: { ...routeFile?.data, path: path.join(routePath, '/*') }
+          data: { ...routeFile?.data, path: `${routePath}*` }
         });
       }
     }
