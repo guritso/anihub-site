@@ -6,15 +6,19 @@ import animeSync from "./src/server/services/animeSync.js";
 import generateKey from "./src/server/utils/generateKey.js";
 import routeMapper from "./src/server/utils/mapper.js";
 import rateLimit from "express-rate-limit";
+import { fileURLToPath } from 'url';
 import express from "express";
 import cors from "cors";
-import fs from "fs";
 import path from "path";
+import fs from "fs";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
 app.set("trust proxy", 1);
-app.use("/assets", express.static(path.join(process.cwd(), "/src/assets")));
+app.use("/assets", express.static(path.join(__dirname, "/src/assets")));
 app.use(express.json());
 app.use(cors());
 
@@ -34,18 +38,18 @@ app.use("/api", limiter);
 app.locals.cache = new Map();
 
 const routes = await routeMapper(
-  path.join(process.cwd(), "/src/server/routes")
+  path.join(__dirname, "/src/server/routes")
 );
 
 app.get("/", (req, res) => {
   let indexHtml = fs.readFileSync(
-    path.join(process.cwd(), "/src/pages/index.html"),
+    path.join(__dirname, "/src/pages/index.html"),
     "utf8"
   );
 
   for (const route of routes) {
     if (!route.data.method) {
-      const name = route.data.path.split("/").pop();
+      const name = route.data.path.split("/").slice(-2).join("");
       try {
         const render = route.render(configLoader(), app.locals.cache);
         indexHtml = indexHtml.replace(`{{${name}}}`, render);
@@ -77,7 +81,7 @@ app.get("/api", (req, res) => {
 
 app.use((req, res, next) => {
   if (req.path.startsWith("/api/")) return next();
-  return res.sendFile(path.join(process.cwd(), "/src/pages/404.html"));
+  return res.sendFile(path.join(__dirname, "/src/pages/404.html"));
 });
 
 app.use((req, res, next) => {

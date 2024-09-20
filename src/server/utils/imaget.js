@@ -1,5 +1,4 @@
 import fs from 'fs';
-import path from 'path';
 
 const types = ['png', 'webp', 'jpg', 'jpeg', 'gif', 'svg', 'ico'];
 
@@ -16,7 +15,8 @@ const imaget = {
       type = 'webp';
     }
 
-    const imagePath = path.join(location, `${id}.${type}`.replaceAll('/', '-'));
+    const imageName = `${id}.${type}`.replaceAll('/', '-');
+    const imagePath = `${location}/${imageName}`;
 
     if (!fs.existsSync(location)) {
       fs.mkdirSync(location, { recursive: true });
