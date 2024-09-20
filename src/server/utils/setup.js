@@ -1,5 +1,5 @@
 import childProcess from "child_process";
-import config from "../../misc/default.js";
+import config from "../misc/default.js";
 import configChanger from "./configChanger.js";
 import { texter as h } from "./texter.js"
 

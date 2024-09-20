@@ -1,4 +1,4 @@
-import defaultConfig from "../../misc/default.js";
+import defaultConfig from "../misc/default.js";
 import path from "path";
 import fs from "fs";
 
