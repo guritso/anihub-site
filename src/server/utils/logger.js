@@ -79,4 +79,4 @@ function setVerbose(verbose) {
   return print;
 }
 
-export { print, setVerbose };
+export { print, setVerbose, hl };
