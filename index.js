@@ -77,7 +77,7 @@ app.get("/api", (req, res) => {
 
 app.use((req, res, next) => {
   if (req.path.startsWith("/api/")) return next();
-  return res.sendFile(path.join(process.cwd(), "/src/pages/404.html"));
+  return res.status(404).sendFile(path.join(process.cwd(), "/src/pages/404.html"));
 });
 
 app.use((req, res, next) => {
