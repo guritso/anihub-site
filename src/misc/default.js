@@ -7,12 +7,12 @@ const config = {
       github: {
         username: "",
         url: "",
-        color: "#000000",
+        color: "#2a313b",
       },
       myanimelist: {
         username: "",
         url: "",
-        color: "#000000",
+        color: "#272b4e",
       },
     },
   },
