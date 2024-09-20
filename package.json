@@ -5,7 +5,8 @@
   "type": "module",
   "version": "2.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "setup": "node src/server/utils/setup.js"
   },
   "repository": {
     "type": "git",
