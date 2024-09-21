@@ -46,6 +46,31 @@ body {
     box-sizing: border-box;
 }
 
+.main-page span#theme-toggle {
+    display: flex;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border-radius: 50%;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.main-page span#theme-toggle::before {
+    content: '';
+    height: 12px;
+    width: 12px;
+}
+
+.main-page span#theme-toggle:hover {
+    transform: scale(1.50);
+}
+
+.main-page span#theme-toggle:active {
+    transform: scale(1.30);
+}
+
 @media (max-width: 995px) {
     .main-page {
         width: 100%;

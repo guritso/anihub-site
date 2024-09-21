@@ -1,7 +1,7 @@
-/* nord theme */
-:root {
+/* nord dark theme */
+.dark-theme {
     --primary-font-color: #d8dee9;
-    --secondary-font-color: #e5e9f0;
+    --secondary-font-color: #81a1c1;
     --primary-color: rgba(94, 129, 172, 0.733);
     --background-color: #2e3440;
     --semi-transparent: rgba(216, 222, 233, 0.2);
@@ -12,7 +12,6 @@
     --background-anime: var(--one-background);
     --background-repos: var(--one-background);
     --background-footer: var(--one-background);
-    --text-color-secondary: #81a1c1;
 
     --text-color-completed: #88c0d0;
     --text-color-watching: #a3be8c;
@@ -24,6 +23,38 @@
     --repo-stars-color: #d08770;
 
     --button-filter: brightness(1.1);
+
+    --border-radius: 5px;
+    --layout-padding: 10px;
+    --border-size: 0px;
+}
+
+/* nord light theme */
+.light-theme {
+    --primary-font-color: #2e3440;
+    --secondary-font-color: #4c566a;
+    --primary-color: rgba(94, 129, 172, 0.733);
+    --background-color: #eceff4;
+    --semi-transparent: rgba(162, 183, 223, 0.2);
+    --half-transparent: rgba(38, 40, 63, 0.5);
+    --one-background: #d8dee9;
+    --background-profile: var(--one-background);
+    --background-social: var(--one-background);
+    --background-anime: var(--one-background);
+    --background-repos: var(--one-background);
+    --background-footer: var(--one-background);
+
+    --text-color-completed: #88c0d0;
+    --text-color-watching: #a3be8c;
+    --text-color-dropped: #bf616a;
+    --text-color-on-hold: #ebcb8b;
+    --text-color-plan-to-watch: #5e81ac;
+
+    --repo-language-color: #b48ead;
+    --repo-stars-color: #d08770;
+
+    --button-filter: brightness(1.3);
+    --button-font-color: #9fb5e2;
 
     --border-radius: 5px;
     --layout-padding: 10px;

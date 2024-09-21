@@ -17,7 +17,8 @@ const config = {
     },
   },
   theme: {
-    default: "dark",
+    color: "default",
+    type: "dark"
   },
   anime: {
     limit: 30,
@@ -38,7 +39,7 @@ const config = {
     verbose: 1,
   },
   security: {
-    publicAccess: ["anime", "user"],
+    publicAccess: ["anime", "user", "theme"],
     newKeyOnStart: false,
     showKeyOnStart: false,
   },

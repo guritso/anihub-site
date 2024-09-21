@@ -3,7 +3,9 @@ import { readdirSync } from 'fs';
 // skipcq: JS-D1001
 export default class DocumentHead {
   static render = (config) => {
-    const theme = config.theme?.default?.length > 0 ? config.theme.default.toLowerCase() : 'dark';
+    const color = config.theme.color.toLowerCase()
+
+    const theme = readdirSync("./src/assets/css/themes").includes(color + ".css") ? color : 'default';
     const fontFiles = readdirSync('./src/assets/fonts').filter(file => file.includes('latin') && !file.includes('ext'));
     const cssFiles = readdirSync('./src/assets/css').filter(file => file.endsWith('.css'));
     const jsFiles = readdirSync('./src/assets/js').filter(file => file.endsWith('.js'));

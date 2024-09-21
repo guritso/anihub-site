@@ -1,7 +1,7 @@
-/* forest theme */
-:root {
+/* forest light theme */
+.light-theme {
     --primary-font-color: #2e7d32;
-    --secondary-font-color: #388e3c;
+    --secondary-font-color: #66bb6a;
     --primary-color: rgba(56, 142, 60, 0.733);
     --background-color: #e8f5e9;
     --semi-transparent: rgba(46, 125, 50, 0.2);
@@ -12,7 +12,6 @@
     --background-anime: var(--one-background);
     --background-repos: var(--one-background);
     --background-footer: var(--one-background);
-    --text-color-secondary: #66bb6a;
     
     --text-color-completed: #124215;
     --text-color-watching: #29a12d;
@@ -29,5 +28,36 @@
     --border-radius: 3px;
     --layout-padding: 10px;
     --border-size: 0px;
+}
 
+/* forest dark theme */
+.dark-theme {
+    --primary-font-color: #a5d6a7;
+    --secondary-font-color: #81c784;
+    --primary-color: rgba(56, 68, 57, 0.733);
+    --background-color: #101310;
+    --semi-transparent: rgba(48, 83, 50, 0.2);
+    --half-transparent: rgba(27, 56, 51, 0.5);
+    --one-background: #141f14;
+    --background-profile: var(--one-background);
+    --background-social: var(--one-background);
+    --background-anime: var(--one-background);
+    --background-repos: var(--one-background);
+    --background-footer: var(--one-background);
+    
+    --text-color-completed: #7bd380;
+    --text-color-watching: #49aa4e;
+    --text-color-dropped: #ef5350;
+    --text-color-on-hold: #ffeb3b;
+    --text-color-plan-to-watch: #4caf50;
+    
+    --repo-language-color: #8bc34a;
+    --repo-stars-color: #cddc39;
+    
+    --button-filter: brightness(1.1);
+    --button-font-color: #a5d6a7;
+
+    --border-radius: 3px;
+    --layout-padding: 10px;
+    --border-size: 0px;
 }
