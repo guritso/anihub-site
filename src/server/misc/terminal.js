@@ -52,10 +52,8 @@ function log(data) {
     type = "erro";
   }
 
-  if (Number(verbose) === 1) {
-    if (stdout.isTTY) {
-      stdout.clearLine();
-    }
+  if (Number(verbose) === 1 && stdout.isTTY) {
+    stdout.clearLine();
 
     stdout.write(tx(`\r%H${i}  ${type}:%H ${data}`));
   } else {
