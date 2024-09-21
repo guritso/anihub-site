@@ -21,7 +21,7 @@ __metadata:
   dependencies:
     cors: "npm:^2.8.5"
     dotenv: "npm:^16.4.5"
-    express: "npm:^4.20.0"
+    express: "npm:^4.21.0"
     express-rate-limit: "npm:^7.4.0"
   languageName: unknown
   linkType: soft
@@ -214,7 +214,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.20.0":
+"express@npm:^4.21.0":
   version: 4.21.0
   resolution: "express@npm:4.21.0"
   dependencies:
