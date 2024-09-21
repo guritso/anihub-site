@@ -1,16 +1,14 @@
-import childProcess from "child_process";
+import { execSync } from "child_process";
 import config from "../misc/default.js";
 import configChanger from "./configChanger.js";
 import { texter as h } from "./texter.js";
+import { readFileSync, writeFileSync, readdirSync } from "fs";
 
 const { stdin, exit } = process;
 const { myanimelist, github } = config.user.accounts;
+const clean = () => stdin.write("\r\x1b[2K");
 
 function prompt(question = "") {
-  const ic = question.split(" ")[0];
-
-  question = question.replace(ic, h(`%H34 ${ic}%H`));
-
   stdin.write(question);
 
   return new Promise((resolve) => {
@@ -20,101 +18,137 @@ function prompt(question = "") {
   });
 }
 
-async function fetchUser(url, username = "github") {
-  stdin.write(`${h("%H33 ↺%H")} verifing ${username}...`);
+async function fetchUser(url, username) {
+  stdin.write(h(`%H93 ➤ │ verifing: ${username} %H5 ···`));
 
   const res = await fetch(`${url}${username}`).catch(() => {
     return { ok: false };
   });
+
+  clean();
 
   if (!username) {
     res.status = 404;
   }
 
   if (!res.ok || res.status === 404) {
-    const err =
-      res.status === 404 ? "%H31 user not found%H" : "%H31 connection error%H";
+    const err = res.status === 404 ? "user not found" : "connection error";
 
-    await prompt(`\r${h("%H31 ✗%H")} ${h(err)}, continue? y/n (y): `).then(
+    await prompt(h(`\r%H91 ➤ │ ${err}, %H2 continue? %H36 y/n %H(y): `)).then(
       (res) => {
-        if (res.toLowerCase() === "n") {
-          console.log("» exiting...");
+        if (res.toLowerCase().startsWith("n")) {
+          stdin.write(h("%H91 ➤ └ %H37 sync step canceled\n"));
           exit();
         }
       }
     );
+  } else {
+    stdin.write(h(`%H92 ➤ │ sucess: ${username} exists\n`));
   }
-
-  stdin.write("\r\x1b[2K");
 
   return username;
 }
 
-function install(manager) {
-  stdin.write(`${h("%H33 ↺%H")} installing with ${manager}\n`);
+async function install(manager) {
+  stdin.write(h(`%H93 ➤ │ installing with ${manager}\n`));
 
   try {
-    childProcess.execSync(`${manager} install`, { stdio: "inherit" });
+    if (manager === "pnpm") {
+      const json = JSON.parse(readFileSync("./package.json", "utf-8"));
+
+      delete json.packageManager;
+
+      writeFileSync("./package.json", JSON.stringify(json, null, 2));
+    }
+
+    execSync(`${manager} install`, { stdio: "inherit" });
+
+    clean();
   } catch (err) {
-    const retry = prompt(
-      `${h("%H31 ✗ erro on installation%H")}, try again y/n (y): `
+    clean();
+
+    const retry = await prompt(
+      h(`%H91 ➤ │ error installing, try again %H34 y/n %H(y): `)
     );
 
-    if (retry === "y") {
-      install(manager);
+    if (!retry.toLowerCase().startsWith("n")) {
+      await install(manager);
     }
   }
 }
 
 const MAL_URL = "https://myanimelist.net/profile/";
 const GIT_URL = "https://github.com/";
-const MANAGERS = ["yarn", "npm"];
-const TITLE = h("%H1 » aniHub setup script «%H");
+const MANAGERS = ["pnpm", "yarn", "npm"];
 
-stdin.write(h(`\n%H46 ${TITLE}%H\n\n`));
+stdin.write(h(`\n%H104 ${h("%H1 » aniHub setup script «%H")}%H\n\n`));
 
-const malUser = await prompt(h("➤ %H2 myanimelist%H %H36 username%H: ")).then(
-  (user) => fetchUser(MAL_URL, user)
-);
+stdin.write(h("%H94 ➤ ┌ %H37 sync step\n"));
+
+if (readdirSync("src/config").includes("config.json")) {
+  const res = await prompt(
+    h(`%H93 ➤ │ there's a config.json file, overwrite?%H y/n (n): `)
+  );
+
+  if (!res.toLowerCase().startsWith("y")) {
+    stdin.write(h("%H91 ➤ └ %H37 sync step canceled\n"));
+    exit();
+  }
+}
+
+const malUser = await prompt(
+  h("%H94 ➤ │ %H2 myanimelist %H36 username: ")
+).then((user) => fetchUser(MAL_URL, user));
 
 myanimelist.username = malUser;
 myanimelist.url = MAL_URL + malUser;
 
-const gitUser = await prompt(h("➤ %H2 github%H %H36 username%H: ")).then(
+const gitUser = await prompt(h("%H94 ➤ │ %H2 github %H36 username: ")).then(
   (user) => fetchUser(GIT_URL, user)
 );
 
 github.username = gitUser;
 github.url = GIT_URL + gitUser;
 
+stdin.write(h("%H94 ➤ └ %H37 sync step completed\n"));
+stdin.write(h("%H94 ➤ ┌ %H37 profile step\n"));
+
 config.user.name = await prompt(
-  h(`➤ %H2 profile%H %H36 name%H (${gitUser}): `)
+  h(`%H94 ➤ │ %H2 profile %H36 name%H (${gitUser}): `)
 ).then((name) => name || gitUser);
 config.user.description = await prompt(
-  h(`➤ %H2 profile%H %H36 description%H: `)
+  h(`%H94 ➤ │ %H2 profile %H36 description: `)
 );
-config.user.avatarUrl = await prompt(h(`➤ %H2 profile%H %H36 picture url%H: `));
+config.user.avatarUrl = await prompt(
+  h(`%H94 ➤ │ %H2 profile %H36 picture url: `)
+);
 
 configChanger.change(["user"], config.user);
 
-console.log(h("%H92 ✓ saved on src/config/config.json%H"));
+stdin.write(h("%H92 ➤ │ sucess: src/config/config.json saved\n"));
+stdin.write(h("%H94 ➤ └ %H37 profile step completed\n"));
+stdin.write(h("%H94 ➤ ┌ %H37 installation step\n"));
 
 const pManager = await prompt(
-  h(`➤ %H2 package%H %H36 manager%H, ${MANAGERS.join("/")} (npm): `)
-).then((res) => MANAGERS.find((i) => res.toLowerCase() === i) || "npm");
+  h(`%H94 ➤ │ %H2 package %H36 manager, %H35 ${MANAGERS.join("/")}%H (yarn): `)
+).then((res) => MANAGERS.find((i) => res.toLowerCase() === i) || "yarn");
 
 const proced = await prompt(
-  h("➤ %H2 proced with%H %H36 installation%H? y/n (y): ")
+  h(`%H94 ➤ │ %H2 proced with %H35 ${pManager}? %H36 y/n %H(y): `)
 );
 
-if (proced !== "n") {
-  install(pManager);
+if (!proced.toLowerCase().startsWith("n")) {
+  await install(pManager);
+  stdin.write(
+    h(
+      `%H92 ➤ │ sucess: use %H32 ${
+        pManager === "npm" ? "npm run" : pManager
+      } start\n`
+    )
+  );
+  stdin.write(h("%H94 ➤ └ %H37 installation step completed\n"));
+} else {
+  stdin.write(h("%H91 ➤ └ %H37 installation step canceled\n"));
 }
-
-stdin.write(
-  `${h("%H32 ✓ setup complete%H")}, use ${h(
-    `%H32 ${pManager === "npm" ? "npm run" : pManager} start%H`
-  )}\n`
-);
 
 exit();
