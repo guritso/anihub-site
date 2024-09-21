@@ -1,6 +1,6 @@
 # Quick Config Guide
 
-This doc will help you understand the `config.json`, you need to create `src/config/config.json`. You can check [this file](/src/config/config.example.json) as an example template.
+This doc will help you understand the `config.json`, if you need to create `src/config/config.json`. You can check [this file](/src/config/config.example.json) as an example template.
 
 ## What's in here?
 
@@ -29,7 +29,8 @@ This is where you put your personal data e links de redes sociais.
 
 | Key | Description | default | options | type |
 |-----|-------------|---------|---------|------|
-| **default** | Themes in 'src/assets/css/themes' | dark | light, material, dracula, forest, gruvbox, pastel, solarized, nord, solarized-dark | string |
+| **color** | Themes in 'src/assets/css/themes' | default | default, material, dracula, forest, gruvbox, pastel, solarized, nord | string |
+| **type** | Light or dark color theme version | dark | dark, light | string
 
 ### Anime Settings
 
