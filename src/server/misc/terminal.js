@@ -28,7 +28,10 @@ function head(port, { name, version }) {
  * @param {string} data
  */
 function online() {
-  stdout.clearLine();
+  if (stdout.isTTY) {
+    stdout.clearLine();
+  }
+
   stdout.write(tx("\r%H42  site:%H96  online!\n"));
 }
 
@@ -50,7 +53,10 @@ function log(data) {
   }
 
   if (Number(verbose) === 1) {
-    stdout.clearLine();
+    if (stdout.isTTY) {
+      stdout.clearLine();
+    }
+
     stdout.write(tx(`\r%H${i}  ${type}:%H ${data}`));
   } else {
     stdout.write(tx(`%H${i}  ${type}:%H `));
