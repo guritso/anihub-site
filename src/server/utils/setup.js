@@ -68,7 +68,7 @@ async function install(manager) {
     clean();
 
     const retry = await prompt(
-      h(`%H91 ➤ │ error installing, try again %H34 y/n %H(y): `)
+      h("%H91 ➤ │ error installing, try again %H34 y/n %H(y): ")
     );
 
     if (!retry.toLowerCase().startsWith("n")) {
@@ -87,7 +87,7 @@ stdin.write(h("%H94 ➤ ┌ %H37 sync step\n"));
 
 if (readdirSync("src/config").includes("config.json")) {
   const res = await prompt(
-    h(`%H93 ➤ │ there's a config.json file, overwrite?%H y/n (n): `)
+    h("%H93 ➤ │ there's a config.json file, overwrite?%H y/n (n): ")
   );
 
   if (!res.toLowerCase().startsWith("y")) {
@@ -117,10 +117,10 @@ config.user.name = await prompt(
   h(`%H94 ➤ │ %H2 profile %H36 name%H (${gitUser}): `)
 ).then((name) => name || gitUser);
 config.user.description = await prompt(
-  h(`%H94 ➤ │ %H2 profile %H36 description: `)
+  h("%H94 ➤ │ %H2 profile %H36 description: ")
 );
 config.user.avatarUrl = await prompt(
-  h(`%H94 ➤ │ %H2 profile %H36 picture url: `)
+  h("%H94 ➤ │ %H2 profile %H36 picture url: ")
 );
 
 configChanger.change(["user"], config.user);

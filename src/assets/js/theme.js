@@ -24,5 +24,5 @@ function loadTheme(type) {
 
   if (theme == "undefined") return;
 
-  document.body.className = theme || type + "-theme";
+  document.body.className = theme || `${type}-theme`;
 }

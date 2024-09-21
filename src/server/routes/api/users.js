@@ -1,9 +1,9 @@
 const userActions = {
   animelist: (username, req, res) => {
-    return res.send({ status: res.statusCode, data: req.app.locals.cache.get(username) || [] });
+    return res.send({ status: res.statusCode, data: req.app.client.cache.get(username) || [] });
   },
   repos: (username, req, res) => {
-    const cachedData = req.app.locals.cache.get(`git:${username}`);
+    const cachedData = req.app.client.cache.get(`git:${username}`);
     if (cachedData) {
       res.send({ status: res.statusCode, data: cachedData });
     }
@@ -27,7 +27,7 @@ const userActions = {
           updated_at: repo.updated_at
         }));
 
-        req.app.locals.cache.set(`git:${username}`, formattedData);
+        req.app.client.cache.set(`git:${username}`, formattedData);
         if (res.headersSent) return;
         res.send({ status: res.statusCode, data: formattedData });
       })

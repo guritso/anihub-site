@@ -18,7 +18,7 @@ const config = {
   },
   theme: {
     color: "default",
-    type: "dark"
+    type: "dark",
   },
   anime: {
     limit: 30,
@@ -36,6 +36,8 @@ const config = {
   animeSync: {
     enabled: true,
     syncInterval: 120000,
+  },
+  server: {
     verbose: 1,
   },
   security: {

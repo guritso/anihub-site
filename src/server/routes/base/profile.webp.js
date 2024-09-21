@@ -1,9 +1,8 @@
+import terminal from "../../misc/terminal.js";
 import configLoader from "../../utils/configLoader.js";
 import imaget from "../../utils/imaget.js";
-import { print } from "../../utils/logger.js";
 import crypto from 'crypto';
 import path from "path";
-
 
 // skipcq: JS-D1001
 export default class ProfileWebp {
@@ -13,7 +12,7 @@ export default class ProfileWebp {
   };
 
   static handler = (req, res) => {
-    const cache = req.app.locals.cache;
+    const cache = req.app.client.cache;
     const cacheKey = 'profile.webp';
     const cacheData = cache.get(cacheKey);
 
@@ -41,7 +40,8 @@ export default class ProfileWebp {
         res.end(Buffer.from(cache.get(cacheKey).file));
       }
     }).catch((err) => {
-      print(err);
+      terminal.log(err);
+
       if (!res.headersSent) {
         res.sendFile(path.join(process.cwd(), "src/assets/img/favicon.ico"));
       }

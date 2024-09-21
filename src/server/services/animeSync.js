@@ -1,5 +1,5 @@
-import { print, setVerbose } from "../utils/logger.js";
 import configLoader from "../utils/configLoader.js";
+import terminal from "../misc/terminal.js";
 import imaget from "../utils/imaget.js";
 import mal from "../utils/mal.js";
 
@@ -46,14 +46,12 @@ async function processQueue(queue, animes, total) {
       const progress = (animes.length / total) * 100;
 
       if (img.new) {
-        print(
-          `%SA  %Y•% saving covers ${animes.length}/${total} ${progress.toFixed(
-            2
-          )}%`
+        terminal.log(
+          `saving covers ${animes.length}/${total} ${progress.toFixed(2)}%`
         );
       }
     } catch (error) {
-      print(`  %R✗% anime ${anime.id}: ${error.message}`);
+      terminal.log(`anime ${anime.id}: ${error.message}`);
     }
   }
 }
@@ -65,23 +63,22 @@ export default class animeSync {
   };
 
   static start = async (cache) => {
-    print("%Y↺% loading anime sync...");
+    terminal.log("loading anime sync...");
     // eslint-disable-next-line no-constant-condition
     while (true) {
       const config = configLoader();
       const { username } = config.user.accounts.myanimelist;
       const sync = config.animeSync;
 
-      setVerbose(sync.verbose);
       if (!sync.enabled) {
-        print("%SA  %R✗% animeSync %Rdisabled%");
+        terminal.log("animeSync %H31 disabled");
         await animeSync.wait(60000);
         continue;
       }
 
       if (sync.syncInterval < 60000) {
-        print(
-          `%SA  %R✗% animeSync %Yinterval%: %G60000ms ✓% < %R${sync.syncInterval}ms ✗%`
+        terminal.log(
+          new Error("Anime sync interval must be greater than 60000ms")
         );
         await animeSync.wait(60000);
         continue;
@@ -90,9 +87,9 @@ export default class animeSync {
       try {
         const animes = await fetchAnimeList(username, "last_updated", 7);
         cache.set(username.toLowerCase(), animes);
-        print("%SA  %G✓% done");
+        terminal.log("done");
       } catch (error) {
-        print(error);
+        terminal.log(error);
       }
       await animeSync.wait(sync.syncInterval);
     }

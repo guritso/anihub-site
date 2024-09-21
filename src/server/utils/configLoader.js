@@ -1,4 +1,5 @@
 import defaultConfig from "../misc/default.js";
+import terminal from "../misc/terminal.js";
 import path from "path";
 import fs from "fs";
 
@@ -48,7 +49,7 @@ function configLoader({ warn = true } = {}) {
     return mergedConfig;
   } catch (error) {
     if (warn) {
-      console.error("Error:", error.message, "- using cached config.json!");
+      terminal.log("Error:", error.message, "- using cached config.json!");
     }
     const arr = Array.from(cache);
 
@@ -56,8 +57,8 @@ function configLoader({ warn = true } = {}) {
       return JSON.parse(arr.pop());
     } else {
       if (warn) {
-        console.error(
-        "No cached config found, using default config. Please create a config.json file."
+        terminal.log(
+          "No cached config found, using default config. Please create a config.json file."
         );
       }
       return defaultConfig;

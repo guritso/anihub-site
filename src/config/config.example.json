@@ -40,7 +40,9 @@
   },
   "animeSync": {
     "enabled": true,
-    "syncInterval": 120000,
+    "syncInterval": 120000
+  },
+  "server": {
     "verbose": 1
   },
   "security": {

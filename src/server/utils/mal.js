@@ -1,6 +1,6 @@
 "use strict";
 
-import { print } from "./logger.js";
+import terminal from "../misc/terminal.js";
 
 const SORT = {
   name: 1,
@@ -62,7 +62,7 @@ export default class mal {
           },
         });
       }
-      print(`%SA  %Y•% fetching ${username} page: ${PAGE}`);
+      terminal.log(`fetching ${username} page: ${PAGE}`);
 
       if (data.length < PAGE_SIZE) {
         hasMoreData = false;
