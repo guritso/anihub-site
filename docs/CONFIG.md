@@ -9,6 +9,7 @@ This doc will help you understand the `config.json`, if you need to create `src/
 - [Anime Settings](#anime-settings)
 - [Repo Settings](#repo-settings)
 - [Anime Sync](#anime-sync)
+- [Server](#server)
 - [Security](#security)
 - [Server Port](#server-port)
 
@@ -55,6 +56,11 @@ This is where you put your personal data e links de redes sociais.
 |-----|-------------|---------|---------|------|
 | **enabled** | Enable/disable synchronization. | true | true, false | boolean |
 | **syncInterval**| Interval for synchronization in milliseconds. | 120000 | 60000 - unlimited | number |
+
+### Server
+
+| Key | Description | default | options | type |
+|-----|-------------|---------|---------|------|
 | **verbose** | Do you want detailed logs? | 1 | 0, 1, 2 | number |
 
 ### Security
@@ -63,7 +69,7 @@ This is where you put your personal data e links de redes sociais.
 
 | Key | Description | default | options | type |
 |-----|-------------|---------|---------|------|
-| **publicAccess** | Which parts of 'config.json' anyone can see through the API | "anime", "user" | any part of the config.json | array of strings |
+| **publicAccess** | Which parts of 'config.json' anyone can see through the API | "anime", "user", "theme" | any part of the config.json | array of strings |
 | **newKeyOnStart** | Generate a new key on start? | false | true, false | boolean |
 | **showKeyOnStart**| Show the security key on startup? | false | true, false | boolean |
 
