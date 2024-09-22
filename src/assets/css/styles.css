@@ -50,8 +50,8 @@ body {
     display: flex;
     background-color: var(--primary-color);
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: var(--layout-padding);
+    right: var(--layout-padding);
     border-radius: 50%;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
