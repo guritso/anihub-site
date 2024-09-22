@@ -473,7 +473,11 @@ h3 {
     }
 
     #repos-layout {
-        font-size: 120%;
+        font-size: 110%;
+    }
+
+    h3 {
+        font-size: 110%;
     }
 
     #footer-layout {
