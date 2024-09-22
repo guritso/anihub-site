@@ -5,7 +5,12 @@ const types = ["png", "webp", "jpg", "jpeg", "gif", "svg", "ico"];
 const imaget = {
   /**
    * Save an image to the specified location
-   * @param {{url: string, id: string, location: string, type: string, overwrite: boolean}} data - The data to save
+   * @param {object} options - The options to save the image with.
+   * @param {string} options.url - The URL to download the image from.
+   * @param {string} options.id - The ID of the image.
+   * @param {string} options.location - The location to save the image to.
+   * @param {string} options.type - The format of the image.
+   * @param {boolean} options.overwrite - Whether to overwrite the image if it already exists.
    * @returns {object} object containing the image buffer and path
    */
   save: async ({ url, id, location, type, overwrite = false }) => {

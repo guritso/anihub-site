@@ -3,6 +3,7 @@ import path from 'path';
 import { pathToFileURL } from 'url';
 
 /**
+ * This function is used to map the routes from the given directory
  * @param {string} directory - The directory to map the routes from.
  * @param {string} basePath - The base path to use for the routes.
  * @returns {Promise<Array>} - A promise that resolves to an array of route objects.

@@ -30,6 +30,15 @@ export default class mal {
     return url.replace("/r/192x272", "").split("?")[0].replace(".jpg", ".webp");
   }
 
+  /**
+   * Fetches the anime list for a given username from MyAnimeList.
+   *
+   * @param {object} options - The options to fetch the anime list with.
+   * @param {string} options.username - The username to fetch the anime list for.
+   * @param {string} options.order - The order to sort the anime list by.
+   * @param {number} options.status - The status to filter the anime list by.
+   * @returns {Promise<Array>} A promise that resolves to an array of anime objects.
+   */
   static getAnimeList = async ({
     username,
     order = "last_updated",

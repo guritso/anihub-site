@@ -8,6 +8,11 @@ const { stdin, exit } = process;
 const { myanimelist, github } = config.user.accounts;
 const clean = () => stdin.write("\r\x1b[2K");
 
+/**
+ * This function is used to prompt the user for input
+ * @param {string} question - The question to ask the user
+ * @returns {Promise<string>} - The user's input
+ */
 function prompt(question = "") {
   stdin.write(question);
 
@@ -18,6 +23,12 @@ function prompt(question = "") {
   });
 }
 
+/**
+ * This function is used to verify if the user exists
+ * @param {string} url - The URL to fetch the user
+ * @param {string} username - The username to fetch
+ * @returns {string} - The user username
+ */
 async function fetchUser(url, username) {
   stdin.write(h(`%H93 ➤ │ verifing: ${username} %H5 ···`));
 
@@ -35,8 +46,8 @@ async function fetchUser(url, username) {
     const err = res.status === 404 ? "user not found" : "connection error";
 
     await prompt(h(`\r%H91 ➤ │ ${err}, %H2 continue? %H36 y/n %H(y): `)).then(
-      (res) => {
-        if (res.toLowerCase().startsWith("n")) {
+      (response) => {
+        if (response.toLowerCase().startsWith("n")) {
           stdin.write(h("%H91 ➤ └ %H37 sync step canceled\n"));
           exit();
         }
@@ -49,6 +60,10 @@ async function fetchUser(url, username) {
   return username;
 }
 
+/**
+ * This function is used to install the dependencies
+ * @param {string} manager - The package manager to install the dependencies
+ */
 async function install(manager) {
   stdin.write(h(`%H93 ➤ │ installing with ${manager}\n`));
 

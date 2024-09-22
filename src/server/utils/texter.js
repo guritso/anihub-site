@@ -1,3 +1,8 @@
+/**
+ * This function is used to colorize the text
+ * @param {string} txt - The text to colorize
+ * @returns {string} - The colorized text
+ */
 export const texter = (txt) => {
   const arr = txt.split("%H");
   let res = arr.join("");

@@ -262,7 +262,6 @@ h3 {
     width: 100%;
     background-color: var(--half-transparent);
     word-wrap: break-word;
-    word-break: break-word;
     border-radius: var(--border-radius);
 }
 
@@ -280,7 +279,7 @@ h3 {
     text-align: right;
     display: flex;
     align-items: flex-end;
-    height: 100%;
+    flex-grow: 1;
     font-size: 0.81em;
 }
 

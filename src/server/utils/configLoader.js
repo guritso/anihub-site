@@ -32,9 +32,9 @@ function deepMerge(target, source) {
 const cache = new Set();
 /**
  * Loads the config from `src/config/config.json` and caches it.
- *
  * If the file does not exist or is not valid JSON, it will use the cached config if available.
- *
+ * @param {object} options - The options to load the config with.
+ * @param {boolean} options.warn - Whether to warn if the config is not found.
  * @returns {object} The config object.
  */
 function configLoader({ warn = true } = {}) {
@@ -67,4 +67,4 @@ function configLoader({ warn = true } = {}) {
 }
 
 export default configLoader;
-export { cache };
+
