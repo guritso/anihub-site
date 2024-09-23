@@ -1,16 +1,19 @@
+"use strict";
+
 import cors from "cors";
 import path from "path";
 import express from "express";
 import { readFileSync } from "fs";
-import terminal from "./misc/terminal.js";
+import terminal from "@guritso/terminal";
 import animeSync from "./services/animeSync.js";
-
 /**
  * AniHub class to manage the server and routes.
  * @class
- */
+*/
 export default class AniHub {
   constructor(data) {
+    terminal.setup();
+
     this.express = express;
     this.app = express();
     this.data = data;
@@ -23,20 +26,21 @@ export default class AniHub {
   }
 
   /**
-   * Starts the server on the specified port.
+   * Starts the server on the specified host and port.
+   * @param {string} host - The host to start the server on.
    * @param {number} port - The port to start the server on.
    */
-  start(port) {
-    terminal.head(port, this.data);
+  start(host, port) {
+    terminal.start(host, port);
 
     this.app.listen(port, () => {
-      terminal.online(this.app);
+      terminal.pass("server %H32 online");
       animeSync.start(this.cache);
     });
   }
 
   /**
-   * Loads the routes into the application.
+   * Loads the routes and middlewares into the application.
    * @param {Array} routes - The routes to load.
    */
   routes(routes) {
@@ -81,14 +85,6 @@ export default class AniHub {
       });
     });
 
-    this.app.use((req, res, next) => {
-      if (req.path.startsWith("/api/")) return next();
-      return res.sendFile(path.join(this.__dirname, "/src/pages/404.html"));
-    });
-
-    this.app.use((req, res, next) => {
-      res.status(404).send({ status: res.statusCode, message: "Not found" });
-      next();
-    });
+    this.app.use(this.middles.notFound);
   }
 }

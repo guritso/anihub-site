@@ -1,14 +1,15 @@
+"use strict";
+
 import "dotenv/config";
 
 import path from "path";
 import express from "express";
-import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import rateLimit from "express-rate-limit";
 import AniHub from "./src/server/AniHub.js";
 import routeMapper from "./src/server/utils/mapper.js";
 import generateKey from "./src/server/utils/generateKey.js";
-import configLoader from "./src/server/utils/configLoader.js";
+import config from "./src/server/utils/configLoader.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,17 +19,16 @@ const __dirname = path.dirname(__filename);
  */
 class Client extends AniHub {
   constructor() {
-    const { name, version } = JSON.parse(readFileSync("./package.json"));
-
-    super({ name, version });
+    super();
     this.middles = {};
     this.app.client = this;
     this.__dirname = __dirname;
-    this.config = configLoader;
+    this.config = config;
 
     this.middles.assets = express.static(
       path.join(this.__dirname, "/src/assets")
     );
+
     this.middles.limiter = rateLimit({
       windowMs: 1000,
       max: 10,
@@ -39,12 +39,26 @@ class Client extends AniHub {
         });
       },
     });
+
+    this.middles.notFound = (req, res) => {
+      if (req.path.startsWith("/api/")) {
+        res.status(404).json({
+          status: 404,
+          message: "Not found",
+        });
+      } else {
+        res.status(404).sendFile(path.join(this.__dirname, "/src/pages/404.html"));
+      }
+    };
   }
 
   start() {
-    const { port, security } = this.config();
+    const { server, security } = this.config();
 
-    super.start(process.env.PORT || port);
+    const port = process.env.PORT || server.port;
+    const host = process.env.HOST || server.host;
+
+    super.start(host, port);
 
     generateKey.write({
       override: security.newKeyOnStart,
