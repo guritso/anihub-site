@@ -34,7 +34,7 @@ And use `src/config/config.json` to personalise it. see [config guide](./docs/CO
 
 ```bash
 # Clone the repository
-git clone https://github.com/GuriTsuki/anihub-site.git
+git clone https://github.com/guritso/anihub-site.git
 cd anihub-site
 # You can use the setup script
 yarn setup
