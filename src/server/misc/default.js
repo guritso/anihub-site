@@ -1,7 +1,7 @@
 const config = {
   user: {
     name: "anyone",
-    description: "create a config.json on src/config/config.json!",
+    description: "use the setup comand: 'npm run setup'",
     avatarUrl: "",
     accounts: {
       github: {
@@ -39,13 +39,14 @@ const config = {
   },
   server: {
     verbose: 1,
+    host: process.env.HOST || "localhost",
+    port: process.env.PORT || 3000,
   },
   security: {
     publicAccess: ["anime", "user", "theme"],
     newKeyOnStart: false,
     showKeyOnStart: false,
   },
-  port: process.env.PORT || 3000,
 };
 
 export default config;

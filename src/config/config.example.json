@@ -5,8 +5,8 @@
     "avatarUrl": "https://avatars.githubusercontent.com/u/77638636?v=4",
     "accounts": {
       "github": {
-        "username": "GuriTsuki",
-        "url": "https://github.com/GuriTsuki",
+        "username": "guritso",
+        "url": "https://github.com/guritso",
         "color": "#2a313b"
       },
       "myanimelist": {
@@ -43,12 +43,13 @@
     "syncInterval": 120000
   },
   "server": {
-    "verbose": 1
+    "verbose": 1,
+    "host": "localhost",
+    "port": 3000
   },
   "security": {
     "publicAccess": ["anime", "user", "theme"],
     "newKeyOnStart": false,
     "showKeyOnStart": false
-  },
-  "port": 3000
+  }
 }

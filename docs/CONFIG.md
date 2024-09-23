@@ -62,6 +62,10 @@ This is where you put your personal data e links de redes sociais.
 | Key | Description | default | options | type |
 |-----|-------------|---------|---------|------|
 | **verbose** | Do you want detailed logs? | 1 | 0, 1, 2 | number |
+| **host** | Host to run the server on. | localhost | any host | string |
+| **port** | Port to run the server on. | 3000 | 1024 - 65535 | number |
+
+> You can delete the host and port keys. and add to a `.env` file as `PORT=your-port` and `HOST=your-host`.
 
 ### Security
 
@@ -73,10 +77,3 @@ This is where you put your personal data e links de redes sociais.
 | **newKeyOnStart** | Generate a new key on start? | false | true, false | boolean |
 | **showKeyOnStart**| Show the security key on startup? | false | true, false | boolean |
 
-### Server Port
-
-| Key | Description | default | options | type |
-|-----|-------------|---------|---------|------|
-| **port** | Port to run the server on. | 3000 | 1024 - 65535 | number |
-
-> You can delete the port key. and add to a `.env` file as `PORT=.
