@@ -1,4 +1,3 @@
-import configLoader from '../../utils/configLoader.js';
 /**
  * Checks if the given key matches the API key set in the environment.
  * @param {string} key The key to check.
@@ -16,9 +15,10 @@ export default class Config {
   };
 
   static handler = function (req, res) {
+    const config = req.app.client.config();
     const params = req.params[0]?.split('/') || [];
     const key = req.headers.authorization?.replace('Bearer ', '');
-    const publicAccess = configLoader().security.publicAccess;
+    const publicAccess = config.security.publicAccess;
 
     if (!publicAccess.includes(params[0])) {
       if (!auth(key)) {
@@ -26,7 +26,7 @@ export default class Config {
       }
     }
 
-    let configData = configLoader();
+    let configData = config;
 
     for (const param of params) {
       configData = configData[param];

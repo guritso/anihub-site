@@ -1,5 +1,5 @@
 import configLoader from "../utils/configLoader.js";
-import terminal from "../misc/terminal.js";
+import terminal from "@guritso/terminal";
 import imaget from "../utils/imaget.js";
 import mal from "../utils/mal.js";
 

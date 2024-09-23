@@ -1,4 +1,4 @@
-import terminal from "../../misc/terminal.js";
+import terminal from "@guritso/terminal";
 import configLoader from "../../utils/configLoader.js";
 import imaget from "../../utils/imaget.js";
 import crypto from 'crypto';

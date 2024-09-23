@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
-import terminal from "../misc/terminal.js";
+import terminal from "@guritso/terminal";
 
 const generateKey = {
   write: (config) => {

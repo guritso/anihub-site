@@ -1,6 +1,6 @@
 "use strict";
 
-import terminal from "../misc/terminal.js";
+import terminal from "@guritso/terminal";
 
 const SORT = {
   name: 1,

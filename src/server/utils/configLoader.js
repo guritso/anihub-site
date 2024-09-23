@@ -1,5 +1,5 @@
 import defaultConfig from "../misc/default.js";
-import terminal from "../misc/terminal.js";
+import terminal from "@guritso/terminal";
 import path from "path";
 import fs from "fs";
 
@@ -39,8 +39,11 @@ const cache = new Set();
  */
 function configLoader({ warn = true } = {}) {
   try {
+    
     const configPath = path.join("src/config/config.json");
     const fileConfig = JSON.parse(fs.readFileSync(configPath, "utf8"));
+
+    terminal.setVerbose(fileConfig.server.verbose);
 
     const mergedConfig = deepMerge(defaultConfig, fileConfig);
 
@@ -49,7 +52,7 @@ function configLoader({ warn = true } = {}) {
     return mergedConfig;
   } catch (error) {
     if (warn) {
-      terminal.log("Error:", error.message, "- using cached config.json!");
+      terminal.log(`Error: ${error.message} - using cached config.json!`);
     }
     const arr = Array.from(cache);
 
