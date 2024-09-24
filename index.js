@@ -14,6 +14,8 @@ import terminal from "@guritso/terminal";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const __server = "src/server";
+const __web = "src/web";
 
 /**
  * Client class extends AniHub to initialize and configure the application.
@@ -24,6 +26,9 @@ class Client extends AniHub {
     this.middles = {};
     this.app.client = this;
     this.__dirname = __dirname;
+    this.__server = __server;
+    this.__web = __web;
+
     this.config = () => {
       const cg = config();
       terminal.setVerbose(cg.server.verbose);
@@ -31,7 +36,7 @@ class Client extends AniHub {
     };
 
     this.middles.assets = express.static(
-      path.join(this.__dirname, "/src/assets")
+      path.join(this.__dirname, __web, "/assets")
     );
 
     this.middles.limiter = rateLimit({
@@ -52,7 +57,9 @@ class Client extends AniHub {
           message: "Not found",
         });
       } else {
-        res.status(404).sendFile(path.join(this.__dirname, "/src/pages/404.html"));
+        res
+          .status(404)
+          .sendFile(path.join(this.__dirname, __web, "/pages/404.html"));
       }
     };
   }
@@ -72,7 +79,7 @@ class Client extends AniHub {
   }
 }
 
-const routes = await routeMapper(path.join(__dirname, "/src/server/routes"));
+const routes = await routeMapper(path.join(__dirname, __server, "/routes"));
 const client = new Client();
 
 client.start();

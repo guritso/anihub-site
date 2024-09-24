@@ -46,9 +46,9 @@ export default class AniHub {
   routes(routes) {
     this.app.use("/assets", this.middles.assets);
     this.app.use("/api", this.middles.limiter);
-    this.app.get("/", (req, res) => {
+    this.app.get("/", (_req, res) => {
       let indexHtml = readFileSync(
-        path.join(this.__dirname, "/src/pages/index.html"),
+        path.join(this.__dirname, this.__web, "/pages/index.html"),
         "utf8"
       );
 
@@ -56,10 +56,10 @@ export default class AniHub {
         if (!route.data.method) {
           const name = route.data.path.split("/").slice(-2).join("");
           try {
-            const render = route.render(this.config(), this.cache);
+            const render = route.render(this.config(), this.cache, this.__web);
             indexHtml = indexHtml.replace(`{{${name}}}`, render);
           } catch (error) {
-            terminal.log(`${name}:`, error.message);
+            terminal.log(`${name}: ${error.message}`);
           }
         }
       }

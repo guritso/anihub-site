@@ -8,6 +8,8 @@ export default class FaviconIco {
   };
 
   static handler = (req, res) => {
-    res.sendFile(path.join(process.cwd(), "src/assets/img/favicon.ico"));
+    const { __web } = req.app.client;
+
+    res.sendFile(path.join(process.cwd(), `${__web}/assets/img/favicon.ico`));
   }
 }

@@ -40,9 +40,9 @@ async function processQueue(queue, animes, total) {
       const img = await imaget.save({
         url: anime.image,
         id: anime.id,
-        location: "src/assets/img/covers",
+        location: "src/web/assets/img/covers",
       });
-      animes.push({ ...anime, image: img.path.replace("src", "") });
+      animes.push({ ...anime, image: img.path.replace("src/web/", "") });
       const progress = (animes.length / total) * 100;
 
       if (img.new) {

@@ -12,7 +12,7 @@ export default class ProfileWebp {
   };
 
   static handler = (req, res) => {
-    const cache = req.app.client.cache;
+    const { cache, __web } = req.app.client;
     const cacheKey = 'profile.webp';
     const cacheData = cache.get(cacheKey);
 
@@ -29,7 +29,7 @@ export default class ProfileWebp {
     imaget.save({
       url: user.avatarUrl,
       id: hash,
-      location: path.join(process.cwd(), "src/assets/img/profile"),
+      location: path.join(process.cwd(), `${__web}/assets/img/profile`),
       type: fileExtension
     }).then((image) => {
       cache.set(cacheKey, image);
@@ -43,7 +43,7 @@ export default class ProfileWebp {
       terminal.log(err);
 
       if (!res.headersSent) {
-        res.sendFile(path.join(process.cwd(), "src/assets/img/favicon.ico"));
+        res.sendFile(path.join(process.cwd(), `${__web}/assets/img/favicon.ico`));
       }
     });
   }
