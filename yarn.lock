@@ -5,10 +5,10 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@guritso/terminal@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "@guritso/terminal@npm:1.0.5"
-  checksum: 10c0/349a37e48ea7929c7da1defc73ec00b40152b071bb01129a61e67cebcc726229ce32c91906b91be41aa0d74100ed5d306b351d27de73d546215b05ebc693abc9
+"@guritso/terminal@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@guritso/terminal@npm:1.1.0"
+  checksum: 10c0/05e96259284544b1587e04b146f8cd7646f8cc894ed88e118ca8063bff532c961c98397786e28fe366ce3666679be12eb6084343fcca829fae801fe648ce6bfe
   languageName: node
   linkType: hard
 
@@ -26,7 +26,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "anihub-site@workspace:."
   dependencies:
-    "@guritso/terminal": "npm:^1.0.5"
+    "@guritso/terminal": "npm:^1.1.0"
     cors: "npm:^2.8.5"
     dotenv: "npm:^16.4.5"
     express: "npm:^4.21.0"

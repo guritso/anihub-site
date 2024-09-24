@@ -44,7 +44,7 @@
   },
   "server": {
     "verbose": 1,
-    "host": "localhost",
+    "host": "http://localhost",
     "port": 3000
   },
   "security": {
