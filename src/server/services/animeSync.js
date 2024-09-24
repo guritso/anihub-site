@@ -70,17 +70,17 @@ export default class animeSync {
       const { username } = config.user.accounts.myanimelist;
       const sync = config.animeSync;
 
-      if (!sync.enabled) {
-        terminal.log("animeSync %H31 disabled");
-        await animeSync.wait(60000);
-        continue;
-      }
-
-      if (sync.syncInterval < 60000) {
+      if (isNaN(sync.syncInterval) || sync.syncInterval < 60000) {
         terminal.log(
           new Error("Anime sync interval must be greater than 60000ms")
         );
         await animeSync.wait(60000);
+        continue;
+      }
+
+      if (!sync.enabled) {
+        terminal.log("animeSync %H31 disabled");
+        await animeSync.wait(sync.syncInterval);
         continue;
       }
 
