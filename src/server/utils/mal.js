@@ -53,6 +53,11 @@ export default class mal {
 
     while (hasMoreData) {
       PAGE++;
+
+      if (!username) {
+        return [];
+      }
+
       const data = await fetch(`${URL}${QUERY}&offset=${ANIMES.length}`).then(
         (res) => res.json()
       );
