@@ -9,11 +9,18 @@ Animehub is a simple site to display your anime and github history using MyAnime
 - Lists recently watched anime with a scrolling animation
 - Displays the user's most recent GitHub repositories
 
-## Technologies Used
+## Dependencies
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js, Express.js, cors, express-rate-limit
-- APIs: GitHub API, MyAnimeList (via load.json anime file)
+### Packages
+- node.js
+- express.js
+- cors
+- express-rate-limit
+- @guritso/terminal
+
+### APIs
+- GitHub API
+- MyAnimeList (via load.json anime file)
 
 ## Configuration
 
