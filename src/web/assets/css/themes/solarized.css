@@ -33,8 +33,8 @@
 /* solarized dark theme */
 .dark-theme {
     --primary-font-color: #839496;
-    --secondary-font-color: #586669;
-    --primary-color: rgba(38, 139, 210, 0.733);
+    --secondary-font-color: #6e7b7e;
+    --primary-color: rgba(49, 129, 185, 0.733);
     --background-color: #002b36;
     --semi-transparent: rgba(158, 175, 177, 0.2);
     --half-transparent: rgba(0, 43, 54, 0.5);
