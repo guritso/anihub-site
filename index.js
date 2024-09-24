@@ -10,6 +10,7 @@ import AniHub from "./src/server/AniHub.js";
 import routeMapper from "./src/server/utils/mapper.js";
 import generateKey from "./src/server/utils/generateKey.js";
 import config from "./src/server/utils/configLoader.js";
+import terminal from "@guritso/terminal";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +24,11 @@ class Client extends AniHub {
     this.middles = {};
     this.app.client = this;
     this.__dirname = __dirname;
-    this.config = config;
+    this.config = () => {
+      const cg = config();
+      terminal.setVerbose(cg.server.verbose);
+      return cg;
+    };
 
     this.middles.assets = express.static(
       path.join(this.__dirname, "/src/assets")
