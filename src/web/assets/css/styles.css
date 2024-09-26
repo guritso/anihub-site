@@ -442,8 +442,9 @@ h3 {
 }
 
 #footer-layout p a {
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--primary-color);
+    font-weight: 500;
 }
 
 @media (max-width: 768px) {
