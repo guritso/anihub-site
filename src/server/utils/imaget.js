@@ -18,32 +18,50 @@ const imaget = {
       type = "webp";
     }
 
-    const imageName = `${id}.${type}`.replaceAll("/", "-");
-    const imagePath = `${location}/${imageName}`;
+    const imageId = `${id}.${type}`.replaceAll("/", "-");
+
+    const image = {
+      id: imageId,
+      path: `${location}/${imageId}`,
+      file: null,
+      type,
+      new: false,
+    };
 
     if (!fs.existsSync(location)) {
       fs.mkdirSync(location, { recursive: true });
     }
 
-    if (fs.existsSync(imagePath) && !overwrite) {
-      return {
-        path: imagePath,
-        file: fs.readFileSync(imagePath),
-        type,
-        new: false,
-      };
+    if (fs.existsSync(image.path) && !overwrite) {
+      image.new = false;
+      image.file = fs.readFileSync(image.path);
+
+      return image;
     }
 
-    const buffer = await fetch(url).then((res) =>
-      res.ok ? res.arrayBuffer() : null
-    );
+    const buffer = await fetch(url)
+      .then((res) => {
+        if (!res.ok || !res.body) return null;
+        if (res.headers.get("content-type") === "text/html") return null;
+
+        return res.arrayBuffer();
+      })
+      .catch(() => null);
 
     if (buffer === null) {
-      throw new Error(`Failed to download image: ${url}, is the url valid?`);
+      console.error(
+        new Error(`Failed to download image: ${url}, is the url valid?`)
+      );
+
+      return false;
     }
 
-    fs.writeFileSync(imagePath, Buffer.from(buffer));
-    return { path: imagePath, file: buffer, type, new: true };
+    fs.writeFileSync(image.path, Buffer.from(buffer));
+
+    image.new = true;
+    image.file = buffer;
+
+    return image;
   },
 };
 
