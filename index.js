@@ -1,16 +1,13 @@
 "use strict";
 
 import "dotenv/config";
-
 import path from "path";
-import express from "express";
 import { fileURLToPath } from "url";
-import rateLimit from "express-rate-limit";
+import terminal from "@guritso/terminal";
 import AniHub from "./src/server/AniHub.js";
 import routeMapper from "./src/server/utils/mapper.js";
 import generateKey from "./src/server/utils/generateKey.js";
 import config from "./src/server/utils/configLoader.js";
-import terminal from "@guritso/terminal";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +20,6 @@ const __web = "src/web";
 class Client extends AniHub {
   constructor() {
     super();
-    this.middles = {};
     this.app.client = this;
     this.__dirname = __dirname;
     this.__server = __server;
@@ -33,34 +29,6 @@ class Client extends AniHub {
       const cg = config();
       terminal.setVerbose(cg.server.verbose);
       return cg;
-    };
-
-    this.middles.assets = express.static(
-      path.join(this.__dirname, __web, "/assets")
-    );
-
-    this.middles.limiter = rateLimit({
-      windowMs: 1000,
-      max: 10,
-      handler: (req, res) => {
-        res.status(429).json({
-          status: 429,
-          message: "Too many requests",
-        });
-      },
-    });
-
-    this.middles.notFound = (req, res) => {
-      if (req.path.startsWith("/api/")) {
-        res.status(404).json({
-          status: 404,
-          message: "Not found",
-        });
-      } else {
-        res
-          .status(404)
-          .sendFile(path.join(this.__dirname, __web, "/pages/404.html"));
-      }
     };
   }
 

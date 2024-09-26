@@ -48,7 +48,7 @@ function configLoader({ warn = true } = {}) {
     return mergedConfig;
   } catch (error) {
     if (warn) {
-      console.error(`Error: ${error.message} - using cached config.json!`);
+      console.error(`Error: ${error.message}, using cached config.json!`);
     }
     const arr = Array.from(cache);
 

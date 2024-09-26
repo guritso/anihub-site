@@ -6,10 +6,12 @@ import express from "express";
 import { readFileSync } from "fs";
 import terminal from "@guritso/terminal";
 import animeSync from "./services/animeSync.js";
+import middlewares from "./misc/middlewares.js";
+
 /**
  * AniHub class to manage the server and routes.
  * @class
-*/
+ */
 export default class AniHub {
   constructor(data) {
     terminal.setup();
@@ -23,6 +25,7 @@ export default class AniHub {
     this.app.use(express.json());
     this.app.set("trust proxy", 1);
     this.app.set("x-powered-by", false);
+
   }
 
   /**
@@ -33,7 +36,7 @@ export default class AniHub {
   start(host, port) {
     terminal.start(host, port);
 
-    this.app.listen(port, () => {
+    this.app.listen(port, host, () => {
       terminal.pass("server %H32 online");
       animeSync.start(this.cache);
     });
@@ -44,8 +47,14 @@ export default class AniHub {
    * @param {Array} routes - The routes to load.
    */
   routes(routes) {
-    this.app.use("/assets", this.middles.assets);
-    this.app.use("/api", this.middles.limiter);
+    const middles = middlewares.setup(this.express, this.__dirname, this.__web);
+
+    this.app.use("/assets", middles.assets);
+    this.app.use("/api", middles.limiter_min);
+    this.app.use("/api", middles.limiter_sec);
+    this.app.use("/profile", middles.limiter_min);
+    this.app.use("/profile", middles.limiter_sec);
+
     this.app.get("/", (_req, res) => {
       let indexHtml = readFileSync(
         path.join(this.__dirname, this.__web, "/pages/index.html"),
@@ -85,6 +94,6 @@ export default class AniHub {
       });
     });
 
-    this.app.use(this.middles.notFound);
+    this.app.use(middles.not_found);
   }
 }
