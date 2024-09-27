@@ -2,9 +2,9 @@
 export default class ReposCards {
   static render = (config, cache) => {
     const { username } = config.user.accounts.github;
-    const reposCards = cache.get(`git:${username.toLowerCase()}`) || [];
+    const repos = cache.get(`repos:${username.toLowerCase()}`) || [];
 
-    return reposCards
+    return repos
       .filter((repo, index) => {
         const isArchivedMatch = config.repos.archived ? true : !repo.archived;
         const isForkMatch = config.repos.fork ? true : !repo.fork;

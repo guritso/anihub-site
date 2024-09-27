@@ -86,7 +86,7 @@ export default class animeSync {
 
       try {
         const animes = await fetchAnimeList(username, "last_updated", 7);
-        cache.set(username.toLowerCase(), animes);
+        cache.set(`animes:${username.toLowerCase()}`, animes);
         terminal.log("done");
       } catch (error) {
         terminal.log(error);
