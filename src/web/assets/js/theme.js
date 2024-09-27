@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   loadTheme(type);
 });
-
+// skipcq: JS-0105
 function setTheme(theme) {
   localStorage.setItem("theme", theme);
   document.body.className = theme;
 }
-
+// skipcq: JS-0105
 function loadTheme(type) {
   const theme = localStorage.getItem("theme");
 

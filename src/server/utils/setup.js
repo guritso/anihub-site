@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, readdirSync } from "fs";
 
 const { stdin, exit } = process;
 const { myanimelist, github } = config.user.accounts;
+// skipcq: JS-D1001
 const clean = () => stdin.write("\r\x1b[2K");
 
 /**

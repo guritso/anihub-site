@@ -9,10 +9,9 @@ export default class Covers {
     method: "get",
     base: true,
     params: "anime/:id",
-    query: "k",
   };
 
-  static handler = async (req, res, next) => {
+  static handler = (req, res, next) => {
     const id = req.params.id.split(".")[0];
     const key = req.query.k;
 
@@ -21,9 +20,8 @@ export default class Covers {
 
     const animes = cache.get(`animes:${username.toLowerCase()}`) || [];
 
-    const anime = animes.find((anime) => {
-      return anime.id === Number(id);
-    });
+    const anime = animes.find((a) => a.id === Number(id));
+
     if (!anime) {
       next();
       return;

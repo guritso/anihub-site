@@ -20,22 +20,25 @@ export default class Profile {
     const hash = crypto.createHash("sha256").update(avatar_url).digest("hex");
     const fileExtension = path.extname(avatar_url.split("?")[0]).slice(1);
 
+    /**
+     * @function saveImage
+     * @description Saves the profile image to the specified location.
+     * @returns {Promise<Object>} The saved image object.
+     */
     const saveImage = async () => {
-      return imaget
-        .save({
-          url: avatar_url,
-          id: hash,
-          location: path.join(__dirname, `${__web}/assets/img/profile`),
-          type: fileExtension,
-          overwrite: true,
-        })
-        .then((image) => {
-          if (image) {
-            cache.set(`picture:${config().user.name}`, image);
-          }
+      const image = await imaget.save({
+        url: avatar_url,
+        id: hash,
+        location: path.join(__dirname, `${__web}/assets/img/profile`),
+        type: fileExtension,
+        overwrite: true,
+      });
 
-          return image;
-        });
+      if (image) {
+        cache.set(`picture:${config().user.name}`, image);
+      }
+
+      return image;
     };
 
     if (id === "undefined") {

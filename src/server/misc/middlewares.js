@@ -1,10 +1,19 @@
 import rateLimit from "express-rate-limit";
 import path from "path";
 
+/**
+ * Setup middleware for the express application.
+ * 
+ * @param {Object} express - The express instance.
+ * @param {string} __dirname - The directory name.
+ * @param {string} __web - The web directory.
+ * @returns {Object} - The configured middlewares.
+ */
 function setup(express, __dirname, __web) {
 
   const assets = express.static(path.join(__dirname, __web, "/assets"));
 
+  // skipcq: JS-D1001
   const handler = (req, res) => {
     res.status(429).json({
       status: 429,
@@ -24,6 +33,7 @@ function setup(express, __dirname, __web) {
     handler,
   });
 
+  // skipcq: JS-D1001
   const not_found = (req, res) => {
     if (req.path.startsWith("/api/")) {
       res.status(404).json({
