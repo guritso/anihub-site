@@ -4,12 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 Not found</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #9c3030;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: #502121;
+      text-decoration: none;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+      color: #964343;
+    }
+  </style>
 </head>
-<body style="margin: 0; padding: 0;">
-  <div class="error-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #000000;">
-    <h1 style="padding:0; margin:0; font-size: 100px; font-weight: bold; color: #562d3b;">404</h1>
-    <p style="padding:0; margin:0; font-size: 20px; color: #919191; font-family: monospace;">Page not found</p>
-    <a href="/" style="padding:0; margin:0; font-size: 12px; color: #919191; font-family: monospace;">back to home</a>
+<body>
+  <div class="error-container">
+    <h1>404</h1>
+    <p>Page not found</p>
+    <a href="/">back to home</a>
   </div>
 </body>
 </html>
