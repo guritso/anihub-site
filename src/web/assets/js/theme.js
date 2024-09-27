@@ -22,7 +22,7 @@ function setTheme(theme) {
 function loadTheme(type) {
   const theme = localStorage.getItem("theme");
 
-  if (theme == "undefined") return;
+  if (theme === "undefined") return;
 
   document.body.className = theme || `${type}-theme`;
 }
