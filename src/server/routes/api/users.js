@@ -8,7 +8,7 @@ const userActions = {
       res.send({ status: res.statusCode, data: cachedData });
     }
 
-    fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
+    fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`)
       .then(response => response.json())
       .then(data => {
         if (data.message) {
