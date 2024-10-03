@@ -260,6 +260,11 @@ h3 {
     transform: scale(0.95);
 }
 
+.anime-card p#anime-episodes {
+    display: none;
+    font-size: 0.8em;
+}
+
 .anime-card p {
     color: #ececec;
     font-size: 100%;
@@ -273,6 +278,13 @@ h3 {
 
 .anime-card:hover p#anime-title {
     border-radius: 0px;
+}
+.anime-card:hover .anime-status {
+    display: none;
+}
+
+.anime-card:hover p#anime-episodes {
+    display: flex;
 }
 
 .anime-card p#anime-date {
