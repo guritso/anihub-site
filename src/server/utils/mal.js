@@ -72,6 +72,7 @@ export default class mal {
           user: {
             status: STATUS[anime.status],
             increment: anime.num_watched_episodes,
+            score: anime.score,
             date: new Date(anime.updated_at * 1000),
           },
         });

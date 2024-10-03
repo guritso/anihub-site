@@ -9,6 +9,7 @@ export default class AnimesCards {
     + `<p class="anime-status" id="${anime.user.status.replace(' ', '-')}">${anime.user.status}</p>`
     + `<p id="anime-title">${anime.title}</p>`
     + `<p id="anime-episodes">Episodes: ${anime.user.increment} / ${anime.episodes || '?'}</p>`
+    + `<p id="anime-score">Scored: ${anime.user.score || '?'}</p>`
     + `<p id="anime-date">${anime.user.date.toTimeString().slice(0, 5)}  ${anime.user.date.toDateString()}</p>`
     + "</a>"
     ).join('');
