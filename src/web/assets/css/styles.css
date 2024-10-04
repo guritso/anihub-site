@@ -216,7 +216,7 @@ h3 {
     }
 }
 
-/* Animes Layout*/
+/* Animes Layout */
 #animes-layout {
     background-color: var(--background-anime);
     overflow: hidden;
@@ -235,112 +235,72 @@ h3 {
 }
 
 .anime-card {
-    background-color: var(--semi-transparent) !important;
-    display: flex;
-    flex-direction: column;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 170px;
-    height: 238px;
-    cursor: pointer;
+    position: relative;
+    aspect-ratio: 2/3;
     border-radius: var(--border-radius);
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.1s ease-in-out;
-    text-decoration: none;
-    user-select: none;
-    background-color: transparent;
+    height: 238px;
+    width: 170px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .anime-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.anime-card:active {
-    transform: scale(0.95);
+.anime-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.anime-card p#anime-episodes,
-.anime-card p#anime-score {
-    display: none;
-    font-size: 0.85em;
-}
-
-.anime-card p {
-    color: #ececec;
-    font-size: 100%;
+.anime-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, var(--card-transparent) 0%, rgba(0,0,0,0) 100%);
     padding: 2px;
-    margin: 0;
-    width: 100%;
-    background-color: var(--half-transparent);
-    word-wrap: break-word;
-    border-radius: var(--border-radius);
+    color: #fff;
+    transform: translateY(100%);
+    transition: transform 0.2s ease;
 }
 
-.anime-card:hover p#anime-title {
-    border-radius: 0px;
-}
-.anime-card:hover .anime-status {
-    display: none;
+.anime-card:hover .anime-card-overlay {
+    transform: translateY(0);
 }
 
-.anime-card:hover p#anime-score {
-    display: flex;
-}
-
-.anime-card:hover p#anime-episodes {
-    display: flex;
-}
-
-.anime-card p#anime-date {
-    display: none;
-}
-
-.anime-card:hover p#anime-date {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-    text-align: right;
-    display: flex;
-    align-items: flex-end;
-    flex-grow: 1;
-    font-size: 0.81em;
-}
-
-.anime-card .anime-status {
+.anime-card-title {
+    font-size: 0.95em;
     font-weight: 500;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+    margin-bottom: 5px;
+}
+
+.anime-card-info {
+    font-size: 0.7em;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
-.anime-card p#completed {
-    color: var(--text-color-completed);
+.anime-status {
+    color: #fff;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 2px 5px;
+    border-radius: var(--border-radius);
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.anime-card p#watching {
-    color: var(--text-color-watching);
-}
-
-.anime-card p#on-hold {
-    color: var(--text-color-on-hold);
-}
-
-.anime-card p#dropped {
-    color: var(--text-color-dropped);
-}
-
-.anime-card p#plan-to-watch {
-    color: var(--text-color-plan-to-watch);
-}
-
-.anime-card:hover .anime-status {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    height: auto;
-}
+.anime-status.completed { background-color: var(--text-color-completed); }
+.anime-status.watching { background-color: var(--text-color-watching); }
+.anime-status.dropped { background-color: var(--text-color-dropped); }
+.anime-status.on-hold { background-color: var(--text-color-on-hold); }
+.anime-status.plan-to-watch { background-color: var(--text-color-plan-to-watch); }
 
 /* Github repos */
 #repos-layout {

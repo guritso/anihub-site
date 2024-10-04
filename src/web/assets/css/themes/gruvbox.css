@@ -5,7 +5,7 @@
     --primary-color: rgba(214, 93, 14, 0.733);
     --background-color: #282828;
     --semi-transparent: rgba(235, 219, 178, 0.2);
-    --half-transparent: rgba(75, 56, 39, 0.5);
+    --card-transparent: rgba(75, 56, 39, 0.9);
     --one-background: #3c3836;
     --background-profile: var(--one-background);
     --background-social: var(--one-background);
@@ -36,7 +36,7 @@
     --primary-color: rgba(214, 93, 14, 0.733);
     --background-color: #fbf1c7;
     --semi-transparent: rgba(196, 171, 110, 0.2);
-    --half-transparent: rgba(85, 59, 37, 0.5);
+    --card-transparent: rgba(85, 59, 37, 0.9);
     --one-background: #ebdbb2;
     --background-profile: var(--one-background);
     --background-social: var(--one-background);

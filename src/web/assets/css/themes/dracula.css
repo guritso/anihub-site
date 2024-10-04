@@ -5,7 +5,7 @@
     --primary-color: rgba(255, 121, 198, 0.733);
     --background-color: #282a36;
     --semi-transparent: rgba(13, 15, 27, 0.2);
-    --half-transparent: rgba(66, 40, 97, 0.5);
+    --card-transparent: rgba(66, 40, 97, 0.9);
     --one-background: #44475a;
     --background-profile: var(--one-background);
     --background-social: var(--one-background);
@@ -36,7 +36,7 @@
     --primary-color: rgba(255, 121, 198, 0.733);
     --background-color: #f8f8f2;
     --semi-transparent: rgba(13, 15, 27, 0.2);
-    --half-transparent: rgba(66, 40, 97, 0.5);
+    --card-transparent: rgba(66, 40, 97, 0.9);
     --one-background: #e6e6e6;
     --background-profile: var(--one-background);
     --background-social: var(--one-background);
@@ -54,7 +54,7 @@
     --repo-stars-color: #50fa7b;
 
     --button-filter: brightness(1.3);
-    --button-font-color: #44475a;
+    --button-font-color: #bebfc7;
 
     --border-radius: 6px;
     --layout-padding: 10px;

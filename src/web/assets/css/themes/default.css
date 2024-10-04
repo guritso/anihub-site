@@ -5,7 +5,7 @@
     --primary-color: rgba(196, 129, 192, 0.733);
     --background-color: #dadada;
     --semi-transparent: rgba(133, 133, 133, 0.2);
-    --half-transparent: rgba(0, 0, 0, 0.5);
+    --card-transparent: rgba(0, 0, 0, 0.9);
     --one-background: #bdbdbd;
     --background-profile: var(--one-background);
     --background-social: var(--one-background);
@@ -37,7 +37,7 @@
     --primary-color: rgba(88, 88, 88, 0.733);
     --background-color: #000000;
     --semi-transparent: rgba(0, 0, 0, 0.2);
-    --half-transparent: rgba(0, 0, 0, 0.5);
+    --card-transparent: rgba(0, 0, 0, 0.9);
     --one-background: #222122;
     --background-profile: var(--one-background);
     --background-social: var(--one-background);
@@ -45,18 +45,18 @@
     --background-repos: var(--one-background);
     --background-footer: var(--one-background);
 
-    --text-color-completed: #77a5ff;
-    --text-color-watching: #a3f19c;
-    --text-color-dropped: #ff9c9c;
-    --text-color-on-hold: #fff677;
-    --text-color-plan-to-watch: #a7a7a7;
+    --text-color-completed: #4d75c5;
+    --text-color-watching: #4ea54e;
+    --text-color-dropped: #a54e4e;
+    --text-color-on-hold: #eff162;
+    --text-color-plan-to-watch: #aaaaaa;
 
     --repo-language-color: #f1e05a;
     --repo-stars-color: #ffac33;
 
     --button-filter: brightness(1);
 
-    --border-radius: 0px;
+    --border-radius: 2px;
     --layout-padding: 10px;
     --border-size: 0px;
 }

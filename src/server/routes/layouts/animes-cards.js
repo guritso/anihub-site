@@ -4,14 +4,22 @@ export default class AnimesCards {
     const { username } = config.user.accounts.myanimelist;
     const animes = cache.get(`animes:${username.toLowerCase()}`) || [];
 
-    return  animes.filter((anime) => config.anime.filters.status.includes(anime.user.status)).map((anime, i) => i >= config.anime.limit ? "" :
-    `<a class="anime-card" href="redirect?url=${encodeURIComponent(anime.link)}" target="_blank" style="background-image: url(${anime.image})">`
-    + `<p class="anime-status" id="${anime.user.status.replace(' ', '-')}">${anime.user.status}</p>`
-    + `<p id="anime-title">${anime.title}</p>`
-    + `<p id="anime-episodes">Episodes: ${anime.user.increment} / ${anime.episodes || '?'}</p>`
-    + `<p id="anime-score">Scored: ${anime.user.score || '?'}</p>`
-    + `<p id="anime-date">${anime.user.date.toTimeString().slice(0, 5)}  ${anime.user.date.toDateString()}</p>`
-    + "</a>"
-    ).join('');
+    return animes
+      .filter((anime) => config.anime.filters.status.includes(anime.user.status))
+      .slice(0, config.anime.limit)
+      .map((anime) => `
+        <a class="anime-card" href="redirect?url=${encodeURIComponent(anime.link)}" target="_blank">
+          <img class="anime-card-image" src="${anime.image}" alt="${anime.title}">
+          <div class="anime-card-overlay">
+            <div class="anime-card-title">${anime.title}</div>
+            <div class="anime-card-info">
+              <span>Ep: ${anime.user.increment} / ${anime.episodes || '?'}</span>
+              <span>Score: ${anime.user.score || 'N/A'}</span>
+            </div>
+          </div>
+          <div class="anime-status ${anime.user.status.replaceAll(' ', '-')}">${anime.user.status}</div>
+        </a>
+      `)
+      .join('');
   }
-} 
+}
