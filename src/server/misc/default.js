@@ -25,6 +25,7 @@ const config = {
     rowSpeed: 0.6,
     filters: {
       status: ["watching", "completed"],
+      watchingFirst: true,
     },
   },
   repos: {

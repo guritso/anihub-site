@@ -5,6 +5,15 @@ export default class AnimesCards {
     const animes = cache.get(`animes:${username.toLowerCase()}`) || [];
 
     return animes
+      .sort((a, b) => {
+        if (config.anime.filters.watchingFirst) {
+          if (a.user.status === 'watching' && b.user.status === 'watching') {
+            return b.user.date - a.user.date;
+          }
+          return a.user.status === 'watching' ? -1 : b.user.status === 'watching' ? 1 : 0;
+        }
+        return 0;
+      })
       .filter((anime) => config.anime.filters.status.includes(anime.user.status))
       .slice(0, config.anime.limit)
       .map((anime) => `

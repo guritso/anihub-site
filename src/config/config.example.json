@@ -29,7 +29,8 @@
     "limit": 30,
     "rowSpeed": 0.6,
     "filters": {
-      "status": ["watching", "completed"]
+      "status": ["watching", "completed"],
+      "watchingFirst": true
     }
   },
   "repos": {
