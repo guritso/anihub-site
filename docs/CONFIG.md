@@ -40,6 +40,7 @@ This is where you put your personal data e links de redes sociais.
 | **limit** | Number of animes to display | 30 | 0 - 26417 | number |
 | **rowSpeed** | Animation speed of the row | 0.6 | 0 - 100 | number |
 | **filters.status** | Anime statuses to include | "watching", "completed" | on hold, dropped, plan to watch | array of strings |
+| **filters.watchingFirst** | Show watching animes first? | true | true, false | boolean |
 
 ### Repo Settings
 
