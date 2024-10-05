@@ -250,6 +250,10 @@ h3 {
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
+.anime-card:active {
+    transform: scale(0.98);
+}
+
 .anime-card-image {
     width: 100%;
     height: 100%;
