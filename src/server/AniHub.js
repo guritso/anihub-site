@@ -52,6 +52,7 @@ export default class AniHub {
     this.app.use("/assets", middles.assets);
     this.app.use("/api", middles.limiter_min, middles.limiter_sec);
     this.app.use("/profile", middles.limiter_min, middles.limiter_sec);
+    this.app.use("/redirect", middles.limiter_min, middles.limiter_sec);
 
     this.app.get("/", (_req, res) => {
       let indexHtml = readFileSync(

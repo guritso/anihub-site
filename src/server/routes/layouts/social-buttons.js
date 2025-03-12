@@ -7,7 +7,7 @@ export default class SocialButtons {
       if (value?.url) {
         socialButtons += `<a class="button" id="${key}-button" target="_blank" style="background-color: ${
           value.color
-        };" href="redirect?url=${encodeURIComponent(value.url)}">${key}</a>`;
+        };" href="${value.url}">${key}</a>`;
       }
     }
 
