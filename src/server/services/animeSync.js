@@ -2,7 +2,6 @@ import configLoader from "../utils/configLoader.js";
 import terminal from "@guritso/terminal";
 import imaget from "../utils/imaget.js";
 import mal from "../utils/mal.js";
-import crypto from "crypto";
 
 const CONCURRENCY_LIMIT = 20;
 
@@ -43,9 +42,8 @@ async function processQueue(queue, animes, total) {
         id: anime.id,
         location: "src/web/assets/img/covers",
       });
-      const hash = crypto.hash("sha256", crypto.randomBytes(16)).slice(0, 16);
 
-      animes.push({ ...anime, image: `covers/anime/${anime.id}.webp?k=${hash}`, path: img.path });
+      animes.push({ ...anime, image: `covers/anime/${anime.id}.webp`, path: img.path });
 
       const progress = (animes.length / total) * 100;
 
