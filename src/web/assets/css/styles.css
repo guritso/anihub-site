@@ -42,7 +42,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: transparent;
-    width: 995px;
+    width: 910px;
     box-sizing: border-box;
 }
 
@@ -71,7 +71,7 @@ body {
     transform: scale(1.30);
 }
 
-@media (max-width: 995px) {
+@media (max-width: 910px) {
     .main-page {
         width: 100%;
     }
@@ -212,6 +212,83 @@ h3 {
     100% {
         transform: translateX(-50%);
     }
+}
+
+/* Anime Header with expand button */
+.anime-header {
+    display: flex;
+    align-items: center;
+}
+
+.anime-header h3 {
+    margin-left: var(--layout-padding);
+    font-weight: 500;
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+#expand-animes {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#expand-animes:hover {
+    transform: scale(1.1);
+}
+
+#expand-animes:before, 
+#expand-animes:after {
+    content: '';
+    position: absolute;
+    background-color: var(--button-font-color, #fff);
+    transition: all 0.2s ease;
+}
+
+/* Horizontal line */
+#expand-animes:before {
+    height: 2px;
+    width: 10px;
+    top: 9px;
+    left: 5px;
+}
+
+/* Vertical line */
+#expand-animes:after {
+    height: 10px;
+    width: 2px;
+    top: 5px;
+    left: 9px;
+}
+
+/* Animation for expanded state */
+#expand-animes.expanded:after {
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+/* Animes Layout expanded */
+#animes-layout.expanded {
+    height: auto;
+    min-height: auto;
+}
+
+#animes-layout.expanded .anime-card {
+    width: 100%;
+}
+
+/* Grid view for container */
+#anime-container.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: var(--layout-padding);
+    width: 100%;
+    justify-content: flex-start;
 }
 
 /* Animes Layout */
@@ -470,5 +547,14 @@ h3 {
 
     #footer-layout {
         height: auto;
+    }
+
+    #anime-container.grid-view {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    #animes-layout.expanded .anime-card {
+        width: 100%;
+        height: 180px;
     }
 }
