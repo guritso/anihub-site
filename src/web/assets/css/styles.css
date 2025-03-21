@@ -229,8 +229,8 @@ h3 {
 
 #expand-animes {
     display: flex;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background-color: var(--primary-color);
     border-radius: 4px;
     position: relative;
@@ -253,17 +253,17 @@ h3 {
 /* Horizontal line */
 #expand-animes:before {
     height: 2px;
-    width: 10px;
-    top: 9px;
+    width: 8px;
+    top: 8px;
     left: 5px;
 }
 
 /* Vertical line */
 #expand-animes:after {
-    height: 10px;
+    height: 8px;
     width: 2px;
     top: 5px;
-    left: 9px;
+    left: 8px;
 }
 
 /* Animation for expanded state */
