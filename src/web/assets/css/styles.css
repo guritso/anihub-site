@@ -134,7 +134,6 @@ h3 {
     font-size: 1.5em;
     font-weight: 500;
     background-color: transparent;
-    border-radius: var(--border-radius);
     padding: 2px;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
@@ -148,7 +147,6 @@ h3 {
     font-size: 1em;
     background-color: var(--semi-transparent);
     border-radius: var(--border-radius);
-    border-top-left-radius: 0;
     padding: 2px;
     overflow-y: auto;
 }
