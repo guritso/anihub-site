@@ -17,10 +17,10 @@ export default class Redirect {
       if (allowedDomains.includes(url.hostname)) {
         res.redirect(req.query.url);
       } else {
-        res.sendFile(path.join(__dirname, `${__web}/pages/401.html`));
+        res.status(401).sendFile(path.join(__dirname, `${__web}/pages/401.html`));
       }
     } catch (e) {
-      res.sendFile(path.join(__dirname, `${__web}/pages/404.html`));
+      res.status(404).sendFile(path.join(__dirname, `${__web}/pages/404.html`));
     }
   }
 }
