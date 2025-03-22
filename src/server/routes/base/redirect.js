@@ -9,7 +9,7 @@ export default class Redirect {
   };
 
   static handler = (req, res) => {
-    const allowedDomains = ['https://github.com/', 'https://myanimelist.net/'];
+    const allowedDomains = ['github.com', 'myanimelist.net'];
     const { __web, __dirname } = req.app.client;
 
     try {
