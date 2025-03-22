@@ -1,6 +1,5 @@
 "use strict";
 
-import cors from "cors";
 import path from "path";
 import express from "express";
 import { readFileSync } from "fs";
@@ -21,34 +20,33 @@ export default class AniHub {
     this.data = data;
     this.cache = new Map();
 
-    this.app.use(cors());
     this.app.use(express.json());
     this.app.set("trust proxy", 1);
     this.app.set("x-powered-by", false);
-
   }
-
+  
   /**
    * Starts the server on the specified host and port.
    * @param {string} host - The host to start the server on.
    * @param {number} port - The port to start the server on.
-   */
-  start(host, port) {
+  */
+ start(host, port) {
     terminal.start(host, port);
-
+    
     this.app.listen(port, host, () => {
       terminal.pass("server %H32 online");
       animeSync.start(this.cache);
     });
   }
-
+  
   /**
    * Loads the routes and middlewares into the application.
    * @param {Array} routes - The routes to load.
-   */
-  routes(routes) {
+  */
+ routes(routes) {
     const middles = middlewares.setup(this.express, this.__dirname, this.__web);
-
+   
+    this.app.use(middles.corsConfig);
     this.app.use("/assets", middles.assets);
     this.app.use("/api", middles.limiter_min, middles.limiter_sec);
     this.app.use("/profile", middles.limiter_min, middles.limiter_sec);

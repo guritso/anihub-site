@@ -1,5 +1,8 @@
+import configLoader from "../utils/configLoader.js";
 import rateLimit from "express-rate-limit";
+import { URL } from "url";
 import path from "path";
+import cors from "cors";
 
 /**
  * Setup middleware for the express application.
@@ -12,6 +15,7 @@ import path from "path";
 function setup(express, __dirname, __web) {
 
   const assets = express.static(path.join(__dirname, __web, "/assets"));
+  const { server } = configLoader();
 
   // skipcq: JS-D1001
   const handler = (req, res) => {
@@ -47,7 +51,22 @@ function setup(express, __dirname, __web) {
     }
   };
 
-  return { assets, limiter_min, limiter_sec, not_found}
+  const url = new URL(`http://${server.host}:${server.port}`);
+  console.error(process.env.ALLOWED_ORIGINS);
+  console.error(url);
+
+  const corsOptions = {
+    origin: process.env.ALLOWED_ORIGINS 
+      ? process.env.ALLOWED_ORIGINS.split(',') 
+      : [url.origin],
+    methods: ['GET'],
+    credentials: true,
+    optionsSuccessStatus: 204
+  };
+
+  const corsConfig = cors(corsOptions);
+
+  return { assets, limiter_min, limiter_sec, not_found, corsConfig }
 }
 
 export default { setup }
