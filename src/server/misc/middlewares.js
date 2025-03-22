@@ -57,8 +57,6 @@ function setup(express, __dirname, __web) {
   };
 
   const url = new URL(`http://${server.host}:${server.port}`);
-  console.error(process.env.ALLOWED_ORIGINS);
-  console.error(url);
 
   const corsOptions = {
     origin: process.env.ALLOWED_ORIGINS 
