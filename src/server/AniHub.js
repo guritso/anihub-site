@@ -47,6 +47,7 @@ export default class AniHub {
     const middles = middlewares.setup(this.express, this.__dirname, this.__web);
    
     this.app.use(middles.corsConfig);
+    this.app.use(middles.securityHeaders);
     this.app.use("/assets", middles.assets);
     this.app.use("/api", middles.limiter_min, middles.limiter_sec);
     this.app.use("/profile", middles.limiter_min, middles.limiter_sec);

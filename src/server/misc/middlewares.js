@@ -51,6 +51,11 @@ function setup(express, __dirname, __web) {
     }
   };
 
+  const securityHeaders = (req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    next();
+  };
+
   const url = new URL(`http://${server.host}:${server.port}`);
   console.error(process.env.ALLOWED_ORIGINS);
   console.error(url);
@@ -66,7 +71,7 @@ function setup(express, __dirname, __web) {
 
   const corsConfig = cors(corsOptions);
 
-  return { assets, limiter_min, limiter_sec, not_found, corsConfig }
+  return { assets, limiter_min, limiter_sec, not_found, corsConfig, securityHeaders }
 }
 
 export default { setup }
