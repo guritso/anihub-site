@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {{document-head}}
+    <script src="/assets/js/anime-expand.js"></script>
   </head>
 
   <body class="dark-theme">
@@ -15,7 +16,10 @@
       <div class="head-layouts" id="social-layout">
         <div id="social-container">{{social-buttons}}</div>
       </div>
-      <h3>Last watched animes</h3>
+      <div class="anime-header">
+        <h3>Last watched animes</h3>
+        <span id="expand-animes" title="Expand all animes"></span>
+      </div>
       <div class="head-layouts" id="animes-layout">
         <div id="anime-container">{{animes-cards}}</div>
       </div>
