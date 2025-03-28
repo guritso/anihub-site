@@ -1,3 +1,5 @@
+> This is the old version of [anihub-svelte](https://github.com/guritso/anihub-svelte)
+
 # Animehub
 
 Animehub is a simple site to display your anime and github history using MyAnimeList and github api.
