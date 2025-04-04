@@ -1,6 +1,6 @@
 {
   "name": "anihub-site",
-  "packageManager": "yarn@4.4.1",
+  "packageManager": "yarn@4.8.1",
   "author": "GuriTso",
   "type": "module",
   "version": "3.0.0",
